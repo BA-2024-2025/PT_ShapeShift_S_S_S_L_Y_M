@@ -67,10 +67,20 @@ class TTetromino {
 
     getGridPosition() {
         return [
-           [this.getPosition()[0][0] + this.getShiftX(), this.getPosition()[0][1] + this.getShiftY()],
-           [this.getPosition()[1][0] + this.getShiftX(), this.getPosition()[1][1] + this.getShiftY()],
-           [this.getPosition()[2][0] + this.getShiftX(), this.getPosition()[2][1] + this.getShiftY()]
-       ];
+            [this.getPosition()[0][0] + this.getShiftX(), this.getPosition()[0][1] + this.getShiftY()],
+            [this.getPosition()[1][0] + this.getShiftX(), this.getPosition()[1][1] + this.getShiftY()],
+            [this.getPosition()[2][0] + this.getShiftX(), this.getPosition()[2][1] + this.getShiftY()],
+            [this.getPosition()[3][0] + this.getShiftX(), this.getPosition()[3][1] + this.getShiftY()]
+        ];
+    }
+
+    getElementIdGrid (gridPosition) {
+        return [
+            String(gridPosition[0][0]) + String(gridPosition[0][1]),
+            String(gridPosition[1][0]) + String(gridPosition[1][1]),
+            String(gridPosition[2][0]) + String(gridPosition[2][1]),
+            String(gridPosition[3][0]) + String(gridPosition[3][1])
+        ];
     }
 
 
