@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShapeShift - Sign Up</title>
+  <link rel="stylesheet" href="../public/css/login/signup.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <p class="logo-text">ShapeShift</p>
+      <img src="../public/img/profile.png" alt="user" class="user" onclick="navigateTo('/login');">
+    </nav>
+  </header>
+
+  <main>
+    <form autocomplete="off" action="" id="signup-form" method="post">
+      <p class="title-small">create a new</p>
+      <h1 class="title-main">ShapeShift</h1>
+      <p class="title-small">account</p>
+
+      <input class="input-box" type="text" name="username" id="username" placeholder="username" required />
+      <div id="username-error" class="error-msg hidden">Username is already taken.</div>
+
+      <input class="input-box" type="password" name="password" id="password" placeholder="password" required />
+      <input class="input-box" type="password" id="confirm-password" placeholder="repeat password" required />
+      <div id="password-error" class="error-msg hidden">Passwords do not match or do not meet requirements.</div>
+
+      <button class="signup-button" type="submit">Sign Up</button>
+      <p class="login-link">Already have an account? <a href="/login">Login</a></p>
+    </form>
+  </main>
+
+  <script src="signup.js"></script>
+</body>
+</html>
