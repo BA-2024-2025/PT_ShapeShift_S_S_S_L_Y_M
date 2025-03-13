@@ -9,31 +9,62 @@
 
 </head>
 <body>
-    <nav>
+<nav>
 
-    </nav>
-
-    <div id= "title">
-        <h1>Leaderboard</h1>
+    <div class="navContainer">
+        <div class="logoContainer"><h1 class="logo" style="color:var(--primary)">ShapeShift</h1></div>
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="navItem"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="navItem"><a href="index.html" class="nav-link">Leaderboard</a></li>
+            </ul>
+        </nav>
+        <div class="loginContainer">
+            <div class="login-icon"><a href="index.html" class="login"> <i class="fa-regular fa-user"></i> </a>
+                <ul class="login-menu">
+                    <li class="login-element"><a href="index.html" class="login login-text">Login</a></li>
+                    <li class="login-element"><a href="index.html" class="settings login-text">Settings</a></li>
+                </ul>
+            </div>
+            <div class="mobile-menu">
+                <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
+                <ul class="mobile-menu-menu">
+                    <li class="mobile-menu-item"><a href="index.html" class="mobile-menu-link"><i
+                            class="fa-solid fa-house"></i> Home</a></li>
+                    <li class="mobile-menu-item"><a href="index.html" class="mobile-menu-link"><i
+                            class="fa-solid fa-medal"></i> Leaderboard</a></li>
+                    <li class="mobile-menu-item"><a href="index.html" class="mobile-menu-link"><i
+                            class="fa-solid fa-gear"></i> Settings</a></li>
+                    <li class="mobile-menu-item"><a href="index.html" class="mobile-menu-link"><i
+                            class="fa-regular fa-user"></i> Login</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <table class = "LeaderboardHead">
-      <thead>
-        <tr>
-          <th class = "place">Place</th>
-          <th class = "username">Username</th>
-          <th class = "score">Score</th>
-        </tr>
-      </thead>
-    </table>
-    <table class = "Leaderboard">
-        <tbody>
-            <tr>
-                <th class = "placeb"></th>
-                <th class = "usernameb"></th>
-                <th class = "scoreb"></th>
-            </tr>
-        </tbody>
-    </table>
-    <script src="../public/scripts/leaderboard.js"></script>
+
+</nav>
+
+<div id="title">
+    <h1>Leaderboard</h1>
+</div>
+<table class="LeaderboardHead">
+    <thead>
+    <tr>
+        <th class="place">Place</th>
+        <th class="username">Username</th>
+        <th class="score">Score</th>
+    </tr>
+    </thead>
+</table>
+<table class="Leaderboard">
+    <tbody>
+    <tr>
+        <th class="placeb"></th>
+        <th class="usernameb"></th>
+        <th class="scoreb"></th>
+    </tr>
+    </tbody>
+</table>
+<script src="../public/scripts/leaderboard.js"></script>
 </body>
 </html>
