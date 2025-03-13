@@ -120,4 +120,8 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
 .idea/**/azureSettings.xml
 
+<<<<<<< HEAD
 # End of https://www.toptal.com/developers/gitignore/api/webstorm,cvs
+=======
+# End of https://www.toptal.com/developers/gitignore/api/webstorm,cvs
+>>>>>>> cd576e52016ad1e336ed99bd306b589dbfbd2266
