@@ -1,4 +1,4 @@
-class TTetromino {
+export class TTetromino {
 
     constructor(color) {
 
@@ -22,7 +22,7 @@ class TTetromino {
             [2, 1]
         ];
         this.pos4 = [
-            [0, 1],
+            [1, 0],
             [1, 1],
             [2, 1],
             [1, 2]
@@ -31,36 +31,38 @@ class TTetromino {
         this.position = this.pos1
 
         //for placing the block right in the real field kinda the shift
-        this.shiftX = 5;
+        this.shiftX = 4;
         this.shiftY = 0;
         this.color = color;
 
     }
 
     shiftXRight() {
-        if (this.getShiftX()<8) {
+        if (this.getShiftX()<7 || this.position === this.pos2 && this.getShiftX()<8) {
             this.shiftX += 1;
         }
     }
 
     shiftXLeft() {
-        if (this.getShiftX()>0) {
+        if (this.getShiftX()>0 || this.position === this.pos4 && this.getShiftX()>-1) {
             this.shiftX -= 1;
         }
     }
 
     shiftYDown() {
-        this.shiftY += 1;
+        if (this.getShiftY()<18 || this.position === this.pos3 && this.getShiftY()<19) {
+            this.shiftY += 1;
+        }
     }
 
     rotate() {
         if (this.position === this.pos1) {
             this.setPosition(this.pos2);
-        } else if (this.position === this.pos2) {
+        } else if (this.position === this.pos2 && this.getShiftX()<8) {
             this.setPosition(this.pos3);
-        } else if (this.position === this.pos3) {
+        } else if (this.position === this.pos3 && this.getShiftY()<19) {
             this.setPosition(this.pos4);
-        } else {
+        } else if (this.position === this.pos4 && this.getShiftX()>-1) {
             this.setPosition(this.pos1);
         }
     }
