@@ -38,11 +38,15 @@ class TTetromino {
     }
 
     shiftXRight() {
-        this.shiftX += 1;
+        if (this.getShiftX()<8) {
+            this.shiftX += 1;
+        }
     }
 
     shiftXLeft() {
-        this.shiftX -= 1;
+        if (this.getShiftX()>0) {
+            this.shiftX -= 1;
+        }
     }
 
     shiftYDown() {
@@ -51,8 +55,22 @@ class TTetromino {
 
     rotate() {
         if (this.position === this.pos1) {
-            this.getPosition(this.pos2);
+            this.setPosition(this.pos2);
+        } else if (this.position === this.pos2) {
+            this.setPosition(this.pos3);
+        } else if (this.position === this.pos3) {
+            this.setPosition(this.pos4);
+        } else {
+            this.setPosition(this.pos1);
         }
+    }
+
+    getGridPosition() {
+        return [
+           [this.getPosition()[0][0] + this.getShiftX(), this.getPosition()[0][1] + this.getShiftY()],
+           [this.getPosition()[1][0] + this.getShiftX(), this.getPosition()[1][1] + this.getShiftY()],
+           [this.getPosition()[2][0] + this.getShiftX(), this.getPosition()[2][1] + this.getShiftY()]
+       ];
     }
 
 
