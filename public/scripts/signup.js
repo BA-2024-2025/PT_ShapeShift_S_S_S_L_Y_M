@@ -46,7 +46,7 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  const response = await fetch('http://172.16.2.165:3000/submit-signup', {
+  const response = await fetch('http://172.16.2.164:3000/submit-signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

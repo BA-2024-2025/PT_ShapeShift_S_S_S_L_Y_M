@@ -14,7 +14,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     }
   
     try {
-      const response = await fetch("http://172.16.2.165:3000/submit-login", {
+      const response = await fetch("http://172.16.2.164:3000/submit-login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

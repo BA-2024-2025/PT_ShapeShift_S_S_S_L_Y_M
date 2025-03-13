@@ -23,6 +23,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
   
   header {
@@ -35,6 +36,11 @@
 
   main {
     padding-top: 10vh;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
 
   nav {
@@ -75,7 +81,9 @@
     flex-direction: column;
     width: 90%;
     max-width: 400px;
-    padding: 2em;
+    max-height: 100%;
+    padding: 1em;
+    justify-content: center;
   }
   
   .title-small {
@@ -86,8 +94,7 @@
   .title-main {
     font-size: 5em;
     color: var(--primary-cyan);
-    margin: 0.25em 0;
-    margin-top: 0.1em;
+    margin: 0;
     display: flex;
     justify-content: center;
   }
@@ -134,7 +141,14 @@
 
   .hidden {
     display: none;
+  }
+
+  .back {
+    height: 10%;
     position: fixed;
+    left: 10%;
+    top: 10%;
+    ;
   }
 
   
@@ -144,7 +158,6 @@
 
 ::-webkit-scrollbar-track {
   background: transparent; 
-  position: fixed;
 }
 
 ::-webkit-scrollbar-thumb {
