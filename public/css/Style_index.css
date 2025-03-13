@@ -27,7 +27,7 @@ i{
 .logoContainer>img{
     margin-left: 15px;
     width: 100px;
-    height: 100%;
+    height: auto;
 }
 .navbar{
     grid-column-start: 2;
@@ -69,12 +69,11 @@ li a:hover ul{
 .ac-gn-item:hover{
     display: block;
 }
-
 .loginContainer{
     width: 100%;
     height: 100%;
-    grid-column-end: 3;
-    grid-column-start: 4;
+    grid-column-end: 4;
+    grid-column-start: 3;
     grid-row-start: 1;
     font-size: 2em;
     display: flex;
@@ -89,7 +88,6 @@ li a:hover ul{
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 .login-icon:hover .login-menu{
     visibility: visible;
@@ -128,8 +126,52 @@ li a:hover ul{
     grid-template-columns: 0.75fr 1fr;
     margin-top: 5%;
 }
+.mobile-menu{
+    display: none;
+    flex-direction: column;
+    align-items: end;
+}
+.mobile-menu-icon{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+    min-width: 60px;
+}
+.mobile-menu-menu{
+    list-style-type: none;
+    background-color: var(--background);
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    flex-direction: column;
+    padding: 0px;
+    display:none;
+    margin: 0;
+}
+.mobile-menu:hover .mobile-menu-menu{
+    display: flex;
+}
+.mobile-menu-item{
+    margin: 5px;
+    width: 150%;
+}
 /* Navigation Bar */
 @media screen and (max-width: 728px) {
+    .login-icon{
+        display: none;
+    }
+    .mobile-menu{
+        display: flex;
+    }
+    .navbar{
+        display: none;
+    }
+    .loginContainer{
+        grid-column-end: 4;
+        grid-column-start: 2;
+        grid-row-start: 1;
+    }
     .container{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
