@@ -21,14 +21,15 @@ function drawBattlefield(shape) {
     }
 }
 
+//simi cooking the grid
 let count = 0;
 for (let y = 0; y < 21; y++) {
     for (let x = 0; x < 10; x++) {
         const child = document.createElement("div")
         child.id = x + "" + y;
         child.className = "container"
-        child.style.gridColumn= x + 1;
-        child.style.gridRow= y + 1;
+        child.style.gridColumn= x+1;
+        child.style.gridRow= y+1;
         app.appendChild(child)
         count += 1
     }
@@ -37,24 +38,29 @@ for (let y = 0; y < 21; y++) {
 let t = new TTetromino("blue")
 drawBattlefield(t)
 
-
-//Workers home
-let worker;
-
 document.addEventListener("keydown", function(whichKey){
     if (whichKey.key === "T") {
-        console.log("t")
+
         //create worker
-        if (typeof(worker) == "undefined") {
-            console.log("worker")
-            worker = new Worker("./moveDown_worker.js");
-        } else {
-            console.log("worker is running ...");
+        const worker = new Worker("/ShapeShift/public/scripts/moveDown_worker.js");
+
+        //receives message from worker to shift down y
+        worker.onmessage = function(shiftYDown) {
+            if (shiftYDown.data === "shiftYDown") {
+                clearBattlefield()
+                t.shiftYDown()
+                drawBattlefield(t)
+
+                //kills worker if t reached end
+                if (t.getShiftY() === 19) {
+                    worker.terminate();
+                }
+            }
         }
     }
     if (whichKey.key === "X") {
         //check for active worker
-        if (typeof(worker) == "undefined") {
+        if (typeof(Worker) == "undefined") {
             console.log("No worker exist, maybe terminated himself")
         } else {
             console.log("Worker is waiting to terminate himself");
