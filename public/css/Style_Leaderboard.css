@@ -5,6 +5,10 @@ html{
 }
 
 body{
+    background-color: #161617;
+}
+
+#leaderboard{
     font-family: 'Orbitron', sans-serif;
     margin: 100px;
     border-radius: 20px;
