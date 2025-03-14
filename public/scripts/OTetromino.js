@@ -1,6 +1,12 @@
-export class OTetromino {
+import {Tetromino} from "./Tetromino.js";
+
+export class OTetromino extends Tetromino{
 
     constructor() {
+
+        //only here for satisfaction of js
+        super();
+
         this.position = [
             [0,0],
             [1,0],
@@ -9,7 +15,7 @@ export class OTetromino {
         ];
 
         this.shiftX = 4;
-        this.shiftY = 0;
+        this.shiftY = 1;
         this.color = "#f5ff00";
     }
 

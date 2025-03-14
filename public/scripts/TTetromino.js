@@ -1,6 +1,11 @@
-export class TTetromino {
+import {Tetromino} from "./Tetromino.js";
+
+export class TTetromino extends Tetromino{
 
     constructor() {
+
+        //only here for satisfaction of js
+        super();
 
         //creates the different positions for rotation
         this.pos1 = [

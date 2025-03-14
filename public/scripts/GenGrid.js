@@ -2,7 +2,7 @@ import {TTetromino} from "./TTetromino.js";
 import {OTetromino} from "./OTetromino.js";
 import {ITetromino} from "./ITetromino.js";
 
-const app = document.getElementById("app")
+const app = document.getElementById("app");
 
 function clearBattlefield() {
 
@@ -18,10 +18,10 @@ function clearBattlefield() {
 function drawBattlefield(tetromino) {
 
     //draws the tetromino on the right position
-    let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition())
+    let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
     for (let i  = 0; i < 4; i++) {
-        let partOfT = document.getElementById(positionT[i])
-        partOfT.style.backgroundColor = tetromino.getColor()
+        let partOfT = document.getElementById(positionT[i]);
+        partOfT.style.backgroundColor = tetromino.getColor();
     }
 }
 
@@ -31,22 +31,36 @@ function createGrid() {
     let count = 0;
     for (let y = 0; y < 21; y++) {
         for (let x = 0; x < 10; x++) {
-            const child = document.createElement("div")
+            const child = document.createElement("div");
             child.id = x + "" + y;
-            child.className = "container"
+            child.className = "container";
             child.style.gridColumn = x + 1;
             child.style.gridRow = y + 1;
-            app.appendChild(child)
-            count += 1
+            app.appendChild(child);
+            count += 1;
         }
     }
 }
 
-createGrid()
+//game starts
+createGrid();
 
-let activeTetromino= new ITetromino()
-drawBattlefield(activeTetromino)
+let activeTetromino;
 
+//select random tetromino
+let randNum = Math.floor(Math.random()*3)+1;
+if (randNum === 1) {
+    activeTetromino= new TTetromino();
+} else if (randNum === 2) {
+    activeTetromino= new ITetromino();
+} else if (randNum === 3) {
+    activeTetromino= new OTetromino();
+}
+
+//draws the tetromino for the first time
+drawBattlefield(activeTetromino);
+
+//listener for all key inputs relating to the activeTetromino
 document.addEventListener("keydown", function(whichKey){
     if (whichKey.key === "T") {
 
