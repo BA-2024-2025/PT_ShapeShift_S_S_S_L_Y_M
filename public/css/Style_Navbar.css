@@ -18,6 +18,9 @@ body {
     display: flex;
     flex-direction: column;
 }
+i{
+    color: var(--text);
+}
 
 
 .navContainer{

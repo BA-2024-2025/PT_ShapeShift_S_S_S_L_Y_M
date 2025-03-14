@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+:root{
+    --1:#C9B037;
+    --2:#B4B4B4;
+    --3:#6A3805;
+}
 
 body{
     background-color: #161617;
@@ -8,60 +13,19 @@ body{
     height: 100%;
 }
 
-#leaderboard{
-    font-family: 'Orbitron', sans-serif;
-    margin: 100px;
-    border-radius: 20px;
-    background-color: #1d1d1d;
-}
-
-#title{
+.title{
     text-align: center;
-    font-size: 3em;
-    color: #7b28bb
+    font-size: 8vw;
+    color: var(--accent);
 }
-
-
-.Leaderboard{
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin: 25px 5px 25px 5px;
-    padding: 10px;
-    color: #e0eafa;
-    border-radius: 30px;
+.title>i{
+    font-size: 5.4vw;
 }
 
 tr{
-    color: #e0eafa;
+    color: var(--text);
 }
-
-.place{
-    padding: 0px 90px 0px 90px;
-}
-
-.username{
-    padding: 0px 90px 0px 90px;
-}
-
-.score{
-    padding: 0px 90px 0px 90px;
-}
-
-.placeb{
-    padding: 0px 150px 0px 150px;
-}
-
-.usernameb{
-    padding: 0px 150px 0px 150px;
-}
-
-.scoreb{
-    padding: 0px 150px 0px 150px;
-}
-
-
-.LeaderboardHead{
+.leaderboardHead{
     text-align: center;
     font-size: 1.5em;
     display: flex;
@@ -71,20 +35,35 @@ tr{
     color: #e0eafa;
     border-radius: 30px;
 }
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    #title {
-        font-size: 1.5em;
+.leaderboard-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.leaderboard-container-in{
+    max-height: 50vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    background-color: var(--foreground);
+    padding: 10px;
+    border-radius: 25px;
+    -ms-overflow-style: none;  /* For Internet Explorer */
+    scrollbar-width: none;     /* For Firefox */
+}
+.leaderboard-container-in::-webkit-scrollbar {
+    display: none;  /* Hides the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
+}
+.leaderboard{
+    width: 100%;
+}
+@media screen and (max-width: 956px){
+    .title{
+        font-size: 12vw;
     }
-    #leaderboard {
-        font-size: 2em;
-    }
-    table {
-        margin: 20px 0;
-        padding: 5px;
-    }
-    th, td {
-        padding: 5px 50px 5px 50px;
+    .title>i{
+        font-size: 12.4vw;
     }
 }
