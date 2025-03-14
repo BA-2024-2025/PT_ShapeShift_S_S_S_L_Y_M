@@ -1,5 +1,6 @@
 import {TTetromino} from "./TTetromino.js";
 import {OTetromino} from "./OTetromino.js";
+import {ITetromino} from "./ITetromino.js";
 
 const app = document.getElementById("app")
 
@@ -36,7 +37,7 @@ for (let y = 0; y < 21; y++) {
     }
 }
 
-let t = new OTetromino()
+let t = new ITetromino()
 drawBattlefield(t)
 
 document.addEventListener("keydown", function(whichKey){
