@@ -10,7 +10,9 @@ function clearBattlefield(tetromino) {
     let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
     for (let i  = 0; i < 4; i++) {
         let partOfT = document.getElementById(positionT[i]);
-        partOfT.style.backgroundColor = "black";
+        partOfT.style.backgroundColor = "#01010101";
+        partOfT.style.boxShadow = "none";
+
     }
 }
 
@@ -21,6 +23,7 @@ function drawBattlefield(tetromino) {
     for (let i  = 0; i < 4; i++) {
         let partOfT = document.getElementById(positionT[i]);
         partOfT.style.backgroundColor = tetromino.getColor();
+        partOfT.style.boxShadow = `inset 3px 3px 0px rgba(255, 255, 255, 0.75), 2px 2px 10px ${tetromino.getColor()}`;
     }
 }
 
@@ -41,74 +44,87 @@ function createGrid() {
     }
 }
 
-//game starts
-createGrid();
+function blockLanding(tetromino, worker, event) {
+    //remove shadow from the landing block
+    clearBattlefield(tetromino);
+    drawBattlefield(tetromino);
+    console.log("reached the end");
+    document.removeEventListener("keydown", event);
+    worker.terminate();
 
-
-let blockFalling = false;
-let activeTetromino;
-
-
-//select random tetromino
-let randNum = Math.floor(Math.random() * 3) + 1;
-if (randNum === 1) {
-    activeTetromino = new TTetromino();
-} else if (randNum === 2) {
-    activeTetromino = new ITetromino();
-} else if (randNum === 3) {
-    activeTetromino = new OTetromino();
+    //restart the game
+    gameLoop()
 }
 
-//draws the tetromino for the first time
-drawBattlefield(activeTetromino);
+function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
+    switch (key.key) {
+        case "ArrowUp":
+            clearBattlefield(activeTetromino);
+            activeTetromino.rotate();
+            drawBattlefield(activeTetromino);
+            break;
+        case "ArrowRight":
+            clearBattlefield(activeTetromino);
+            activeTetromino.shiftXRight();
+            drawBattlefield(activeTetromino);
+            break;
+        case "ArrowLeft":
+            clearBattlefield(activeTetromino);
+            activeTetromino.shiftXLeft();
+            drawBattlefield(activeTetromino);
+            break;
+        case "ArrowDown":
+            clearBattlefield(activeTetromino);
+            activeTetromino.shiftYDown();
+            drawBattlefield(activeTetromino);
+            checkIfLanded(activeTetromino, worker, variableOfEventFunction);
+            break;
+        default:
+            return;
+    }
+}
 
-//create worker
-const worker = new Worker("/ShapeShift/public/scripts/moveDown_worker.js");
+function checkIfLanded(activeTetromino, worker, eventFunction) {
+    if (activeTetromino.getShiftY() === 19) {
+        blockLanding(activeTetromino, worker, eventFunction);
+    }
+}
 
-//receives message from worker to shift down y
-worker.onmessage = function(shiftYDown) {
-    if (shiftYDown.data === "shiftYDown") {
-        clearBattlefield(activeTetromino)
-        activeTetromino.shiftYDown()
-        drawBattlefield(activeTetromino)
+function gameLoop(activeTetromino) {
+     activeTetromino = null
+    //select random tetromino
+    let randNum = Math.floor(Math.random() * 3) + 1;
+    if (randNum === 1) {
+        activeTetromino = new OTetromino();
+    } else if (randNum === 2) {
+        activeTetromino = new OTetromino();
+    } else if (randNum === 3) {
+        activeTetromino = new OTetromino();
+    }
 
-        //kills worker if t reached end
-        if (activeTetromino.getShiftY() === 19) {
-            worker.terminate();
+    //draws the tetromino for the first time
+    drawBattlefield(activeTetromino);
+
+    //create worker
+    const worker = new Worker("/ShapeShift/public/scripts/moveDown_worker.js");
+
+    //receives message from worker to shift down y
+    worker.onmessage = function(shiftYDown) {
+        if (shiftYDown.data === "shiftYDown") {
+            clearBattlefield(activeTetromino);
+            activeTetromino.shiftYDown();
+            drawBattlefield(activeTetromino);
+            checkIfLanded(activeTetromino, worker, boundWhichKey);
         }
     }
+
+    //listener for all key inputs relating to the activeTetromino
+    let boundWhichKey;
+    boundWhichKey= whichKey.bind(null, activeTetromino, worker, boundWhichKey);
+    document.addEventListener("keydown", boundWhichKey);
 }
 
-blockFalling = true;
-
-//waiting for block to fall down
-//here condition check when block reached bottom
-
-
-//listener for all key inputs relating to the activeTetromino
-document.addEventListener("keydown", function(whichKey){
-    if (whichKey.key === "T") {
-
-    }
-    if (whichKey.key === "ArrowUp") {
-        clearBattlefield(activeTetromino)
-        activeTetromino.rotate();
-        drawBattlefield(activeTetromino)
-    }
-    if (whichKey.key === "ArrowRight") {
-        clearBattlefield(activeTetromino)
-        activeTetromino.shiftXRight()
-        drawBattlefield(activeTetromino)
-
-    }
-    if (whichKey.key === "ArrowLeft") {
-        clearBattlefield(activeTetromino)
-        activeTetromino.shiftXLeft()
-        drawBattlefield(activeTetromino)
-    }
-    if (whichKey.key === "ArrowDown") {
-        clearBattlefield(activeTetromino)
-        activeTetromino.shiftYDown()
-        drawBattlefield(activeTetromino)
-    }
-})
+//game starts
+createGrid();
+let activeTetromino = new OTetromino();
+gameLoop(activeTetromino);
