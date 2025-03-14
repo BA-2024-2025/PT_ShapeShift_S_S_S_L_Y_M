@@ -15,30 +15,37 @@ function clearBattlefield() {
     }
 }
 
-function drawBattlefield(shape) {
-    let positionT = shape.getElementIdGrid(shape.getGridPosition())
+function drawBattlefield(tetromino) {
+
+    //draws the tetromino on the right position
+    let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition())
     for (let i  = 0; i < 4; i++) {
         let partOfT = document.getElementById(positionT[i])
-        partOfT.style.backgroundColor = shape.getColor()
+        partOfT.style.backgroundColor = tetromino.getColor()
     }
 }
 
-//simi cooking the grid
-let count = 0;
-for (let y = 0; y < 21; y++) {
-    for (let x = 0; x < 10; x++) {
-        const child = document.createElement("div")
-        child.id = x + "" + y;
-        child.className = "container"
-        child.style.gridColumn= x+1;
-        child.style.gridRow= y+1;
-        app.appendChild(child)
-        count += 1
+function createGrid() {
+
+    //simi cooking the grid
+    let count = 0;
+    for (let y = 0; y < 21; y++) {
+        for (let x = 0; x < 10; x++) {
+            const child = document.createElement("div")
+            child.id = x + "" + y;
+            child.className = "container"
+            child.style.gridColumn = x + 1;
+            child.style.gridRow = y + 1;
+            app.appendChild(child)
+            count += 1
+        }
     }
 }
 
-let t = new ITetromino()
-drawBattlefield(t)
+createGrid()
+
+let activeTetromino= new ITetromino()
+drawBattlefield(activeTetromino)
 
 document.addEventListener("keydown", function(whichKey){
     if (whichKey.key === "T") {
@@ -50,43 +57,35 @@ document.addEventListener("keydown", function(whichKey){
         worker.onmessage = function(shiftYDown) {
             if (shiftYDown.data === "shiftYDown") {
                 clearBattlefield()
-                t.shiftYDown()
-                drawBattlefield(t)
+                activeTetromino.shiftYDown()
+                drawBattlefield(activeTetromino)
 
                 //kills worker if t reached end
-                if (t.getShiftY() === 19) {
+                if (activeTetromino.getShiftY() === 19) {
                     worker.terminate();
                 }
             }
         }
     }
-    if (whichKey.key === "X") {
-        //check for active worker
-        if (typeof(Worker) == "undefined") {
-            console.log("No worker exist, maybe terminated himself")
-        } else {
-            console.log("Worker is waiting to terminate himself");
-        }
-    }
     if (whichKey.key === "ArrowUp") {
         clearBattlefield()
-        t.rotate();
-        drawBattlefield(t)
+        activeTetromino.rotate();
+        drawBattlefield(activeTetromino)
     }
     if (whichKey.key === "ArrowRight") {
         clearBattlefield()
-        t.shiftXRight()
-        drawBattlefield(t)
+        activeTetromino.shiftXRight()
+        drawBattlefield(activeTetromino)
 
     }
     if (whichKey.key === "ArrowLeft") {
         clearBattlefield()
-        t.shiftXLeft()
-        drawBattlefield(t)
+        activeTetromino.shiftXLeft()
+        drawBattlefield(activeTetromino)
     }
     if (whichKey.key === "ArrowDown") {
         clearBattlefield()
-        t.shiftYDown()
-        drawBattlefield(t)
+        activeTetromino.shiftYDown()
+        drawBattlefield(activeTetromino)
     }
 })
