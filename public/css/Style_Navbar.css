@@ -18,9 +18,11 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 i{
     color: var(--text);
 }
+
 
 .navContainer{
     width: 100%;
@@ -189,5 +191,5 @@ li a:hover ul{
         grid-column-start: 2;
         grid-row-start: 1;
     }
-
 }
+
