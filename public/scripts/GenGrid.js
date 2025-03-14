@@ -1,6 +1,8 @@
 import {TTetromino} from "./TTetromino.js";
 import {OTetromino} from "./OTetromino.js";
 import {ITetromino} from "./ITetromino.js";
+import {LTetromino} from "./LTetromino.js";
+import {JTetromino} from "./JTetromino.js";
 
 const app = document.getElementById("app");
 
@@ -93,37 +95,50 @@ function checkIfLanded(activeTetromino, worker, eventFunction) {
     //yellow O
     console.log(activeTetromino.getColor());
     if (activeTetromino.color === "#f5ff00") {
-        console.log("yellow")
         if (activeTetromino.getShiftY() === 19) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
     //light blue I
     else if (activeTetromino.color === "#4DFFFF") {
-        console.log("lightblue")
         if ((activeTetromino.getPosition() !== activeTetromino.pos2 && activeTetromino.getShiftY() === 19)||(activeTetromino.getPosition() === activeTetromino.pos2 && activeTetromino.getShiftY() === 17)) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
     //purple T
     else if (activeTetromino.color === "#8e27de") {
-        console.log("purple")
         if ((activeTetromino.getPosition() !== activeTetromino.pos3 && activeTetromino.getShiftY() === 18)||(activeTetromino.getPosition() === activeTetromino.pos3 && activeTetromino.getShiftY() === 19)) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
-    console.log("i dont like you")
+    //orange L
+    else if (activeTetromino.color === "#FF5C00") {
+        if ((activeTetromino.getPosition() !== activeTetromino.pos4 && activeTetromino.getShiftY() === 18)||(activeTetromino.getPosition() === activeTetromino.pos4 && activeTetromino.getShiftY() === 19)) {
+            blockLanding(activeTetromino, worker, eventFunction);
+        }
+    }
+    //blue J
+    else if (activeTetromino.color === "#2323FF") {
+        if ((activeTetromino.getPosition() !== activeTetromino.pos2 && activeTetromino.getShiftY() === 18)||(activeTetromino.getPosition() === activeTetromino.pos2 && activeTetromino.getShiftY() === 19)) {
+            blockLanding(activeTetromino, worker, eventFunction);
+        }
+    }
+
 }
 
 function gameLoop(activeTetromino) {
      activeTetromino = null;
     //select random tetromino
-    let randNum = Math.floor(Math.random() * 3) + 1;
+    let randNum = Math.floor(Math.random() * 5) + 1;
     if (randNum === 1) {
-        activeTetromino = new ITetromino();
+        activeTetromino = new JTetromino();
     } else if (randNum === 2) {
-        activeTetromino = new OTetromino();
+        activeTetromino = new LTetromino();
     } else if (randNum === 3) {
+        activeTetromino = new ITetromino();
+    } else if (randNum === 4) {
+        activeTetromino = new OTetromino();
+    } else if (randNum === 5) {
         activeTetromino = new TTetromino();
     }
 
