@@ -144,6 +144,11 @@ li a:hover ul{
     background-color: var(--foreground);
     border-radius: 10px;
 }
+
+.login {
+    color: #ffffff
+}
+
 .mobile-menu-item>a{
     margin: 10px;
     text-decoration: none;

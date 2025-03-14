@@ -4,19 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ShapeShift - Sign Up</title>
+  <link rel="stylesheet" href="../public/css/Style_index.css">
   <link rel="stylesheet" href="../public/css/login/signup.css" />
+  <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
+  <link rel="stylesheet" href="../public/css/Style_Navbar.css">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <nav>
-      <p class="logo-text">ShapeShift</p>
-      <img src="../public/img/profile.png" alt="user" class="user" onclick="navigateTo('/login');">
+  <div class="navContainer">
+    <div class="logoContainer">
+      <h1 class="logo" style="color:var(--primary)">ShapeShift</h1>
+    </div>
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li class="navItem">
+          <a href="index.html" class="nav-link">Home</a>
+        </li>
+        <li class="navItem">
+          <a href="index.html" class="nav-link">Leaderboard</a>
+        </li>
+      </ul>
     </nav>
-  </header>
-
+    <div class="loginContainer">
+      <div class="login-icon">
+        <a href="index.html" class="login-icon">
+          <i class="fa-regular fa-user"></i>
+        </a>
+        <ul class="login-menu">
+          <li class="login-element">
+            <a href="index.html" class="login login-text">Login</a>
+          </li>
+          <li class="login-element">
+            <a href="index.html" class="settings login-text">Settings</a>
+          </li>
+        </ul>
+      </div>
+      <div class="mobile-menu">
+        <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
+        <ul class="mobile-menu-menu">
+          <li class="mobile-menu-item">
+            <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
+          </li>
+          <li class="mobile-menu-item">
+            <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Leaderboard</a>
+          </li>
+          <li class="mobile-menu-item">
+            <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
+          </li>
+          <li class="mobile-menu-item">
+            <a href="index.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <main>
     <a href="index.html"><img class="back" src="../public/img/back.png" alt="back"></a>
-    <form autocomplete="off" action="" id="signup-form" method="post">
+    <form autocomplete="off" action="" id="signup-form">
       <p class="title-small">create a new</p>
       <h1 class="title-main">ShapeShift</h1>
       <p class="title-small">account</p>

@@ -18,6 +18,8 @@
   }
   
   body {
+    margin: 0;
+    padding: 0;
     background-color: var(--bg-dark);
     color: var(--text-white);
     min-height: 100vh;
@@ -35,7 +37,6 @@
   }
 
   main {
-    padding-top: 10vh;
     height: 90vh;
     display: flex;
     justify-content: center;

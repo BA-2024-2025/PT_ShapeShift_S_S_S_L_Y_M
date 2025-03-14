@@ -6,8 +6,9 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 i{
-    color: var(--text);
+    color: var(#ffffff);
 }
 .container{
     width: 100%;
