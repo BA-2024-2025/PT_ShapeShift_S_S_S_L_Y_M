@@ -1,6 +1,6 @@
 import {Tetromino} from "./Tetromino.js";
 
-export class LTetromino extends Tetromino {
+export class ZTetromino extends Tetromino {
 
     constructor() {
 
@@ -9,28 +9,28 @@ export class LTetromino extends Tetromino {
 
         //creates the different positions for rotation
         this.pos1 = [
-            [1,0],
+            [0,1],
+            [1,1],
+            [1,2],
+            [2,2],
+        ];
+        this.pos2 = [
+            [2,0],
+            [1,1],
+            [2,1],
+            [1,2]
+        ];
+        this.pos3 = [
+            [0,1],
             [1,1],
             [1,2],
             [2,2]
         ];
-        this.pos2 = [
-            [0,1],
-            [1,1],
-            [2,1],
-            [0,2]
-        ];
-        this.pos3 = [
-            [0,0],
+        this.pos4 = [
             [1,0],
             [1,1],
-            [1,2]
-        ];
-        this.pos4 = [
-            [2,0],
             [0,1],
-            [1,1],
-            [2,1]
+            [0,2]
         ];
 
         this.position = this.pos1
@@ -38,39 +38,39 @@ export class LTetromino extends Tetromino {
         //for placing the block right in the real field kinda the shift
         this.shiftX = 3;
         this.shiftY = 0;
-        this.color = "#FF5C00";
+        this.color = "#FC1723";
     }
 
     //moves to the right
     shiftXRight() {
-        if (this.getShiftX()<7||(this.position===this.pos3&&this.getShiftX()<8)) {
+        if (this.getShiftX()<7||(this.position===this.pos4&&this.getShiftX()<8)) {
             this.shiftX += 1;
         }
     }
 
     //moves to the left
     shiftXLeft() {
-        if (this.getShiftX()>0||(this.position===this.pos1&&this.getShiftX()>-1)) {
+        if (this.getShiftX()>0||(this.position===this.pos2&&this.getShiftX()>-1)) {
             this.shiftX -= 1;
         }
     }
 
     //moves down
     shiftYDown() {
-        if (this.getShiftY()<18||(this.position===this.pos4&&this.getShiftY()<19)) {
+        if (this.getShiftY()<18) {
             this.shiftY += 1;
         }
     }
 
     //rotates tetromino by 90°
     rotate() {
-        if (this.position === this.pos1 && this.getShiftX()>-1) {
+        if (this.position === this.pos1) {
             this.setPosition(this.pos2);
-        } else if (this.position === this.pos2) {
+        } else if (this.position === this.pos2&&this.getShiftX()>-1) {
             this.setPosition(this.pos3);
-        } else if (this.position === this.pos3 && this.getShiftX()<8) {
+        } else if (this.position === this.pos3) {
             this.setPosition(this.pos4);
-        } else if (this.position === this.pos4 && this.getShiftY()<18) {
+        } else if (this.position === this.pos4&&this.getShiftX()<8) {
             this.setPosition(this.pos1);
         }
     }

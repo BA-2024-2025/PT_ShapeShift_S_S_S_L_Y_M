@@ -3,6 +3,8 @@ import {OTetromino} from "./OTetromino.js";
 import {ITetromino} from "./ITetromino.js";
 import {LTetromino} from "./LTetromino.js";
 import {JTetromino} from "./JTetromino.js";
+import {ZTetromino} from "./ZTetromino.js";
+import {STetromino} from "./STetromino.js";
 
 const app = document.getElementById("app");
 
@@ -123,23 +125,38 @@ function checkIfLanded(activeTetromino, worker, eventFunction) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
+    //red Z
+    else if (activeTetromino.color === "#FC1723") {
+        if (activeTetromino.getShiftY() === 18) {
+            blockLanding(activeTetromino, worker, eventFunction);
+        }
+    }
+    else if (activeTetromino.color === "#00F700") {
+        if (activeTetromino.getShiftY() === 18) {
+            blockLanding(activeTetromino, worker, eventFunction);
+        }
+    }
 
 }
 
 function gameLoop(activeTetromino) {
      activeTetromino = null;
     //select random tetromino
-    let randNum = Math.floor(Math.random() * 5) + 1;
+    let randNum = Math.floor(Math.random() * 7) + 1;
     if (randNum === 1) {
-        activeTetromino = new JTetromino();
-    } else if (randNum === 2) {
-        activeTetromino = new LTetromino();
-    } else if (randNum === 3) {
-        activeTetromino = new ITetromino();
-    } else if (randNum === 4) {
-        activeTetromino = new OTetromino();
-    } else if (randNum === 5) {
         activeTetromino = new TTetromino();
+    } else if (randNum === 2) {
+        activeTetromino = new ITetromino();
+    } else if (randNum === 3) {
+        activeTetromino = new OTetromino();
+    } else if (randNum === 4) {
+        activeTetromino = new JTetromino();
+    } else if (randNum === 5) {
+        activeTetromino = new LTetromino();
+    } else if (randNum === 6) {
+        activeTetromino = new ZTetromino();
+    } else if (randNum === 7) {
+        activeTetromino = new STetromino();
     }
 
     //draws the tetromino for the first time
@@ -168,3 +185,8 @@ function gameLoop(activeTetromino) {
 createGrid();
 let activeTetromino = new OTetromino();
 gameLoop(activeTetromino);
+
+
+/*Der Bug das ganz viele spawnen wenn ich die down taste drücken hängt damit zusammen
+das der listener nicht genügend schnell gelöscht wird und somit wird immer ein neues
+gespawnt da der untere block immernoch zählt für die Bedingung*/
