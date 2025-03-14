@@ -26,8 +26,8 @@ function drawBattlefield(tetromino) {
     let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
     for (let i  = 0; i < 4; i++) {
         let partOfT = document.getElementById(positionT[i]);
-        partOfT.style.backgroundColor = tetromino.getColor();
-        partOfT.style.boxShadow = `inset 3px 3px 0px rgba(255, 255, 255, 0.75), 2px 2px 10px ${tetromino.getColor()}`;
+        partOfT.style.backgroundColor = tetromino.color;
+        partOfT.style.boxShadow = `inset 3px 3px 0px rgba(255, 255, 255, 0.75), 2px 2px 10px ${tetromino.color}`;
     }
 }
 
@@ -41,8 +41,8 @@ function createGrid() {
             const child = document.createElement("div");
             child.id = x + "" + y;
             child.className = "container";
-            child.style.gridColumn = x + 1;
-            child.style.gridRow = y + 1;
+            child.style.gridColumn = x+1;
+            child.style.gridRow = y+1;
             app.appendChild(child);
             count += 1;
         }
@@ -95,44 +95,44 @@ function checkIfLanded(activeTetromino, worker, eventFunction) {
 
     //checks if they are on the bottom
     //yellow O
-    console.log(activeTetromino.getColor());
+    console.log(activeTetromino.color);
     if (activeTetromino.color === "#f5ff00") {
-        if (activeTetromino.getShiftY() === 19) {
+        if (activeTetromino.shiftY() === 19) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
     //light blue I
     else if (activeTetromino.color === "#4DFFFF") {
-        if ((activeTetromino.getPosition() !== activeTetromino.pos2 && activeTetromino.getShiftY() === 19)||(activeTetromino.getPosition() === activeTetromino.pos2 && activeTetromino.getShiftY() === 17)) {
+        if ((activeTetromino.position !== activeTetromino.pos2 && activeTetromino.shiftY === 19)||(activeTetromino.position === activeTetromino.pos2 && activeTetromino.shiftY() === 17)) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
     //purple T
     else if (activeTetromino.color === "#8e27de") {
-        if ((activeTetromino.getPosition() !== activeTetromino.pos3 && activeTetromino.getShiftY() === 18)||(activeTetromino.getPosition() === activeTetromino.pos3 && activeTetromino.getShiftY() === 19)) {
+        if ((activeTetromino.position !== activeTetromino.pos3 && activeTetromino.shiftY === 18)||(activeTetromino.position === activeTetromino.pos3 && activeTetromino.shiftY === 19)) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
     //orange L
     else if (activeTetromino.color === "#FF5C00") {
-        if ((activeTetromino.getPosition() !== activeTetromino.pos4 && activeTetromino.getShiftY() === 18)||(activeTetromino.getPosition() === activeTetromino.pos4 && activeTetromino.getShiftY() === 19)) {
+        if ((activeTetromino.position !== activeTetromino.pos4 && activeTetromino.shiftY === 18)||(activeTetromino.position === activeTetromino.pos4 && activeTetromino.shiftY === 19)) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
     //blue J
     else if (activeTetromino.color === "#2323FF") {
-        if ((activeTetromino.getPosition() !== activeTetromino.pos2 && activeTetromino.getShiftY() === 18)||(activeTetromino.getPosition() === activeTetromino.pos2 && activeTetromino.getShiftY() === 19)) {
+        if ((activeTetromino.position !== activeTetromino.pos2 && activeTetromino.shiftY === 18)||(activeTetromino.position === activeTetromino.pos2 && activeTetromino.shiftY === 19)) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
     //red Z
     else if (activeTetromino.color === "#FC1723") {
-        if (activeTetromino.getShiftY() === 18) {
+        if (activeTetromino.shiftY === 18) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }
     else if (activeTetromino.color === "#00F700") {
-        if (activeTetromino.getShiftY() === 18) {
+        if (activeTetromino.shiftY === 18) {
             blockLanding(activeTetromino, worker, eventFunction);
         }
     }

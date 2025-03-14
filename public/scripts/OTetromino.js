@@ -21,21 +21,21 @@ export class OTetromino extends Tetromino{
 
     //moves block to the right
     shiftXRight() {
-        if (this.getShiftX()<8) {
+        if (this.shiftX<8) {
             this.shiftX += 1;
         }
     }
 
     //moves block to the left
     shiftXLeft() {
-        if (this.getShiftX()>0) {
+        if (this.shiftX>0) {
             this.shiftX -= 1;
         }
     }
 
     //moves block down
     shiftYDown() {
-        if (this.getShiftY()<19) {
+        if (this.shiftY<19) {
             this.shiftY += 1;
         }
     }
@@ -47,10 +47,10 @@ export class OTetromino extends Tetromino{
     //translates my cords in the grid cords
     getGridPosition() {
         return [
-            [this.getPosition()[0][0] + this.getShiftX(), this.getPosition()[0][1] + this.getShiftY()],
-            [this.getPosition()[1][0] + this.getShiftX(), this.getPosition()[1][1] + this.getShiftY()],
-            [this.getPosition()[2][0] + this.getShiftX(), this.getPosition()[2][1] + this.getShiftY()],
-            [this.getPosition()[3][0] + this.getShiftX(), this.getPosition()[3][1] + this.getShiftY()]
+            [this.position[0][0] + this.shiftX, this.position[0][1] + this.shiftY],
+            [this.position[1][0] + this.shiftX, this.position[1][1] + this.shiftY],
+            [this.position[2][0] + this.shiftX, this.position[2][1] + this.shiftY],
+            [this.position[3][0] + this.shiftX, this.position[3][1] + this.shiftY]
         ];
     }
 
@@ -62,37 +62,5 @@ export class OTetromino extends Tetromino{
             String(gridPosition[2][0]) + String(gridPosition[2][1]),
             String(gridPosition[3][0]) + String(gridPosition[3][1])
         ];
-    }
-
-    getColor() {
-        return this.color;
-    }
-
-    setColor(value) {
-        this.color = value;
-    }
-
-    getPosition() {
-        return this.position;
-    }
-
-    setPosition(value) {
-        this.position = value;
-    }
-
-    getShiftX() {
-        return this.shiftX;
-    }
-
-    setShiftX(value) {
-        this.shiftX = value;
-    }
-
-    getShiftY() {
-        return this.shiftY;
-    }
-
-    setShiftY(value) {
-        this.shiftY = value;
     }
 }

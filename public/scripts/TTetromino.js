@@ -43,21 +43,21 @@ export class TTetromino extends Tetromino{
 
     //moves to the right
     shiftXRight() {
-        if (this.getShiftX()<7 || this.position === this.pos2 && this.getShiftX()<8) {
+        if (this.shiftX<7 || this.position === this.pos2 && this.shiftX<8) {
             this.shiftX += 1;
         }
     }
 
     //moves to the left
     shiftXLeft() {
-        if (this.getShiftX()>0 || this.position === this.pos4 && this.getShiftX()>-1) {
+        if (this.shiftX>0 || this.position === this.pos4 && this.shiftX>-1) {
             this.shiftX -= 1;
         }
     }
 
     //moves down
     shiftYDown() {
-        if (this.getShiftY()<18 || this.position === this.pos3 && this.getShiftY()<19) {
+        if (this.shiftY<18 || this.position === this.pos3 && this.shiftY<19) {
             this.shiftY += 1;
         }
     }
@@ -66,11 +66,11 @@ export class TTetromino extends Tetromino{
     rotate() {
         if (this.position === this.pos1) {
             this.setPosition(this.pos2);
-        } else if (this.position === this.pos2 && this.getShiftX()<8) {
+        } else if (this.position === this.pos2 && this.shiftX<8) {
             this.setPosition(this.pos3);
-        } else if (this.position === this.pos3 && this.getShiftY()<19) {
+        } else if (this.position === this.pos3 && this.shiftY<19) {
             this.setPosition(this.pos4);
-        } else if (this.position === this.pos4 && this.getShiftX()>-1) {
+        } else if (this.position === this.pos4 && this.shiftX>-1) {
             this.setPosition(this.pos1);
         }
     }
@@ -78,10 +78,10 @@ export class TTetromino extends Tetromino{
     //translates my cords to grid cords
     getGridPosition() {
         return [
-            [this.getPosition()[0][0] + this.getShiftX(), this.getPosition()[0][1] + this.getShiftY()],
-            [this.getPosition()[1][0] + this.getShiftX(), this.getPosition()[1][1] + this.getShiftY()],
-            [this.getPosition()[2][0] + this.getShiftX(), this.getPosition()[2][1] + this.getShiftY()],
-            [this.getPosition()[3][0] + this.getShiftX(), this.getPosition()[3][1] + this.getShiftY()]
+            [this.position[0][0] + this.shiftX, this.position[0][1] + this.shiftY],
+            [this.position[1][0] + this.shiftX, this.position[1][1] + this.shiftY],
+            [this.position[2][0] + this.shiftX, this.position[2][1] + this.shiftY],
+            [this.position[3][0] + this.shiftX, this.position[3][1] + this.shiftY]
         ];
     }
 
@@ -95,35 +95,7 @@ export class TTetromino extends Tetromino{
         ];
     }
 
-    getColor() {
-        return this.color;
-    }
-
-    setColor(value) {
-        this.color = value;
-    }
-
-    getPosition() {
-        return this.position;
-    }
-
-    setPosition(value) {
-        this.position = value;
-    }
-
-    getShiftX() {
-        return this.shiftX;
-    }
-
-    setShiftX(value) {
-        this.shiftX = value;
-    }
-
-    getShiftY() {
-        return this.shiftY;
-    }
-
-    setShiftY(value) {
-        this.shiftY = value;
+    setPosition(pos) {
+        this.position = pos;
     }
 }
