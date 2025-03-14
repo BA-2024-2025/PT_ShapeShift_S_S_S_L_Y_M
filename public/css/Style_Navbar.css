@@ -18,6 +18,13 @@ body {
     display: flex;
     flex-direction: column;
 }
+i{
+    color: var(--text);
+}
+
+
+
+
 
 
 .navContainer{
@@ -99,6 +106,7 @@ li a:hover ul{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--text);
 }
 .login-icon:hover .login-menu{
     visibility: visible;
