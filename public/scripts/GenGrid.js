@@ -65,27 +65,32 @@ function blockLanding(tetromino, worker, event) {
 //event listener function for key inputs
 function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
     switch (key.key) {
+
         case "ArrowUp":
             clearBattlefield(activeTetromino);
             activeTetromino.rotate();
             drawBattlefield(activeTetromino);
             break;
+
         case "ArrowRight":
             clearBattlefield(activeTetromino);
             activeTetromino.shiftXRight();
             drawBattlefield(activeTetromino);
             break;
+
         case "ArrowLeft":
             clearBattlefield(activeTetromino);
             activeTetromino.shiftXLeft();
             drawBattlefield(activeTetromino);
             break;
+
         case "ArrowDown":
             clearBattlefield(activeTetromino);
             activeTetromino.shiftYDown();
             drawBattlefield(activeTetromino);
             checkIfLanded(activeTetromino, worker, variableOfEventFunction);
             break;
+
         default:
             return;
     }
@@ -93,54 +98,69 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
 
 function checkIfLanded(activeTetromino, worker, eventFunction) {
 
-    //checks if they are on the bottom
-    //yellow O
-    console.log(activeTetromino.color);
-    if (activeTetromino.color === "#f5ff00") {
-        if (activeTetromino.shiftY() === 19) {
-            blockLanding(activeTetromino, worker, eventFunction);
-        }
-    }
-    //light blue I
-    else if (activeTetromino.color === "#4DFFFF") {
-        if ((activeTetromino.position !== activeTetromino.pos2 && activeTetromino.shiftY === 19)||(activeTetromino.position === activeTetromino.pos2 && activeTetromino.shiftY() === 17)) {
-            blockLanding(activeTetromino, worker, eventFunction);
-        }
-    }
-    //purple T
-    else if (activeTetromino.color === "#8e27de") {
-        if ((activeTetromino.position !== activeTetromino.pos3 && activeTetromino.shiftY === 18)||(activeTetromino.position === activeTetromino.pos3 && activeTetromino.shiftY === 19)) {
-            blockLanding(activeTetromino, worker, eventFunction);
-        }
-    }
-    //orange L
-    else if (activeTetromino.color === "#FF5C00") {
-        if ((activeTetromino.position !== activeTetromino.pos4 && activeTetromino.shiftY === 18)||(activeTetromino.position === activeTetromino.pos4 && activeTetromino.shiftY === 19)) {
-            blockLanding(activeTetromino, worker, eventFunction);
-        }
-    }
-    //blue J
-    else if (activeTetromino.color === "#2323FF") {
-        if ((activeTetromino.position !== activeTetromino.pos2 && activeTetromino.shiftY === 18)||(activeTetromino.position === activeTetromino.pos2 && activeTetromino.shiftY === 19)) {
-            blockLanding(activeTetromino, worker, eventFunction);
-        }
-    }
-    //red Z
-    else if (activeTetromino.color === "#FC1723") {
-        if (activeTetromino.shiftY === 18) {
-            blockLanding(activeTetromino, worker, eventFunction);
-        }
-    }
-    else if (activeTetromino.color === "#00F700") {
-        if (activeTetromino.shiftY === 18) {
-            blockLanding(activeTetromino, worker, eventFunction);
-        }
-    }
+    switch (activeTetromino.color) {
 
+        //checks if they are on the bottom
+        //yellow O
+        case "#f5ff00":
+            if (activeTetromino.shiftY === 19) {
+                blockLanding(activeTetromino, worker, eventFunction);
+            }
+            break;
+
+        //light blue I
+        case "#4DFFFF":
+            if ((activeTetromino.position !== activeTetromino.pos2 && activeTetromino.shiftY === 19) || (activeTetromino.position === activeTetromino.pos2 && activeTetromino.shiftY() === 17)) {
+                blockLanding(activeTetromino, worker, eventFunction);
+            }
+            break;
+
+        //purple T
+        case "#8e27de":
+            if ((activeTetromino.position !== activeTetromino.pos3 && activeTetromino.shiftY === 18) || (activeTetromino.position === activeTetromino.pos3 && activeTetromino.shiftY === 19)) {
+                blockLanding(activeTetromino, worker, eventFunction);
+            }
+            break;
+
+        //orange L
+        case "#FF5C00":
+            if ((activeTetromino.position !== activeTetromino.pos4 && activeTetromino.shiftY === 18) || (activeTetromino.position === activeTetromino.pos4 && activeTetromino.shiftY === 19)) {
+                blockLanding(activeTetromino, worker, eventFunction);
+            }
+            break;
+
+        //blue J
+        case "#2323FF":
+            if ((activeTetromino.position !== activeTetromino.pos2 && activeTetromino.shiftY === 18) || (activeTetromino.position === activeTetromino.pos2 && activeTetromino.shiftY === 19)) {
+                blockLanding(activeTetromino, worker, eventFunction);
+            }
+            break;
+
+        //red Z
+        case "#FC1723":
+            if (activeTetromino.shiftY === 18) {
+                blockLanding(activeTetromino, worker, eventFunction);
+            }
+            break;
+
+        //green S
+        case "#00F700":
+            if (activeTetromino.shiftY === 18) {
+                blockLanding(activeTetromino, worker, eventFunction);
+            }
+
+        default:
+            return;
+    }
 }
 
 function gameLoop(activeTetromino) {
      activeTetromino = null;
+
+     //stats
+     let blocks = 0;
+     let score = 0;
+
     //select random tetromino
     let randNum = Math.floor(Math.random() * 7) + 1;
     if (randNum === 1) {
@@ -161,6 +181,7 @@ function gameLoop(activeTetromino) {
 
     //draws the tetromino for the first time
     drawBattlefield(activeTetromino);
+    blocks += 1;
 
     //create worker
     const worker = new Worker("/ShapeShift/public/scripts/moveDown_worker.js");
