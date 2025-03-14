@@ -5,7 +5,6 @@ import { createRoot } from 'react-dom/client';
 function App() {
     const [users, setUsers] = useState([]);
 
-
     //gets the users fom the api
     useEffect(() => {
         fetch('http://172.16.2.165:3000/users/3')
