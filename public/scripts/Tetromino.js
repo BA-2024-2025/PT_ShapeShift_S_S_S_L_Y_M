@@ -1,3 +1,5 @@
+
+//parent class for all shapes
 export class Tetromino {
 
     shiftXRight(){};

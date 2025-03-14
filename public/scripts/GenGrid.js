@@ -27,6 +27,7 @@ function drawBattlefield(tetromino) {
     }
 }
 
+//generating the grid
 function createGrid() {
 
     //simi cooking the grid
@@ -44,6 +45,7 @@ function createGrid() {
     }
 }
 
+//resets everything after block reached bottom
 function blockLanding(tetromino, worker, event) {
     //remove shadow from the landing block
     clearBattlefield(tetromino);
@@ -53,9 +55,10 @@ function blockLanding(tetromino, worker, event) {
     worker.terminate();
 
     //restart the game
-    gameLoop()
+    gameLoop();
 }
 
+//event listener function for key inputs
 function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
     switch (key.key) {
         case "ArrowUp":
@@ -85,13 +88,15 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
 }
 
 function checkIfLanded(activeTetromino, worker, eventFunction) {
+
+    //checks if they are on the bottom
     if (activeTetromino.getShiftY() === 19) {
         blockLanding(activeTetromino, worker, eventFunction);
     }
 }
 
 function gameLoop(activeTetromino) {
-     activeTetromino = null
+     activeTetromino = null;
     //select random tetromino
     let randNum = Math.floor(Math.random() * 3) + 1;
     if (randNum === 1) {

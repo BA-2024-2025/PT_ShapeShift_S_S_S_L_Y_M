@@ -33,7 +33,7 @@ export class TTetromino extends Tetromino{
             [1, 2]
         ];
 
-        this.position = this.pos1
+        this.position = this.pos1;
 
         //for placing the block right in the real field kinda the shift
         this.shiftX = 4;
@@ -42,24 +42,28 @@ export class TTetromino extends Tetromino{
 
     }
 
+    //moves to the right
     shiftXRight() {
         if (this.getShiftX()<7 || this.position === this.pos2 && this.getShiftX()<8) {
             this.shiftX += 1;
         }
     }
 
+    //moves to the left
     shiftXLeft() {
         if (this.getShiftX()>0 || this.position === this.pos4 && this.getShiftX()>-1) {
             this.shiftX -= 1;
         }
     }
 
+    //moves down
     shiftYDown() {
         if (this.getShiftY()<18 || this.position === this.pos3 && this.getShiftY()<19) {
             this.shiftY += 1;
         }
     }
 
+    //rotates tetromino by 90°
     rotate() {
         if (this.position === this.pos1) {
             this.setPosition(this.pos2);
@@ -72,6 +76,7 @@ export class TTetromino extends Tetromino{
         }
     }
 
+    //translates my cords to grid cords
     getGridPosition() {
         return [
             [this.getPosition()[0][0] + this.getShiftX(), this.getPosition()[0][1] + this.getShiftY()],
@@ -81,6 +86,7 @@ export class TTetromino extends Tetromino{
         ];
     }
 
+    //translates grid cords to element id
     getElementIdGrid (gridPosition) {
         return [
             String(gridPosition[0][0]) + String(gridPosition[0][1]),

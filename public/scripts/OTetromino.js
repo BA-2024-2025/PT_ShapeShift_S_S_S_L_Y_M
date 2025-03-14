@@ -19,28 +19,32 @@ export class OTetromino extends Tetromino{
         this.color = "#f5ff00";
     }
 
+    //moves block to the right
     shiftXRight() {
         if (this.getShiftX()<8) {
             this.shiftX += 1;
         }
     }
 
+    //moves block to the left
     shiftXLeft() {
         if (this.getShiftX()>0) {
             this.shiftX -= 1;
         }
     }
 
+    //moves block down
     shiftYDown() {
         if (this.getShiftY()<19) {
             this.shiftY += 1;
         }
     }
-
+     //rotates block with 90°, sadly our square can't be rotated
     rotate() {
         //be sad
     }
 
+    //translates my cords in the grid cords
     getGridPosition() {
         return [
             [this.getPosition()[0][0] + this.getShiftX(), this.getPosition()[0][1] + this.getShiftY()],
@@ -50,6 +54,7 @@ export class OTetromino extends Tetromino{
         ];
     }
 
+    //translates the grid cords in element id
     getElementIdGrid (gridPosition) {
         return [
             String(gridPosition[0][0]) + String(gridPosition[0][1]),

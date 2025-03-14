@@ -30,24 +30,28 @@ export class ITetromino extends Tetromino{
         this.color = "#4DFFFF";
     }
 
+    //moves to the right
     shiftXRight() {
         if (this.getShiftX()<6 || (this.getShiftX()<8 && this.position === this.pos2)) {
             this.shiftX += 1;
         }
     }
 
+    //moves to the left
     shiftXLeft() {
         if (this.getShiftX()>0 || (this.getShiftX()>-1 && this.position === this.pos2)) {
             this.shiftX -= 1;
         }
     }
 
+    //moves down
     shiftYDown() {
         if ((this.getShiftY()<19 && this.getPosition() === this.pos1) || this.getShiftY()<17) {
             this.shiftY += 1;
         }
     }
 
+    //rotates tetromino by 90°
     rotate(){
         if (this.position === this.pos1 && this.getShiftY()<17) {
             this.setPosition(this.pos2);
@@ -56,6 +60,7 @@ export class ITetromino extends Tetromino{
         }
     }
 
+    //translate my cords to grid cords
     getGridPosition() {
         return [
             [this.getPosition()[0][0] + this.getShiftX(), this.getPosition()[0][1] + this.getShiftY()],
@@ -65,6 +70,7 @@ export class ITetromino extends Tetromino{
         ];
     }
 
+    //translate grid cords to element id
     getElementIdGrid (gridPosition) {
         return [
             String(gridPosition[0][0]) + String(gridPosition[0][1]),
