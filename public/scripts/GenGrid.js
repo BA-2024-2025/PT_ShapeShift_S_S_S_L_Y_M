@@ -90,9 +90,29 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
 function checkIfLanded(activeTetromino, worker, eventFunction) {
 
     //checks if they are on the bottom
-    if (activeTetromino.getShiftY() === 19) {
-        blockLanding(activeTetromino, worker, eventFunction);
+    //yellow O
+    console.log(activeTetromino.getColor());
+    if (activeTetromino.color === "#f5ff00") {
+        console.log("yellow")
+        if (activeTetromino.getShiftY() === 19) {
+            blockLanding(activeTetromino, worker, eventFunction);
+        }
     }
+    //light blue I
+    else if (activeTetromino.color === "#4DFFFF") {
+        console.log("lightblue")
+        if ((activeTetromino.getPosition() !== activeTetromino.pos2 && activeTetromino.getShiftY() === 19)||(activeTetromino.getPosition() === activeTetromino.pos2 && activeTetromino.getShiftY() === 17)) {
+            blockLanding(activeTetromino, worker, eventFunction);
+        }
+    }
+    //purple T
+    else if (activeTetromino.color === "#8e27de") {
+        console.log("purple")
+        if ((activeTetromino.getPosition() !== activeTetromino.pos3 && activeTetromino.getShiftY() === 18)||(activeTetromino.getPosition() === activeTetromino.pos3 && activeTetromino.getShiftY() === 19)) {
+            blockLanding(activeTetromino, worker, eventFunction);
+        }
+    }
+    console.log("i dont like you")
 }
 
 function gameLoop(activeTetromino) {
@@ -100,11 +120,11 @@ function gameLoop(activeTetromino) {
     //select random tetromino
     let randNum = Math.floor(Math.random() * 3) + 1;
     if (randNum === 1) {
-        activeTetromino = new OTetromino();
+        activeTetromino = new ITetromino();
     } else if (randNum === 2) {
         activeTetromino = new OTetromino();
     } else if (randNum === 3) {
-        activeTetromino = new OTetromino();
+        activeTetromino = new TTetromino();
     }
 
     //draws the tetromino for the first time
