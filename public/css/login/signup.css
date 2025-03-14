@@ -11,146 +11,147 @@
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     font-family: 'Goldman', sans-serif;
     font-weight: 400;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-dark);
-    color: var(--text-white);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 10vh;
-    
-  }
+}
 
-  main {
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
+.back{
+  position: absolute;
+  color: white;
+  left: 5%;
+  top: 10%;
+}
+.back>h1{
+  font-size: 3rem;
+}
 
-  nav {
-    height: 100%;
-    width: 100%;
-    padding: 1em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--nav);
-    overflow: hidden;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
-  .user {
-    height: 60%;
-    cursor: pointer;
-  }
-  
-  .logo-text {
-    font-size: 1.5em;
-    color: var(--primary-cyan);
-  }
-  
-  main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  form {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    max-width: 400px;
-    max-height: 100%;
-    padding: 1em;
-    justify-content: center;
-  }
-  
-  .title-small {
-    font-size: 2em;
-    margin: 0.25em 0;
-  }
-  
-  .title-main {
-    font-size: 5em;
-    color: var(--primary-cyan);
-    margin: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .input-box {
-    margin: 1em 0;
-    padding: 0.75em 1em;
-    font-size: 1em;
-    border: none;
-    border-radius: 1em;
-    background-color: var(--input-bg);
-    outline: none;
-  }
-  
-  .signup-button {
-    background-color: var(--button-purple);
-    color: var(--text-white);
-    border: none;
-    border-radius: 0.5em;
-    padding: 0.75em;
-    font-size: 1.2em;
-    cursor: pointer;
-    margin: 1em 0;
-  }
-  
-  .signup-button:hover {
-    background-color: #7a25e5;
-  }
-  
-  .login-link {
-    font-size: 0.9em;
-  }
-  
-  .login-link a {
-    color: var(--primary-cyan);
-    text-decoration: none;
-  }
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 10vh;
 
-  .error-msg {
-    color: red;
-    font-size: 0.85em;
-    margin-top: 0.5em;
-  }
+}
 
-  .hidden {
-    display: none;
-  }
+main {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-  .back {
-    height: 10%;
-    position: fixed;
-    left: 10%;
-    top: 10%;
-    ;
-  }
+nav {
+  height: 100%;
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--nav);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+.user {
+  height: 60%;
+  cursor: pointer;
+}
+
+.logo-text {
+  font-size: 1.5em;
+  color: var(--primary-cyan);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 400px;
+  max-height: 100%;
+  padding: 1em;
+  justify-content: center;
+}
+
+.title-small {
+  font-size: 2em;
+  margin: 0.25em 0;
+}
+
+.title-main {
+  font-size: 5em;
+  color: var(--primary-cyan);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.input-box {
+  margin: 1em 0;
+  padding: 0.75em 1em;
+  font-size: 1em;
+  border: none;
+  border-radius: 1em;
+  background-color: var(--input-bg);
+  outline: none;
+}
+
+.signup-button {
+  background-color: var(--button-purple);
+  color: var(--text-white);
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.75em;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin: 1em 0;
+}
+
+.signup-button:hover {
+  background-color: #7a25e5;
+}
+
+.login-link {
+  font-size: 0.9em;
+}
+
+.login-link a {
+  color: var(--primary-cyan);
+  text-decoration: none;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 0.5em;
+}
+
+.hidden {
+  display: none;
+}
+
 
   
 ::-webkit-scrollbar {

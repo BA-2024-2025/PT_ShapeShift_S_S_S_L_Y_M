@@ -10,11 +10,20 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: 'Orbitron', sans-serif;
 }
+
+.back{
+  position: absolute;
+  color: white;
+  left: 5%;
+  top: 10%;
+}
+.back>h1{
+  font-size: 3rem;
+}
+
 
 body {
   margin: 0;

@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ShapeShift - Login</title>
+  <link rel="stylesheet" href="../public/css/Style_Navbar.css">
   <link rel="stylesheet" href="../public/css/login/signup.css" />
   <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
-  <link rel="stylesheet" href="../public/css/Style_Navbar.css">
   <script src="https://kit.fontawesome.com/5a4c0976d6.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
         </nav>
         <div class="loginContainer">
           <div class="login-icon">
-            <a href="index.html" class="login">
+            <a href="index.html" class="login-icon">
               <i class="fa-regular fa-user"></i>
             </a>
             <ul class="login-menu">
@@ -57,23 +57,23 @@
           </div>
         </div>
       </div>
+    <main>
+      <a href="index.html" class="back"><h1><i class="fa-solid fa-circle-arrow-left"></i></h1></a>
+      <form autocomplete="on" action="" id="loginForm">
+        <p class="title-small">Login with a</p>
+        <h1 class="title-main">ShapeShift</h1>
+        <p class="title-small">account</p>
 
-  <main>
-    <form autocomplete="on" action="" id="loginForm">
-      <p class="title-small">Login with a</p>
-      <h1 class="title-main">ShapeShift</h1>
-      <p class="title-small">account</p>
+        <input class="input-box" type="text" name="username" id="username" placeholder="username" required />
+        <input class="input-box" type="password" name="password" id="password" placeholder="password" required />
 
-      <input class="input-box" type="text" name="username" id="username" placeholder="username" required />
-      <input class="input-box" type="password" name="password" id="password" placeholder="password" required />
+        <p class="error-msg hidden" id="errorMessage"></p>
 
-      <p class="error-msg hidden" id="errorMessage"></p>
+        <button class="signup-button" type="submit">Login</button>
 
-      <button class="signup-button" type="submit">Login</button>
-
-      <p class="login-link">You don’t have an account? <br><a href="signup.html">Sign-Up</a></p>
-    </form>
-  </main>
+        <p class="login-link">You don’t have an account? <br><a href="signup.html">Sign-Up</a></p>
+      </form>
+    </main>
 
   <script src="../public/js/login.js"></script>
 </body>
