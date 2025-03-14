@@ -25,6 +25,9 @@ body{
 tr{
     color: var(--text);
 }
+tr:hover{
+    background-color: var(--accent);
+}
 .leaderboardHead{
     text-align: center;
     font-size: 1.5em;
