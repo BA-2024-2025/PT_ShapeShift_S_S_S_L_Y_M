@@ -43,6 +43,7 @@ function createGrid() {
             child.className = "container";
             child.style.gridColumn = x+1;
             child.style.gridRow = y+1;
+            child.style.backgroundColor = "#01010101";
             app.appendChild(child);
             count += 1;
         }
@@ -62,31 +63,107 @@ function blockLanding(tetromino, worker, event) {
     gameLoop();
 }
 
+//move validation for collisions with other blocks
+function moveValidation(oldX, oldY, tetromino) {
+    console.log("move validation");
+
+    let checkCount = 0;
+
+    //loops through each field of tetromino to check background color
+    let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
+    for (let i  = 0; i < 4; i++) {
+
+        //get the square
+        let partOfT = document.getElementById(positionT[i]);
+
+        //get the computed style
+        let computedStyleOfSquare = window.getComputedStyle(partOfT);
+
+        //get the background color
+        let backgroundColor = computedStyleOfSquare.backgroundColor;
+
+        console.log("Background Color: " + backgroundColor);
+
+        if (backgroundColor === "rgba(1, 1, 1, 0.004)") {
+            checkCount += 1;
+        }
+    }
+    console.log("final score: " + checkCount);
+
+    //returns if move is possible or not
+    if (checkCount === 4){
+        return true;
+    } else {
+        tetromino.shiftX = oldX
+        tetromino.shiftY = oldY
+        return false;
+    }
+}
+
 //event listener function for key inputs
 function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
+
+    //variables for validation
+    let oldX
+    let oldY
+
     switch (key.key) {
 
         case "ArrowUp":
             clearBattlefield(activeTetromino);
+            oldX= activeTetromino.shiftX;
+            oldY= activeTetromino.shiftY;
+            let oldPositon = activeTetromino.position;
             activeTetromino.rotate();
+            if (!moveValidation()) {
+                console.log("move denied");
+                blockLanding(activeTetromino, worker, variableOfEventFunction);
+            } else {
+                activeTetromino.position = oldPositon;
+                console.log("move accepted");
+            }
             drawBattlefield(activeTetromino);
             break;
 
         case "ArrowRight":
             clearBattlefield(activeTetromino);
+            oldX= activeTetromino.shiftX;
+            oldY= activeTetromino.shiftY;
             activeTetromino.shiftXRight();
+            if (!moveValidation()) {
+                console.log("move denied");
+                blockLanding(activeTetromino, worker, variableOfEventFunction);
+            } else {
+                console.log("move accepted");
+            }
             drawBattlefield(activeTetromino);
             break;
 
         case "ArrowLeft":
             clearBattlefield(activeTetromino);
+            oldX= activeTetromino.shiftX;
+            oldY= activeTetromino.shiftY;
             activeTetromino.shiftXLeft();
+            if (!moveValidation()) {
+                console.log("move denied")
+                blockLanding(activeTetromino, worker, variableOfEventFunction);
+            } else {
+                console.log("move accepted")
+            }
             drawBattlefield(activeTetromino);
             break;
 
         case "ArrowDown":
             clearBattlefield(activeTetromino);
+            oldX= activeTetromino.shiftX;
+            oldY= activeTetromino.shiftY;
             activeTetromino.shiftYDown();
+            if (!moveValidation(oldX, oldY, activeTetromino)) {
+                console.log("move denied")
+                blockLanding(activeTetromino, worker, variableOfEventFunction);
+            } else {
+                console.log("move accepted")
+            }
             drawBattlefield(activeTetromino);
             checkIfLanded(activeTetromino, worker, variableOfEventFunction);
             break;
@@ -190,7 +267,15 @@ function gameLoop(activeTetromino) {
     worker.onmessage = function(shiftYDown) {
         if (shiftYDown.data === "shiftYDown") {
             clearBattlefield(activeTetromino);
+            let oldX= activeTetromino.shiftX;
+            let oldY= activeTetromino.shiftY;
             activeTetromino.shiftYDown();
+            if (!moveValidation(oldX, oldY, activeTetromino)) {
+                console.log("move denied")
+                blockLanding(activeTetromino, worker, boundWhichKey);
+            } else {
+                console.log("move accepted")
+            }
             drawBattlefield(activeTetromino);
             checkIfLanded(activeTetromino, worker, boundWhichKey);
         }
