@@ -29,7 +29,7 @@ i{
 
 .navContainer{
     width: 100%;
-    height: 60px;
+    height: 5%;
     display: grid;
     grid-template-rows: auto 1fr;
     grid-template-columns: 0.5fr 1fr 0.5fr;
