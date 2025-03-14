@@ -157,6 +157,7 @@ i{
 #Gold-Medal{
     color:#C9B037;
     margin-right: 0.5em;
+    display: none;
 }
 
 .text-Gold-Medal{
@@ -173,6 +174,7 @@ i{
 #Silver-Medal{
     color:#B4B4B4;
     margin-right: 0.5em;
+    display: none;
 }
 
 .text-Silver-Medal{
@@ -190,6 +192,7 @@ i{
 #Bronze-Medal{
     color:#6A3805;
     margin-right: 0.5em;
+    display: none;
 }
 
 .text-Bronze-Medal{
@@ -206,6 +209,7 @@ i{
 #Gold-Trophy{
     color:#C9B037;
     margin-right: 0.5em;
+    display: none;
 }
 
 .text-Gold-Trophy{
@@ -221,6 +225,7 @@ i{
 #Silver-Trophy{
     color:#B4B4B4;
     margin-right: 0.5em;
+    display: none;
 }
 
 .text-Silver-Trophy{
@@ -237,6 +242,7 @@ i{
 #Bronze-Trophy{
     color:#6A3805;
     margin-right: 0.5em;
+    display: none;
 }
 
 .text-Bronze-Trophy{
