@@ -1,70 +1,38 @@
-export class TTetromino {
+export class OTetromino {
 
     constructor() {
-
-        //creates the different positions for rotation
-        this.pos1 = [
-            [0, 1],
-            [1, 1],
-            [2, 1],
-            [1, 2]
-        ];
-        this.pos2 = [
-            [1, 0],
-            [0, 1],
-            [1, 1],
-            [1, 2]
-        ];
-        this.pos3 = [
-            [0, 1],
-            [1, 0],
-            [1, 1],
-            [2, 1]
-        ];
-        this.pos4 = [
-            [1, 0],
-            [1, 1],
-            [2, 1],
-            [1, 2]
+        this.position = [
+            [0,0],
+            [1,0],
+            [0,1],
+            [1,1]
         ];
 
-        this.position = this.pos1
-
-        //for placing the block right in the real field kinda the shift
         this.shiftX = 4;
         this.shiftY = 0;
-        this.color = "#8e27de";
-
+        this.color = "#f5ff00";
     }
 
     shiftXRight() {
-        if (this.getShiftX()<7 || this.position === this.pos2 && this.getShiftX()<8) {
+        if (this.getShiftX()<8) {
             this.shiftX += 1;
         }
     }
 
     shiftXLeft() {
-        if (this.getShiftX()>0 || this.position === this.pos4 && this.getShiftX()>-1) {
+        if (this.getShiftX()>0) {
             this.shiftX -= 1;
         }
     }
 
     shiftYDown() {
-        if (this.getShiftY()<18 || this.position === this.pos3 && this.getShiftY()<19) {
+        if (this.getShiftY()<19) {
             this.shiftY += 1;
         }
     }
 
     rotate() {
-        if (this.position === this.pos1) {
-            this.setPosition(this.pos2);
-        } else if (this.position === this.pos2 && this.getShiftX()<8) {
-            this.setPosition(this.pos3);
-        } else if (this.position === this.pos3 && this.getShiftY()<19) {
-            this.setPosition(this.pos4);
-        } else if (this.position === this.pos4 && this.getShiftX()>-1) {
-            this.setPosition(this.pos1);
-        }
+        //be sad
     }
 
     getGridPosition() {
