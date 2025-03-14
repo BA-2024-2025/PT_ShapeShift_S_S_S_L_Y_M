@@ -154,8 +154,111 @@ i{
 }
 
 
-.img-achievement-1{
+#Gold-Medal{
+    color:#C9B037;
+    margin-right: 0.5em;
+}
 
+.text-Gold-Medal{
+    display: none;
+    position: absolute;
+    color: white;
+}
+
+#Gold-Medal:hover + .text-Gold-Medal{
+    display: block;
+
+}
+
+#Silver-Medal{
+    color:#B4B4B4;
+    margin-right: 0.5em;
+}
+
+.text-Silver-Medal{
+    display: none;
+    position: absolute;
+    color: white;
+}
+
+#Silver-Medal:hover + .text-Silver-Medal{
+    display: block;
+}
+
+
+
+#Bronze-Medal{
+    color:#6A3805;
+    margin-right: 0.5em;
+}
+
+.text-Bronze-Medal{
+    display: none;
+    position: absolute;
+    color: white;
+}
+
+#Bronze-Medal:hover + .text-Bronze-Medal{
+    display: block;
+}
+
+
+#Gold-Trophy{
+    color:#C9B037;
+    margin-right: 0.5em;
+}
+
+.text-Gold-Trophy{
+    display: none;
+    position: absolute;
+    color: white;
+}
+
+#Gold-Trophy:hover + .text-Gold-Trophy{
+    display: block;
+}
+
+#Silver-Trophy{
+    color:#B4B4B4;
+    margin-right: 0.5em;
+}
+
+.text-Silver-Trophy{
+    display: none;
+    position: absolute;
+    color: white;
+
+}
+
+#Silver-Trophy:hover + .text-Silver-Trophy{
+    display: block;
+}
+
+#Bronze-Trophy{
+    color:#6A3805;
+    margin-right: 0.5em;
+}
+
+.text-Bronze-Trophy{
+    display: none;
+    position: absolute;
+    color: white;
+}
+
+#Bronze-Trophy:hover + .text-Bronze-Trophy{
+    display: block;
+}
+
+
+
+.text-Register-card{
+    display: none;
+    position: absolute;
+    color: white;
+}
+
+#Register-card:hover + .text-Register-card{
+    display: block;
 }
 
 
