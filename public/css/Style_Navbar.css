@@ -22,7 +22,6 @@ i{
     color: var(--text);
 }
 
-
 .navContainer{
     width: 100%;
     min-height: 60px;
@@ -164,8 +163,6 @@ li a:hover ul{
 }
 .mobile-menu-item{
     margin: 5px;
-    width: 150%;
-
 }
 .mobile-menu-item:hover{
     background-color: var(--foreground);

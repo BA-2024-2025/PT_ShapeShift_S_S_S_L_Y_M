@@ -26,7 +26,7 @@ function App() {
                 <tr key={i}>
                     <td className="leaderboard-place"><h3>#{i + 1}</h3></td>
                     <td className="leaderboard-username"><h3>{user.username}</h3></td>
-                    <td className="leaderboard-score"><h3>{user.score}</h3></td>
+                    <td className="leaderboard-score"><h3>{user.topscore}</h3></td>
                 </tr>
             ))}
         </table>
