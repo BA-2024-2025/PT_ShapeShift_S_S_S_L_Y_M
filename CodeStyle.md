@@ -44,3 +44,8 @@ Using prefixes in branch names helps to quickly identify the purpose of the bran
 - **Purpose**: These branches are used to write, update, or fix documentation (e.g., the README.md file).
 - **Prefix**: `docs/`
 - **Example**: `docs/api-endpoints`
+
+### Commit Messages
+- **Purpose**: The Commit message needs to be written in English, also very important is that you look at the Grammar!
+- **Prefix**: `- For deletion` `+ For addition`
+- **Example**: `- Deleted the Demologo.png + Added Nav Bar`
