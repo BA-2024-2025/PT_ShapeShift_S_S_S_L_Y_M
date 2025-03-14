@@ -18,7 +18,9 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+i{
+    color: var(--text);
+}
 
 .navContainer{
     width: 100%;
@@ -161,8 +163,6 @@ li a:hover ul{
 }
 .mobile-menu-item{
     margin: 5px;
-    width: 150%;
-
 }
 .mobile-menu-item:hover{
     background-color: var(--foreground);
