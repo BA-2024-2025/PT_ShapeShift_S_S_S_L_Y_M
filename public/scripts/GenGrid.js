@@ -59,6 +59,9 @@ function blockLanding(tetromino, worker, event) {
     document.removeEventListener("keydown", event);
     worker.terminate();
 
+    //function to remove full lines from the Grid
+    removeLine();
+
     //restart the game
     gameLoop();
 }
@@ -113,13 +116,12 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
             clearBattlefield(activeTetromino);
             oldX= activeTetromino.shiftX;
             oldY= activeTetromino.shiftY;
-            let oldPositon = activeTetromino.position;
+            let oldPosition = activeTetromino.position;
             activeTetromino.rotate();
-            if (!moveValidation()) {
+            if (!moveValidation(oldX, oldY, activeTetromino)) {
                 console.log("move denied");
-                blockLanding(activeTetromino, worker, variableOfEventFunction);
+                activeTetromino.position = oldPosition;
             } else {
-                activeTetromino.position = oldPositon;
                 console.log("move accepted");
             }
             drawBattlefield(activeTetromino);
@@ -130,9 +132,8 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
             oldX= activeTetromino.shiftX;
             oldY= activeTetromino.shiftY;
             activeTetromino.shiftXRight();
-            if (!moveValidation()) {
+            if (!moveValidation(oldX, oldY, activeTetromino)) {
                 console.log("move denied");
-                blockLanding(activeTetromino, worker, variableOfEventFunction);
             } else {
                 console.log("move accepted");
             }
@@ -144,11 +145,10 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
             oldX= activeTetromino.shiftX;
             oldY= activeTetromino.shiftY;
             activeTetromino.shiftXLeft();
-            if (!moveValidation()) {
-                console.log("move denied")
-                blockLanding(activeTetromino, worker, variableOfEventFunction);
+            if (!moveValidation(oldX, oldY, activeTetromino)) {
+                console.log("move denied");
             } else {
-                console.log("move accepted")
+                console.log("move accepted");
             }
             drawBattlefield(activeTetromino);
             break;
@@ -163,9 +163,9 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
                 blockLanding(activeTetromino, worker, variableOfEventFunction);
             } else {
                 console.log("move accepted")
+                drawBattlefield(activeTetromino);
+                checkIfLanded(activeTetromino, worker, variableOfEventFunction);
             }
-            drawBattlefield(activeTetromino);
-            checkIfLanded(activeTetromino, worker, variableOfEventFunction);
             break;
 
         default:
@@ -187,7 +187,7 @@ function checkIfLanded(activeTetromino, worker, eventFunction) {
 
         //light blue I
         case "#4DFFFF":
-            if ((activeTetromino.position !== activeTetromino.pos2 && activeTetromino.shiftY === 19) || (activeTetromino.position === activeTetromino.pos2 && activeTetromino.shiftY() === 17)) {
+            if ((activeTetromino.position !== activeTetromino.pos2 && activeTetromino.shiftY === 19) || (activeTetromino.position === activeTetromino.pos2 && activeTetromino.shiftY === 17)) {
                 blockLanding(activeTetromino, worker, eventFunction);
             }
             break;
@@ -231,12 +231,54 @@ function checkIfLanded(activeTetromino, worker, eventFunction) {
     }
 }
 
-function gameLoop(activeTetromino) {
-     activeTetromino = null;
+function removeLine() {
 
-     //stats
-     let blocks = 0;
-     let score = 0;
+    //loops through every field of the grid
+    let countOfColored = 0;
+    let linesRemoved = 0;
+
+    //loops through each line of the gird
+    for (let y = 0; y < 21; y++) {
+
+        countOfColored = 0;
+
+        //selects each field from the line
+        for (let x = 0; x < 10; x++) {
+
+            //selects the field
+            let field = document.getElementById(x+""+y);
+
+            //get the computed style
+            let computedStyleOfField = window.getComputedStyle(field);
+
+            //get the background color
+            let fieldBackground = computedStyleOfField.backgroundColor;
+
+            if (fieldBackground !== "rgba(1, 1, 1, 0.004)") {
+                countOfColored++;
+            }
+        }
+
+        //removes the colored line
+        if (countOfColored === 10) {
+            //selects each field from the line
+            for (let x = 0; x < 10; x++) {
+                let coloredField = document.getElementById(x+""+y);
+                coloredField.style.backgroundColor = "#01010101";
+                coloredField.style.boxShadow = "none";
+            }
+
+            linesRemoved++;
+        }
+    }
+
+    score = score + 10 * linesRemoved;
+}
+
+function gameLoop(activeTetromino) {
+
+    //unselects the old tetromino
+    activeTetromino = null;
 
     //select random tetromino
     let randNum = Math.floor(Math.random() * 7) + 1;
@@ -259,6 +301,7 @@ function gameLoop(activeTetromino) {
     //draws the tetromino for the first time
     drawBattlefield(activeTetromino);
     blocks += 1;
+    console.log("Blocks = " + blocks + ", Score = " + score);
 
     //create worker
     const worker = new Worker("/ShapeShift/public/scripts/moveDown_worker.js");
@@ -289,9 +332,15 @@ function gameLoop(activeTetromino) {
 
 //game starts
 createGrid();
-let activeTetromino = new OTetromino();
-gameLoop(activeTetromino);
 
+//stats
+let blocks = 0;
+let score = 0;
+
+//create variable for active tetromino
+let activeTetromino = new TTetromino();
+
+gameLoop(activeTetromino);
 
 /*Der Bug das ganz viele spawnen wenn ich die down taste drücken hängt damit zusammen
 das der listener nicht genügend schnell gelöscht wird und somit wird immer ein neues
