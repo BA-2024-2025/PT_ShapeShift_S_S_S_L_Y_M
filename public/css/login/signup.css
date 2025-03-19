@@ -20,8 +20,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-dark);
-  color: var(--text-white);
+  background-color: var(--background);
+  color: var(--text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,21 +44,6 @@ main {
   overflow-y: hidden;
 }
 
-.test-nav {
-  height: 100%;
-  width: 100%;
-  padding: 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--nav);
-  overflow: hidden;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-}
-
 .user {
   height: 60%;
   cursor: pointer;
@@ -66,7 +51,7 @@ main {
 
 .logo-text {
   font-size: 1.5em;
-  color: var(--primary-cyan);
+  color: var(--primary);
 }
 
 main {
@@ -95,7 +80,7 @@ form {
 
 .title-main {
   font-size: clamp(2rem, 8vw, 4rem);
-  color: var(--primary-cyan);
+  color: var(--primary);
   margin: 0;
   display: flex;
   justify-content: center;
@@ -112,8 +97,8 @@ form {
 }
 
 .signup-button {
-  background-color: var(--button-purple);
-  color: var(--text-white);
+  background-color: var(--accent);
+  color: var(--text);
   border: none;
   border-radius: 0.5em;
   font-size: clamp(1rem, 2.5vw, 1.5rem);
@@ -131,7 +116,7 @@ form {
 }
 
 .login-link a {
-  color: var(--primary-cyan);
+  color: var(--primary);
   text-decoration: none;
 }
 

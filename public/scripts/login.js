@@ -12,27 +12,38 @@ document.getElementById("loginForm").addEventListener("submit", async function (
       errorMessage.classList.remove("hidden");
       return;
     }
-  
+
     try {
-      const response = await fetch("http://172.16.2.165:3000/users/submit-login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password }),
-      });
-  
-    
-      if (response.ok) {
-        // Login success, z.B. weiterleiten:
-        window.location.href = "index.html";
-      } else {
-        errorMessage.textContent = data.message || "Login failed.";
-        errorMessage.classList.remove("hidden");
-      }
+        const response = await fetch("http://172.16.2.180:4000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json(); // Parse the response body as JSON
+
+        if (response.ok) {
+            console.log(data);
+            // Save token and user to localStorage if login is successful
+            localStorage.setItem('accessToken', data.accessToken);  // Save token to localStorage
+            localStorage.setItem('refreshToken', data.refreshToken)
+
+            // Redirect or handle the successful login
+            window.location.href = "index.html"; // Example redirection
+
+        } else {
+            // Display error message if login fails
+            errorMessage.textContent = data.message || "Login failed.";
+            errorMessage.classList.remove("hidden");
+        }
+
     } catch (err) {
-      errorMessage.textContent = "Server not reachable.";
-      errorMessage.classList.remove("hidden");
+        // Handle network or other errors
+        errorMessage.textContent = "Server not reachable.";
+        errorMessage.classList.remove("hidden");
+        console.error(err.message);
     }
-  });
+});
   
