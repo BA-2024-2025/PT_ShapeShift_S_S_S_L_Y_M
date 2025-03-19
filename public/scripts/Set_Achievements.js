@@ -1,20 +1,35 @@
+function getUsernameFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('username'); // Holt den Wert des Parameters "username"
+}
+
+
 async function fetchData() {
+
+    const username = getUsernameFromURL(); // Den Benutzernamen aus der URL holen
+
+    if (!username) {
+        console.error("Kein Benutzername in der URL gefunden!");
+        return; // Stoppe die Funktion, falls kein Benutzername in der URL vorhanden ist
+    }
 
     try{
 
-        const response = await fetch('172.16.2.165:3000/users');
+        const response = await fetch('172.16.2.165:3000/users?username=${username}');
 
         if(!response.ok){
             throw new Error('Failed to fetch users');
         }
+
         //Fill constants with data
+
         const data = await response.json();
+        const user = data[0];
         const userData_Username = data.username;
         const userData_Best_Placement = data.best_placement;
         const userData_beat_level1 = data.beat_level1;
         const userData_beat_level2 = data.beat_level2;
         const userData_beat_level3 = data.beat_level3;
-
 
 
         const UserName = document.getElementById('username');
@@ -57,8 +72,6 @@ async function fetchData() {
         else if(userData_Best_Placement === 3){
             BronzeTrophy.style.display = 'block';
         }
-
-
 
     }catch(error){
         console.log(error);
