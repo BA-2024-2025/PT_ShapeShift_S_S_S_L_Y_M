@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const table = document.getElementById('table');
 
     try {
-        const response = await fetch('http://172.16.2.165:3000/users');
+        const response = await fetch('http://172.16.2.180:3000/users');
         const data = await response.json();
 
         // Add each user as a row in the table

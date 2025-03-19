@@ -55,12 +55,17 @@ tr:hover{
 .leaderboard-container-in::-webkit-scrollbar {
     display: none;  /* Hides the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
 }
+.leaderboard-title{
+    position: absolute;
+    width: inherit !important;
+}
 .leaderboard-scroll-container{
     max-height: 50vh;
     -ms-overflow-style: none;  /* For Internet Explorer */
     scrollbar-width: none;     /* For Firefox */
     overflow: scroll;
     width: 100%;
+    margin-top: 3px;
 }
 .leaderboard{
     width: 100%;
