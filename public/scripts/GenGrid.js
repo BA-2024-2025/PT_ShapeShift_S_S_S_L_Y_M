@@ -62,13 +62,36 @@ function blockLanding(tetromino, worker, event) {
     //function to remove full lines from the Grid
     removeLine();
 
+    //checks if max height is reached
+    if (tetromino.shiftY === 1) {
+        gameLost()
+
+        //stops the rest of the function being executed
+        return;
+    }
+
     //restart the game
     gameLoop();
 }
 
+function gameLost() {
+
+    //if you loose the game everything gets pink
+    for (let y = 0; y < 21; y++) {
+        for (let x = 0; x < 10; x++) {
+            let field = document.getElementById(x+""+y);
+            field.style.backgroundColor = "#ff10f0";
+        }
+    }
+
+    //your score
+    console.log("Blocks: " + blocks + "\nScore: " + score);
+
+
+}
+
 //move validation for collisions with other blocks
 function moveValidation(oldX, oldY, tetromino) {
-    console.log("move validation");
 
     let checkCount = 0;
 
@@ -85,13 +108,10 @@ function moveValidation(oldX, oldY, tetromino) {
         //get the background color
         let backgroundColor = computedStyleOfSquare.backgroundColor;
 
-        console.log("Background Color: " + backgroundColor);
-
         if (backgroundColor === "rgba(1, 1, 1, 0.004)") {
             checkCount += 1;
         }
     }
-    console.log("final score: " + checkCount);
 
     //returns if move is possible or not
     if (checkCount === 4){
@@ -233,9 +253,8 @@ function checkIfLanded(activeTetromino, worker, eventFunction) {
 
 function removeLine() {
 
-    //loops through every field of the grid
+    //for checking if whole line is colored
     let countOfColored = 0;
-    let linesRemoved = 0;
 
     //loops through each line of the gird
     for (let y = 0; y < 21; y++) {
@@ -268,11 +287,19 @@ function removeLine() {
                 coloredField.style.boxShadow = "none";
             }
 
-            linesRemoved++;
+            score += 10;
+
+            //function for gravity
+            gravity();
+
+            //stop the loop when the gravity needs to pull the blocks one down
+            return;
         }
     }
+}
 
-    score = score + 10 * linesRemoved;
+function gravity() {
+
 }
 
 function gameLoop(activeTetromino) {
