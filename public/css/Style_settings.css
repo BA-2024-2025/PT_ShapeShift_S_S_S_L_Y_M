@@ -103,7 +103,6 @@ i{
     gap: 1.5rem;
     align-items: center;
 }
-
 .label{
    font-weight: bold;
     text-align: right;
@@ -122,15 +121,24 @@ i{
     align-items: center;
 }
 
+.row-password{
+    display:grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
 
+.row-profile{
+    display:grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
 
 .achievement-container{
     text-align: center;
     margin-bottom: 2em;
 }
-
-
-
 
 .button-view-runs{
     background-color: var(--accent);
@@ -146,6 +154,16 @@ i{
     text-decoration: none;
     margin-bottom: 3em;
     margin-top: 3em;
+}
+
+button{
+    background-color: var(--foreground);
+    text-align: center;
+    border: none;
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    box-shadow: none;
 }
 
 .button-view-runs:hover {
@@ -268,6 +286,102 @@ i{
 }
 
 
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popup-container-email {
+    display: none; /* Standardmäßig versteckt */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px); /* Weicher Blur-Effekt */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Popup-Box */
+.popup {
+    background: var(--background);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 500px;
+    height: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    color: var(--text);
+}
+
+/* Wenn Popup aktiv ist */
+.popup-container.active {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Close-Button */
+.close {
+    margin-top: 10px;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+#savePw{
+    cursor: pointer;
+}
+#saveEmail{
+    cursor: pointer;
+}
+
+.popup h1{
+    color: var(--primary);
+}
+
+.popup input{
+    border-radius: 15px ;
+    padding: 7px;
+}
+
+/* Styling für den Stift-Button */
+#passwordChange {
+    cursor: pointer;
+    padding: 5px;
+    color: var(--accent);
+    font-size: 1.5em;
+    transition: color 0.3s;
+}
+#passwordChange:hover {
+    color: var(--accent);
+}
+
+#emailChange {
+    cursor: pointer;
+    padding: 5px;
+    color: var(--accent);
+    font-size: 1.5em;
+    transition: color 0.3s;
+}
+#emailChange:hover {
+    color: var(--accent);
+}
 
 
 
