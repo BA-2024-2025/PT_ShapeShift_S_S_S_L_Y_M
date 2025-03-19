@@ -5,18 +5,23 @@ import {LTetromino} from "./LTetromino.js";
 import {JTetromino} from "./JTetromino.js";
 import {ZTetromino} from "./ZTetromino.js";
 import {STetromino} from "./STetromino.js";
+import { PlusTetromino } from "./PlusTetromino.js";
+import { UTetromino } from "./UTetromino.js";
 
 const app = document.getElementById("app");
+
+let blockActive = false;
 
 function clearBattlefield(tetromino) {
 
     //Clears the squares where the tetromino was before
     let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
-    for (let i  = 0; i < 4; i++) {
+    for (let i  = 0; i < positionT.length; i++) {
         let partOfT = document.getElementById(positionT[i]);
-        partOfT.style.backgroundColor = "#01010101";
-        partOfT.style.boxShadow = "none";
-
+        if (partOfT) {
+            partOfT.style.backgroundColor = "#01010101";
+            partOfT.style.boxShadow = "none";
+        }
     }
 }
 
@@ -24,10 +29,13 @@ function drawBattlefield(tetromino) {
 
     //draws the tetromino on the right position
     let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
-    for (let i  = 0; i < 4; i++) {
+    for (let i  = 0; i < positionT.length; i++) {
         let partOfT = document.getElementById(positionT[i]);
-        partOfT.style.backgroundColor = tetromino.color;
-        partOfT.style.boxShadow = `inset 3px 3px 0px rgba(255, 255, 255, 0.75), 2px 2px 10px ${tetromino.color}`;
+        if (partOfT) {
+            partOfT.style.backgroundColor = tetromino.color;
+            partOfT.style.boxShadow = `inset 3px 3px 0px rgba(255, 255, 255, 0.75), 2px 2px 10px ${tetromino.color}`;
+        }
+
     }
 }
 
@@ -50,28 +58,38 @@ function createGrid() {
     }
 }
 
+let currentActiveTetromino = null;
+
 //resets everything after block reached bottom
-function blockLanding(tetromino, worker, event) {
+async function blockLanding(tetromino, worker, eventFunction) {
     //remove shadow from the landing block
+    if (!blockActive || tetromino !== currentActiveTetromino) return; // Block wurde bereits beendet
+    blockActive = false;
+    
     clearBattlefield(tetromino);
     drawBattlefield(tetromino);
     console.log("reached the end");
-    document.removeEventListener("keydown", event);
-    worker.terminate();
 
+    // Event-Listener entfernen
+    document.removeEventListener("keydown", eventFunction);
+
+    // worker stopen
+    worker.postMessage("stop");
+    setTimeout(() => worker.terminate(), 50);
     //function to remove full lines from the Grid
     removeLine();
 
-    //checks if max height is reached
-    if (tetromino.shiftY === 1) {
-        gameLost()
-
-        //stops the rest of the function being executed
-        return;
+    let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
+    for (let i = 0; i < positionT.length; i++) {
+        let yPos = parseInt(positionT[i].slice(1)); // Y-Koordinate aus ID
+        if (yPos <= 1) { // Wenn irgendein Teil bei oder über der Startlinie liegt
+            gameLost();
+            return;
+        }
     }
 
     //restart the game
-    gameLoop();
+   setTimeout(() => gameLoop(), 100);
 }
 
 function gameLost() {
@@ -92,16 +110,25 @@ function gameLost() {
 
 //move validation for collisions with other blocks
 function moveValidation(oldX, oldY, tetromino) {
-
     let checkCount = 0;
 
     //loops through each field of tetromino to check background color
     let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
-    for (let i  = 0; i < 4; i++) {
+
+    for (let i = 0; i < positionT.length; i++) {
+        let yPos = parseInt(positionT[i].slice(1)); // Extrahiere Y-Koordinate aus ID
+        if (yPos < 0) {
+            // Tetromino ist über der oberen Grenze, Spiel verloren
+            gameLost();
+            return false;
+        }
+    }
+
+    for (let i  = 0; i < positionT.length; i++) {
 
         //get the square
         let partOfT = document.getElementById(positionT[i]);
-
+        if (!partOfT) continue;
         //get the computed style
         let computedStyleOfSquare = window.getComputedStyle(partOfT);
 
@@ -114,7 +141,7 @@ function moveValidation(oldX, oldY, tetromino) {
     }
 
     //returns if move is possible or not
-    if (checkCount === 4){
+    if (checkCount === positionT.length){
         return true;
     } else {
         tetromino.shiftX = oldX
@@ -123,19 +150,17 @@ function moveValidation(oldX, oldY, tetromino) {
     }
 }
 
+let keydownLocked;
 //event listener function for key inputs
-function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
-
+function whichKey(activeTetromino, worker, key) {
+    if (activeTetromino !== currentActiveTetromino) return;
     //variables for validation
-    let oldX
-    let oldY
+    let oldX = activeTetromino.shiftX;
+    let oldY = activeTetromino.shiftY;
 
     switch (key.key) {
-
         case "ArrowUp":
             clearBattlefield(activeTetromino);
-            oldX= activeTetromino.shiftX;
-            oldY= activeTetromino.shiftY;
             let oldPosition = activeTetromino.position;
             activeTetromino.rotate();
             if (!moveValidation(oldX, oldY, activeTetromino)) {
@@ -149,8 +174,6 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
 
         case "ArrowRight":
             clearBattlefield(activeTetromino);
-            oldX= activeTetromino.shiftX;
-            oldY= activeTetromino.shiftY;
             activeTetromino.shiftXRight();
             if (!moveValidation(oldX, oldY, activeTetromino)) {
                 console.log("move denied");
@@ -162,8 +185,6 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
 
         case "ArrowLeft":
             clearBattlefield(activeTetromino);
-            oldX= activeTetromino.shiftX;
-            oldY= activeTetromino.shiftY;
             activeTetromino.shiftXLeft();
             if (!moveValidation(oldX, oldY, activeTetromino)) {
                 console.log("move denied");
@@ -175,16 +196,14 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
 
         case "ArrowDown":
             clearBattlefield(activeTetromino);
-            oldX= activeTetromino.shiftX;
-            oldY= activeTetromino.shiftY;
             activeTetromino.shiftYDown();
             if (!moveValidation(oldX, oldY, activeTetromino)) {
                 console.log("move denied")
-                blockLanding(activeTetromino, worker, variableOfEventFunction);
+                checkIfLanded(activeTetromino, worker, whichKey.bind(null, activeTetromino, worker));
             } else {
                 console.log("move accepted")
                 drawBattlefield(activeTetromino);
-                checkIfLanded(activeTetromino, worker, variableOfEventFunction);
+                checkIfLanded(activeTetromino, worker, whichKey.bind(null, activeTetromino, worker));
             }
             break;
 
@@ -194,6 +213,7 @@ function whichKey(activeTetromino, worker, variableOfEventFunction, key) {
 }
 
 function checkIfLanded(activeTetromino, worker, eventFunction) {
+    if (activeTetromino !== currentActiveTetromino) return;
 
     switch (activeTetromino.color) {
 
@@ -252,14 +272,12 @@ function checkIfLanded(activeTetromino, worker, eventFunction) {
 }
 
 function removeLine() {
-
-    //for checking if whole line is colored
-    let countOfColored = 0;
+    let linesRemoved = 0;
 
     //loops through each line of the gird
-    for (let y = 0; y < 21; y++) {
+    for (let y = 20; y >= 0; y--) {
 
-        countOfColored = 0;
+        let countOfColored = 0;
 
         //selects each field from the line
         for (let x = 0; x < 10; x++) {
@@ -286,29 +304,53 @@ function removeLine() {
                 coloredField.style.backgroundColor = "#01010101";
                 coloredField.style.boxShadow = "none";
             }
-
+            linesRemoved++;
             score += 10;
 
             //function for gravity
             gravity();
 
             //stop the loop when the gravity needs to pull the blocks one down
-            return;
+            y++;
         }
+    }
+
+    if (linesRemoved > 1) {
+        score += (linesRemoved -1) * 20;
     }
 }
 
 function gravity() {
+    for (let y = 20; y > 0; y--) {
+        for (let x = 0; x < 10; x++) {
+            let currentField = document.getElementById(x+""+y);
+            let fieldAbove = document.getElementById(x+""+(y-1));
 
+            // style from the block above
+            let computedStyleAbove = window.getComputedStyle(fieldAbove);
+            let backgroundColorAbove = computedStyleAbove.backgroundColor;
+            let boxShadowAbove = computedStyleAbove.boxShadow;
+
+            // drop the field above down, if not empty
+            if (backgroundColorAbove !== "rgba(1, 1, 1, 0.004)") {
+                currentField.style.backgroundColor = backgroundColorAbove;
+                currentField.style.boxShadow = boxShadowAbove;
+
+                // delete field above
+                fieldAbove.style.backgroundColor = "#01010101";
+                fieldAbove.style.boxShadow = "none";
+            }
+        }
+    }
 }
 
-function gameLoop(activeTetromino) {
-
-    //unselects the old tetromino
-    activeTetromino = null;
+async function gameLoop() {
+    if (blockActive) return;
+    blockActive = true;
 
     //select random tetromino
-    let randNum = Math.floor(Math.random() * 7) + 1;
+    let activeTetromino;
+    let randNum = Math.floor(Math.random() * 9) + 1;
     if (randNum === 1) {
         activeTetromino = new TTetromino();
     } else if (randNum === 2) {
@@ -323,19 +365,25 @@ function gameLoop(activeTetromino) {
         activeTetromino = new ZTetromino();
     } else if (randNum === 7) {
         activeTetromino = new STetromino();
+    } else if (randNum === 8) {
+        activeTetromino = new PlusTetromino();
+    } else if (randNum == 9) {
+        activeTetromino = new UTetromino();
     }
 
+    currentActiveTetromino = activeTetromino;
+    
     //draws the tetromino for the first time
     drawBattlefield(activeTetromino);
     blocks += 1;
     console.log("Blocks = " + blocks + ", Score = " + score);
 
     //create worker
-    const worker = new Worker("/ShapeShift/public/scripts/moveDown_worker.js");
+    const worker = new Worker("../public/scripts/moveDown_worker.js");
 
     //receives message from worker to shift down y
-    worker.onmessage = function(shiftYDown) {
-        if (shiftYDown.data === "shiftYDown") {
+    worker.onmessage = function (shiftYDown) {
+        if (shiftYDown.data === "shiftYDown" && blockActive) {
             clearBattlefield(activeTetromino);
             let oldX= activeTetromino.shiftX;
             let oldY= activeTetromino.shiftY;
@@ -345,15 +393,14 @@ function gameLoop(activeTetromino) {
                 blockLanding(activeTetromino, worker, boundWhichKey);
             } else {
                 console.log("move accepted")
+                drawBattlefield(activeTetromino);
+                checkIfLanded(activeTetromino, worker, boundWhichKey);
             }
-            drawBattlefield(activeTetromino);
-            checkIfLanded(activeTetromino, worker, boundWhichKey);
         }
     }
 
     //listener for all key inputs relating to the activeTetromino
-    let boundWhichKey;
-    boundWhichKey= whichKey.bind(null, activeTetromino, worker, boundWhichKey);
+    const boundWhichKey = whichKey.bind(null, activeTetromino, worker);
     document.addEventListener("keydown", boundWhichKey);
 }
 
@@ -363,11 +410,7 @@ createGrid();
 //stats
 let blocks = 0;
 let score = 0;
-
-//create variable for active tetromino
-let activeTetromino = new TTetromino();
-
-gameLoop(activeTetromino);
+gameLoop();
 
 /*Der Bug das ganz viele spawnen wenn ich die down taste drücken hängt damit zusammen
 das der listener nicht genügend schnell gelöscht wird und somit wird immer ein neues
