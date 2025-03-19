@@ -36,46 +36,60 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Setze den Benutzernamen im HTML-Dokument
         document.getElementById('username').innerHTML = user.username;
 
-        // Setze die Benutzerinformationen
-        document.getElementById('email').innerHTML = user.email || 'Nicht verfügbar';
-        document.getElementById('high-score').innerHTML = user.topscore || 'Nicht verfügbar';
-        document.getElementById('level1-score').innerHTML = user.level1_score || 'Nicht verfügbar';
+        try{
+            // Setze die Benutzerinformationen
+            document.getElementById('email').innerHTML = user.email || 'Nicht verfügbar';
+            document.getElementById('high-score').innerHTML = user.topscore || 'Nicht verfügbar';
+            document.getElementById('level1-score').innerHTML = user.level1_score || 'Nicht verfügbar';
 
-        // Holen der Medaillen-Elemente
-        const goldTrophy = document.getElementById('Gold-Trophy');
-        const silverTrophy = document.getElementById('Silver-Trophy');
-        const bronzeTrophy = document.getElementById('Bronze-Trophy');
-
-        // Überprüfen, ob der Benutzer Level abgeschlossen hat
-        if (user.beat_level3) {
-            document.getElementById('Gold-Medal').style.display = 'block';
-        }
-        if (user.beat_level2) {
-            document.getElementById('Silver-Medal').style.display = 'block';
-        }
-        if (user.beat_level1) {
-            document.getElementById('Bronze-Medal').style.display = 'block';
+        }catch(error) {
+            console.error(error);
         }
 
-        // Überprüfen, ob der Benutzer auf der Bestenliste war
-        if (user.best_placement === 1) {
-            goldTrophy.style.display = 'block';
-            silverTrophy.style.display = 'block';
-            bronzeTrophy.style.display = 'block';
-        } else if (user.best_placement === 2) {
-            silverTrophy.style.display = 'block';
-            bronzeTrophy.style.display = 'block';
-        } else if (user.best_placement === 3) {
-            bronzeTrophy.style.display = 'block';
+        try{
+            // Holen der Medaillen-Elemente
+            const goldTrophy = document.getElementById('Gold-Trophy');
+            const silverTrophy = document.getElementById('Silver-Trophy');
+            const bronzeTrophy = document.getElementById('Bronze-Trophy');
+        }catch(error) {
+            console.error(error);
         }
 
-        let userRuns = fetch(`http://172.16.2.180:3000/runs/${username}`);
-        userRuns = await userRuns.json();
+        try{
+            // Überprüfen, ob der Benutzer Level abgeschlossen hat
+            if (user.beat_level3) {
+                document.getElementById('Gold-Medal').style.display = 'block';
+            }
+            if (user.beat_level2) {
+                document.getElementById('Silver-Medal').style.display = 'block';
+            }
+            if (user.beat_level1) {
+                document.getElementById('Bronze-Medal').style.display = 'block';
+            }
 
-        const scoreContainer = document.getElementsByClassName('score-container');
-        userRuns.forEach((userRun) => {
+            // Überprüfen, ob der Benutzer auf der Bestenliste war
+            if (user.best_placement === 1) {
+                goldTrophy.style.display = 'block';
+                silverTrophy.style.display = 'block';
+                bronzeTrophy.style.display = 'block';
+            } else if (user.best_placement === 2) {
+                silverTrophy.style.display = 'block';
+                bronzeTrophy.style.display = 'block';
+            } else if (user.best_placement === 3) {
+                bronzeTrophy.style.display = 'block';
+            }
+
+        }catch(error) {
+            console.error(error);
+        }
+
+        const userRuns = await fetch(`http://172.16.2.180:3000/runs/${username}`);
+        const userRunData = await userRuns.json();
+
+        const scoreContainer = document.getElementById('score-container');
+        userRunData.forEach((userRun, i) => {
             const scoreRow = document.createElement('div');
-            scoreRow.classList.add('score-row');
+            scoreRow.classList.add('row-score');
             scoreRow.innerHTML = `
             
                 <h2 class="label">Level ${userRun.level}</h2>
@@ -83,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <h2 class="value">${userRun.score}</h2>
             
             `
-            scoreRow.appendChild(scoreRow);
+            scoreContainer.appendChild(scoreRow);
         })
     } catch (error) {
         console.error('Fehler beim Laden der Benutzerdaten:', error);
