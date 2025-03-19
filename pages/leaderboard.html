@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Leaderboard</title>
+    <title>ShapeShift - Leaderboard</title>
     <link rel="stylesheet" href="../public/css/Style_Leaderboard.css">
     <link rel="stylesheet" href="../public/css/Style_Navbar.css">
     <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
+    <link rel="stylesheet" href="../public/css/Style_Login_popup.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../public/scripts/leaderboard.js"></script>
 </head>
@@ -57,22 +58,45 @@
         </div>
     </div>
 </div>
-
 <div class="leaderboard-container">
     <h1 class="title"><i class="fa-solid fa-medal"></i>Leaderboard</h1>
     <div class="leaderboard-container-in">
         <table class="leaderboard">
             <thead class="leaderboard-header">
-            <tr class="leaderboard-row" style="background-color:var(--foreground)">
-                <td></td>
-                <td><h2>Place</h2></td>
-                <td><h2>Username</h2></td>
-                <td><h2>Score</h2></td>
-            </tr>
+                <tr class="leaderboard-header-row" style="background-color:var(--foreground)">
+                    <td style="grid-column: 2"><h2>Place</h2></td>
+                    <td style="grid-column: 3"><h2>Username</h2></td>
+                    <td style="grid-column: 4"><h2>Score</h2></td>
+                </tr>
             </thead>
-            <tbody class="leaderboard-body" id="table">
-            </tbody>
         </table>
+        <div class="leaderboard-scroll-container">
+            <table class="leaderboard">
+                <thead class="leaderboard-header">
+                    <tr class="leaderboard-row" style="background-color:var(--foreground)">
+                        <td></td>
+                        <td><h2>Place</h2></td>
+                        <td><h2>Username</h2></td>
+                        <td><h2>Score</h2></td>
+                    </tr>
+                </thead>
+                <tbody class="leaderboard-body" id="table"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="popup-container">
+    <div class="popup">
+        <div class="popup-content">
+            <h1 class="preview-text">Welcome to</h1>
+            <h1 class="preview-text title-colored">ShapeShift</h1>
+
+            <a href="login.html" class="login-button">Login</a>
+
+            <div class="close" onclick="closePopup()">
+                <p>Continue without an account</p>
+            </div>
+        </div>
     </div>
 </div>
 </body>

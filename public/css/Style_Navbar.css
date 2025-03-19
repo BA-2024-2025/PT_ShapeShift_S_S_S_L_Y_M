@@ -26,8 +26,7 @@ i{
 
 .navContainer{
     width: 100%;
-    min-height: 60px;
-    height: 7vh;
+    height: 60px;
     display: grid;
     grid-template-rows: auto 1fr;
     grid-template-columns: 0.5fr 1fr 0.5fr;
