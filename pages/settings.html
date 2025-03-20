@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>User-Profile</title>
-    <link rel="stylesheet" href="../public/css/Style_profile_table.css">
+    <link rel="stylesheet" href="../public/css/Style_settings.css">
     <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
     <link rel="stylesheet" href="../public/css/Style_Navbar.css">
     <script src="https://kit.fontawesome.com/5a4c0976d6.js" crossorigin="anonymous"></script>
-    <script type="module" src="../public/scripts/Set_Achievements.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
+    <script type="module" src="../public/scripts/settings.js"></script>
+    <script src="../public/scripts/setting_popup.js"></script>
 </head>
 <body>
 <div class="navContainer">
@@ -84,32 +86,66 @@
                 <i id="Register-card" class="fa-regular fa-id-card fa-2xl"></i>
                 <div class="text-Register-card">Registerd himself</div>
             </div>
+            <div class="theme-container">
+                <h1 class="theme-title">Themes</h1>
+            </div>
+            <div class="theme-buttons">
+                <button class="dark-theme" onclick="localStorage.setItem('theme','default')"></button>
+                <button class="golden-theme" onclick="localStorage.setItem('theme','golden')"></button>
+                <button class="silver-theme" onclick="localStorage.setItem('theme','silver')"></button>
+                <button class="bronze-theme" onclick="localStorage.setItem('theme','bronze')"></button>
+                <button class="flashBang-theme" onclick="localStorage.setItem('theme','flashBang')"></button>
+            </div>
             <div class="user-profile-container">
-                <div class="row-profile">
-                    <h2 class="label">Email:</h2>
-                    <h2 class="value" id="email">Harald@1234.com</h2>
-                </div>
-                <div class="row-password">
-                    <h2 class="label">Password</h2>
-                    <h2 class="value" id="password">Welcome$99</h2>
-                </div>
-                <div class="row-profile">
-                    <h2 class="label">High Score:</h2>
-                    <h2 class="value" id="high-score">12344567</h2>
+
+                    <h2 class="label row-1">Email:</h2>
+
+                    <h2 class="value row-1" id="email">Harald@1234.com</h2>
+                    <div class="row-1" onclick="openPopupEmail()" id="emailChange">
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+                    <h2 class="label row-2">Password:</h2>
+                    <h2 class="value row-2" id="password">Welcome$99</h2>
+                    <div class="row-2" onclick="openPopupPw()" id="passwordChange">
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <h2 class="label row-3">High Score:</h2>
+                    <h2 class="value row-3" id="high-score">12344567</h2>
+
                 </div>
                 <div class="title-scores">
                     <h1 class="score-title">Last 10 Games</h1>
                 </div>
-                <div class="scores-container">
-                    <div class="row-score">
-                        <h2 class="label">Level 1</h2>
-                        <h2 class="label">Score:</h2>
-                        <h2 class="value">12 350</h2>
-                    </div>
+                <div class="scores-container" id="score-container">
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+<div class="popup-container password-popup">
+    <div class="popup">
+        <h1>Password ändern</h1>
+        <input id="pw-update" type="password" placeholder="Neues Passwort eingeben">
+        <br>
+        <br>
+        <div id="savePw" onclick="subbmitNewPw()">Speichern</div>
+        <div class="close" onclick="closePopupPw()">Abbrechen</div>
+    </div>
+</div>
+<div class="popup-container-email">
+    <div class="popup">
+        <h1>Email ändern</h1>
+        <input id="email-update" type="email" placeholder="Neues email eingeben">
+        <br>
+        <br>
+        <div id="saveEmail" onclick="subbmitNewEmail()">Speichern</div>
+        <div class="close" onclick="closePopupEmail()">Abbrechen</div>
+    </div>
+</div>
+
+
 </body>
 </html>
