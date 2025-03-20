@@ -64,7 +64,6 @@
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s ease;
-    transition: transform 0.1s ease-in-out;
     text-decoration: none;
 }
 

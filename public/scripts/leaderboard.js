@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         data.forEach((user, i) => {
             const row = document.createElement('tr');
             row.addEventListener('click', function() {
-                window.location.href = `/profile-page.html?username=${user.username}`;
+                window.location.href = `./profile-page.html?username=${user.username}`;
             });
             if (i < 3) {
                 row.innerHTML = `

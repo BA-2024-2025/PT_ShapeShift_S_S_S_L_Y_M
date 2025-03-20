@@ -23,3 +23,7 @@ function openPopup() {
     popupContainer.style.opacity = '1';
     document.body.style.overflow = "hidden";
 }
+
+const theme = localStorage.getItem('theme')
+const body = document.querySelector('body');
+body.className = theme
