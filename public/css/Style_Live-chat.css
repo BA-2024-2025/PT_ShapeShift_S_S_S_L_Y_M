@@ -1,0 +1,65 @@
+.live-chat-floater{
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+    font-size: xxx-large;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.live-chat-floater>i{
+    width: 75px;
+    height: 75px;
+    z-index: 10;
+    background-color: var(--foreground);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.live-chat-window{
+    visibility: hidden;
+    z-index: 0;
+    position: inherit;
+    height: 88%;
+    width: 89%;
+    margin: 0px 16% 16% 0px;
+    display: flex;
+    flex-direction: column;
+}
+.live-chat-content{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    height: 56%;
+    width: 63%;
+    background: var(--foreground);
+    display: flex;
+    flex-direction: column;
+    overflow: overlay;
+    scroll-behavior: auto;
+}
+.live-chat-inputfield{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background: var(--foreground);
+    width:63%
+}
+.live-chat-inputfield>form{
+    margin: 5%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+.message{
+    font-size: medium;
+    margin-left: 5%;
+    color: var(--text);
+}
+.live-chat-content::-webkit-scrollbar {
+    display: none;  /* Hides the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
+}
