@@ -1,5 +1,13 @@
 import {jwtDecode} from 'https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/+esm';
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Prüfen, ob ein gespeichertes Profilbild existiert
+    const savedProfilePic = localStorage.getItem("profilePic");
+    if (savedProfilePic) {
+        document.getElementById("profilePic").src = savedProfilePic;
+    }
+});
+
 const getEmail = () => {
     const token = localStorage.getItem('accessToken');
     if (token) {
