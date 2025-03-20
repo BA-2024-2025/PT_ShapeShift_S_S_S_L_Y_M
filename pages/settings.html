@@ -9,34 +9,35 @@
     <script src="https://kit.fontawesome.com/5a4c0976d6.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
     <script type="module" src="../public/scripts/settings.js"></script>
+    <script type="module" src="../public/scripts/index.js"></script>
     <script src="../public/scripts/setting_popup.js"></script>
 </head>
 <body>
 <div class="navContainer">
     <div class="logoContainer">
-        <h1 class="logo" style="color:var(--primary)">ShapeShift</h1>
+        <a href="./index.html"><h1 class="logo" style="color:var(--primary)">ShapeShift</h1></a>
     </div>
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="navItem">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="./index.html" class="nav-link">Home</a>
             </li>
             <li class="navItem">
-                <a href="index.html" class="nav-link">Leaderboard</a>
+                <a href="./leaderboard.html" class="nav-link">Leaderboard</a>
             </li>
         </ul>
     </nav>
     <div class="loginContainer">
         <div class="login-icon">
-            <a href="index.html" class="login">
+            <a href="./login.html" class="login">
                 <i class="fa-regular fa-user"></i>
             </a>
             <ul class="login-menu">
                 <li class="login-element">
-                    <a href="index.html" class="login login-text">Login</a>
+                    <a href="./login.html" class="login login-text">Login</a>
                 </li>
                 <li class="login-element">
-                    <a href="index.html" class="settings login-text">Settings</a>
+                    <a href="./settings.html" class="settings login-text">Settings</a>
                 </li>
             </ul>
         </div>
@@ -44,16 +45,16 @@
             <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
             <ul class="mobile-menu-menu">
                 <li class="mobile-menu-item">
-                    <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="./index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Leaderboard</a>
+                    <a href="./leaderboard.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Leaderboard</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                    <a href="./settings.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="index.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
+                    <a href="./login.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
                 </li>
             </ul>
         </div>
@@ -90,11 +91,11 @@
                 <h1 class="theme-title">Themes</h1>
             </div>
             <div class="theme-buttons">
-                <button class="dark-theme" onclick="localStorage.setItem('theme','default')"></button>
-                <button class="golden-theme" onclick="localStorage.setItem('theme','golden')"></button>
-                <button class="silver-theme" onclick="localStorage.setItem('theme','silver')"></button>
-                <button class="bronze-theme" onclick="localStorage.setItem('theme','bronze')"></button>
-                <button class="flashBang-theme" onclick="localStorage.setItem('theme','flashBang')"></button>
+                <button class="dark-theme" onclick="window.location.reload();localStorage.setItem('theme','default')"></button>
+                <button class="golden-theme" onclick="window.location.reload();localStorage.setItem('theme','golden')"></button>
+                <button class="silver-theme" onclick="window.location.reload();localStorage.setItem('theme','silver')"></button>
+                <button class="bronze-theme" onclick="window.location.reload();localStorage.setItem('theme','bronze')"></button>
+                <button class="flashBang-theme" onclick="window.location.reload();localStorage.setItem('theme','flashBang')"></button>
             </div>
             <div class="user-profile-container">
 
