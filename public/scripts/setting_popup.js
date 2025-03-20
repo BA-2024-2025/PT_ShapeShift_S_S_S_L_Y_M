@@ -17,6 +17,7 @@ function closePopupPw() {
     popupContainer.style.display = 'none';
     popupContainer.style.opacity = '0';
     document.body.style.overflow = "hidden";
+    window.location.reload();
 }
 
 function openPopupEmail() {
@@ -32,6 +33,33 @@ function closePopupEmail() {
     popupContainer.style.display = 'none';
     popupContainer.style.opacity = '0';
     document.body.style.overflow = "hidden";
+    window.location.reload();
+}
+
+function openPopupProfilePicture() {
+    const popupContainer = document.querySelector('.popup-container-profile-picture');
+    popupContainer.style.display = 'flex';
+    popupContainer.style.transform = 'scale(1)';
+    popupContainer.style.opacity = '1';
+    document.body.style.overflow = "hidden";
+}
+
+function closePopupProfilePicture() {
+    const popupContainer = document.querySelector('.popup-container-profile-picture');
+    popupContainer.style.display = 'none';
+    popupContainer.style.opacity = '0';
+    document.body.style.overflow = "hidden";
+    window.location.reload();
+}
+
+function changeProfilePic(image) {
+    const profilePic = document.getElementById("profilePic");
+    profilePic.src = image.src;
+
+    localStorage.setItem("profilePic", image.src);
+
+    closePopupProfilePicture();
+
 }
 
 function subbmitNewPw() {

@@ -9,35 +9,35 @@
     <script src="https://kit.fontawesome.com/5a4c0976d6.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
     <script type="module" src="../public/scripts/settings.js"></script>
-    <script type="module" src="../public/scripts/index.js"></script>
     <script src="../public/scripts/setting_popup.js"></script>
+    <script src="../public/sounds/music.js"></script>
 </head>
 <body>
 <div class="navContainer">
     <div class="logoContainer">
-        <a href="./index.html"><h1 class="logo" style="color:var(--primary)">ShapeShift</h1></a>
+        <h1 class="logo" style="color:var(--primary)">ShapeShift</h1>
     </div>
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="navItem">
-                <a href="./index.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link">Home</a>
             </li>
             <li class="navItem">
-                <a href="./leaderboard.html" class="nav-link">Leaderboard</a>
+                <a href="index.html" class="nav-link">Leaderboard</a>
             </li>
         </ul>
     </nav>
     <div class="loginContainer">
         <div class="login-icon">
-            <a href="./login.html" class="login">
+            <a href="index.html" class="login">
                 <i class="fa-regular fa-user"></i>
             </a>
             <ul class="login-menu">
                 <li class="login-element">
-                    <a href="./login.html" class="login login-text">Login</a>
+                    <a href="index.html" class="login login-text">Login</a>
                 </li>
                 <li class="login-element">
-                    <a href="./settings.html" class="settings login-text">Settings</a>
+                    <a href="index.html" class="settings login-text">Settings</a>
                 </li>
             </ul>
         </div>
@@ -45,16 +45,16 @@
             <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
             <ul class="mobile-menu-menu">
                 <li class="mobile-menu-item">
-                    <a href="./index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="./leaderboard.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Leaderboard</a>
+                    <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Leaderboard</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="./settings.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                    <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="./login.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
+                    <a href="index.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
                 </li>
             </ul>
         </div>
@@ -64,8 +64,14 @@
     <div class="leaderboard-size">
         <div class="leaderboard">
             <h1 class="username-title" id="username">Username</h1>
-            <div class="achievement-container">
+            <div class="profile-pic">
+                <img id="profilePic" src="../public/images/defaultProfile.png" alt="Profile Picture">
+            </div>
+            <div class="profile-picChange" onclick="openPopupProfilePicture()" id="profile-picChange">
+                <i class="fa-solid fa-pen"></i>
+            </div>
 
+            <div class="achievement-container">
                 <i id="Gold-Medal" class="fa-solid fa-medal fa-2xl"></i>
                 <div class="text-Gold-Medal">Finished level 3</div>
 
@@ -97,6 +103,7 @@
                 <button class="bronze-theme" onclick="window.location.reload();localStorage.setItem('theme','bronze')"></button>
                 <button class="flashBang-theme" onclick="window.location.reload();localStorage.setItem('theme','flashBang')"></button>
                 <button class="swiss-theme" onclick="window.location.reload();localStorage.setItem('theme','swiss')"></button>
+
             </div>
             <div class="user-profile-container">
 
@@ -145,6 +152,29 @@
         <br>
         <div id="saveEmail" onclick="subbmitNewEmail()">Speichern</div>
         <div class="close" onclick="closePopupEmail()">Abbrechen</div>
+    </div>
+</div>
+<div class="popup-container-profile-picture" id="profilePopup">
+    <div class="popup-profile-picture">
+        <h1>Change Profile Picture</h1>
+        <div class="gallery">
+            <img src="../public/images/ape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/cow.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/3235.avif" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/eyes.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/strauss.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/defaultProfile.png" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/cool-man.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/Hacker.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/unnamed.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/80s-moon.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/istockphoto-812960808-612x612.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/tetris.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/landscape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/orca-leaping-high-stockcake.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/pfärd-profile.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+        </div>
+        <div class="close" onclick="closePopupProfilePicture()">Abbrechen</div>
     </div>
 </div>
 

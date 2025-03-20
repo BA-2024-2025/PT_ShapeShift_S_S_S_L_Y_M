@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
     padding: 0;
     background: var(--background);
@@ -6,10 +6,12 @@ body{
     display: flex;
     flex-direction: column;
 }
-i{
+
+i {
     color: var(--text);
 }
-.container{
+
+.container {
     width: 100%;
     height: 100%;
     display: grid;
@@ -17,27 +19,30 @@ i{
     grid-template-columns: 0.75fr 1fr;
     margin-top: 3%;
 }
+
 @media screen and (max-width: 956px) {
     .container {
         grid-template-columns: 1fr !important;
         grid-template-rows: 1fr 1fr !important;
     }
+
     .leaderboard-container {
         grid-row: 2 !important;
         grid-column: 1 !important;
 
     }
 }
-.game{
+
+.game {
     grid-row-start: 1;
     grid-column-start: 1;
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.game>iframe{
+.game > iframe {
     width: 295px;
     height: 100%;
     min-height: 600px;
@@ -45,7 +50,7 @@ i{
     border-radius: 10px;
 }
 
-.scoreContainer{
+.scoreContainer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,7 +58,8 @@ i{
     font-family: var(--font);
     color: var(--primary);
 }
-.leaderboard-container{
+
+.leaderboard-container {
     grid-row-start: 1;
     grid-column-start: 2;
     width: 100%;
@@ -63,35 +69,38 @@ i{
     align-items: center;
     margin-top: 3em;
 }
-.leaderboard{
-    display:flex;
+
+.leaderboard {
+    display: flex;
     flex-direction: column;
     background: var(--foreground);
-    border-radius:20px;
+    border-radius: 20px;
     align-items: center;
 
 }
-.username-title{
+
+.username-title {
     color: var(--accent);
     font-size: 3.5em;
 }
-.leaderboard-row>th>h2,h1{
+
+.leaderboard-row > th > h2, h1 {
     color: var(--text);
     text-align: center;
     margin-left: 15px;
 }
 
-.leaderBoardEntry-alignement{
+.leaderBoardEntry-alignement {
     display: flex;
     justify-content: space-evenly;
 
 }
 
-.leaderboard-size{
+.leaderboard-size {
     width: 80%;
 }
 
-.user-profile-container{
+.user-profile-container {
     width: 70%;
     display: grid;
     color: var(--text);
@@ -101,31 +110,54 @@ i{
 }
 
 
-.label{
-   font-weight: bold;
+.label {
+    font-weight: bold;
     text-align: left;
     min-width: 100px;
 }
 
-.value{
+.value {
     text-align: left;
 }
 
-.row-profile{
-    display:grid;
+.row-profile {
+    display: grid;
     grid-template-columns: 1fr 1fr auto;
     gap: 2rem;
     align-items: center;
 }
+.profile-pic{
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+.profile-pic>img{
+    height: auto;
+    width: 100%;
+    margin: initial;
+    border-radius: 100%;
+    border: solid 4px black;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+}
+#profile-picChange {
+    font-size: 1.5em;
+    margin-left: 15%;
+    margin-bottom: 5%;
+    cursor: pointer;
+}
 
-.achievement-container{
+.achievement-container {
     text-align: center;
     margin-bottom: 2em;
+    margin-top: 2em;
     flex-direction: row;
     justify-content: center;
 }
 
-.button-view-runs{
+.button-view-runs {
     background-color: var(--accent);
     color: var(--text);
     border: none;
@@ -141,7 +173,7 @@ i{
     margin-top: 3em;
 }
 
-button{
+button {
     background-color: var(--foreground);
     text-align: center;
     border: none;
@@ -157,116 +189,114 @@ button{
 }
 
 
-#Gold-Medal{
-    color:#C9B037;
+#Gold-Medal {
+    color: #C9B037;
     margin-right: 0.5em;
     display: none;
 }
 
-.text-Gold-Medal{
+.text-Gold-Medal {
     display: none;
     position: absolute;
     color: white;
 }
 
-#Gold-Medal:hover + .text-Gold-Medal{
+#Gold-Medal:hover + .text-Gold-Medal {
     display: block;
 
 }
 
-#Silver-Medal{
-    color:#B4B4B4;
+#Silver-Medal {
+    color: #B4B4B4;
     margin-right: 0.5em;
     display: none;
 }
 
-.text-Silver-Medal{
+.text-Silver-Medal {
     display: none;
     position: absolute;
     color: white;
 }
 
-#Silver-Medal:hover + .text-Silver-Medal{
+#Silver-Medal:hover + .text-Silver-Medal {
     display: block;
 }
 
 
-
-#Bronze-Medal{
-    color:#6A3805;
+#Bronze-Medal {
+    color: #6A3805;
     margin-right: 0.5em;
     display: none;
 }
 
-.text-Bronze-Medal{
+.text-Bronze-Medal {
     display: none;
     position: absolute;
     color: white;
 }
 
-#Bronze-Medal:hover + .text-Bronze-Medal{
+#Bronze-Medal:hover + .text-Bronze-Medal {
     display: block;
 }
 
 
-#Gold-Trophy{
-    color:#C9B037;
+#Gold-Trophy {
+    color: #C9B037;
     margin-right: 0.5em;
     display: none;
 }
 
-.text-Gold-Trophy{
+.text-Gold-Trophy {
     display: none;
     position: absolute;
     color: white;
 }
 
-#Gold-Trophy:hover + .text-Gold-Trophy{
+#Gold-Trophy:hover + .text-Gold-Trophy {
     display: block;
 }
 
-#Silver-Trophy{
-    color:#B4B4B4;
+#Silver-Trophy {
+    color: #B4B4B4;
     margin-right: 0.5em;
     display: none;
 }
 
-.text-Silver-Trophy{
+.text-Silver-Trophy {
     display: none;
     position: absolute;
     color: white;
 
 }
 
-#Silver-Trophy:hover + .text-Silver-Trophy{
+#Silver-Trophy:hover + .text-Silver-Trophy {
     display: block;
 }
 
-#Bronze-Trophy{
-    color:#6A3805;
+#Bronze-Trophy {
+    color: #6A3805;
     margin-right: 0.5em;
     display: none;
 }
 
-.text-Bronze-Trophy{
+.text-Bronze-Trophy {
     display: none;
     position: absolute;
     color: white;
 }
 
-#Bronze-Trophy:hover + .text-Bronze-Trophy{
+#Bronze-Trophy:hover + .text-Bronze-Trophy {
     display: block;
 }
 
 
-
-.text-Register-card{
+.text-Register-card {
     display: none;
     position: absolute;
     color: white;
 }
 
-#Register-card:hover + .text-Register-card{
+#Register-card:hover + .text-Register-card {
     display: block;
 }
 
@@ -303,6 +333,50 @@ button{
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.popup-container-profile-picture {
+    display: none; /* Standardmäßig versteckt */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(20px); /* Weicher Blur-Effekt */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Galerie-Grid */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 Spalten */
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+}
+
+.gallery-image:hover {
+    transform: scale(1.05);
+}
+
+.popup-profile-picture {
+    padding: 20px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+
 /* Popup-Box */
 .popup {
     background: var(--background);
@@ -329,19 +403,21 @@ button{
     color: red;
     font-weight: bold;
 }
-#savePw{
-    cursor: pointer;
-}
-#saveEmail{
+
+#savePw {
     cursor: pointer;
 }
 
-.popup h1{
+#saveEmail {
+    cursor: pointer;
+}
+
+.popup h1 {
     color: var(--primary);
 }
 
-.popup input{
-    border-radius: 15px ;
+.popup input {
+    border-radius: 15px;
     padding: 7px;
 }
 
@@ -353,6 +429,7 @@ button{
     font-size: 1.5em;
     transition: color 0.3s;
 }
+
 #passwordChange:hover {
     color: var(--accent);
 }
@@ -364,83 +441,94 @@ button{
     font-size: 1.5em;
     transition: color 0.3s;
 }
+
 #emailChange:hover {
     color: var(--accent);
 }
 
 /*Theme buttons*/
-.theme-title{
+.theme-title {
     color: var(--accent);
     font-size: 2.5em;
 }
 
-.theme-buttons{
+.theme-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
 }
 
-.dark-theme{
-    background-color:  #1d1d1d;
+.dark-theme {
+    background-color: #1d1d1d;
     width: 36px; /* Oder eine andere gewünschte Größe */
     height: 36px;
     margin: 10px;
 }
-.dark-theme:hover{
+
+.dark-theme:hover {
     background-color: #3a3434;
     transform: scale(1.1);
 }
 
-.golden-theme{
+.golden-theme {
     background-color: #cba201;
     width: 36px; /* Oder eine andere gewünschte Größe */
     height: 36px;
     margin: 10px;
 }
-.golden-theme:hover{
+
+.golden-theme:hover {
     background-color: #685405;
     transform: scale(1.1);
 }
 
-.silver-theme{
+.silver-theme {
     background-color: #acacac;
     width: 36px; /* Oder eine andere gewünschte Größe */
     height: 36px;
     margin: 10px;
 }
-.silver-theme:hover{
+
+.silver-theme:hover {
     background-color: #757373;
     transform: scale(1.1);
 }
-.bronze-theme{
+
+.bronze-theme {
     background-color: #844d18;
     width: 36px; /* Oder eine andere gewünschte Größe */
     height: 36px;
     margin: 10px;
 }
-.bronze-theme:hover{
+
+.bronze-theme:hover {
     background-color: #4c2c0e;
     transform: scale(1.1);
 }
-.flashBang-theme{
+
+.flashBang-theme {
     background-color: #ffffff;
     width: 36px; /* Oder eine andere gewünschte Größe */
     height: 36px;
     margin: 10px;
 }
-.flashBang-theme:hover{
+
+.flashBang-theme:hover {
     background-color: #b6a1a1;
     transform: scale(1.1);
 }
-.swiss-theme{
+.swiss-theme {
     background-color: #ff0000;
-    width: 36px; /* Oder eine andere gewünschte Größe */
+    width: 36px;
     height: 36px;
     margin: 10px;
 }
-.swiss-theme:hover{
+.swiss-theme:hover {
     background-color: #ff5959;
     transform: scale(1.1);
 }
+
+
+
 
