@@ -15,3 +15,21 @@ body{
 :root{
     --size:25px;
 }
+
+.score {
+    color: #FFFFFF;
+    margin: 0;
+    font-family: var(--font);
+}
+
+.blocks {
+    color: #FFFFFF;
+    margin: 0;
+    font-family: var(--font);
+}
+
+.level {
+    color: #FFFFFF;
+    margin: 0;
+    font-family: var(--font);
+}

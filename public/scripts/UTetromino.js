@@ -39,9 +39,9 @@ export class UTetromino extends Tetromino {
 
     shiftXRight() {
         if (this.position === this.pos1 && this.shiftX < 7) this.shiftX += 1;
-        if (this.position === this.pos2 && this.shiftX < 8) this.shiftX += 1;
-        if (this.position === this.pos3 && this.shiftX < 7) this.shiftX += 1;
-        if (this.position === this.pos4 && this.shiftX < 8) this.shiftX += 1;
+        else if (this.position === this.pos2 && this.shiftX < 8) this.shiftX += 1;
+        else if (this.position === this.pos3 && this.shiftX < 7) this.shiftX += 1;
+        else if (this.position === this.pos4 && this.shiftX < 8) this.shiftX += 1;
         else if (this.shiftX < 9) this.shiftX += 1;
     }
 
