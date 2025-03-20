@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
     <script type="module" src="../public/scripts/settings.js"></script>
     <script src="../public/scripts/setting_popup.js"></script>
+    <script src="../public/sounds/music.js"></script>
 </head>
 <body>
 <div class="navContainer">
@@ -63,8 +64,14 @@
     <div class="leaderboard-size">
         <div class="leaderboard">
             <h1 class="username-title" id="username">Username</h1>
-            <div class="achievement-container">
+            <div class="profile-pic">
+                <img id="profilePic" src="../public/images/defaultProfile.png" alt="Profile Picture">
+            </div>
+            <div class="profile-picChange" onclick="openPopupProfilePicture()" id="profile-picChange">
+                <i class="fa-solid fa-pen"></i>
+            </div>
 
+            <div class="achievement-container">
                 <i id="Gold-Medal" class="fa-solid fa-medal fa-2xl"></i>
                 <div class="text-Gold-Medal">Finished level 3</div>
 
@@ -90,11 +97,13 @@
                 <h1 class="theme-title">Themes</h1>
             </div>
             <div class="theme-buttons">
-                <button class="dark-theme" onclick="localStorage.setItem('theme','default')"></button>
-                <button class="golden-theme" onclick="localStorage.setItem('theme','golden')"></button>
-                <button class="silver-theme" onclick="localStorage.setItem('theme','silver')"></button>
-                <button class="bronze-theme" onclick="localStorage.setItem('theme','bronze')"></button>
-                <button class="flashBang-theme" onclick="localStorage.setItem('theme','flashBang')"></button>
+                <button class="dark-theme" onclick="window.location.reload();localStorage.setItem('theme','default')"></button>
+                <button class="golden-theme" onclick="window.location.reload();localStorage.setItem('theme','golden')"></button>
+                <button class="silver-theme" onclick="window.location.reload();localStorage.setItem('theme','silver')"></button>
+                <button class="bronze-theme" onclick="window.location.reload();localStorage.setItem('theme','bronze')"></button>
+                <button class="flashBang-theme" onclick="window.location.reload();localStorage.setItem('theme','flashBang')"></button>
+                <button class="swiss-theme" onclick="window.location.reload();localStorage.setItem('theme','swiss')"></button>
+
             </div>
             <div class="user-profile-container">
 
@@ -143,6 +152,29 @@
         <br>
         <div id="saveEmail" onclick="subbmitNewEmail()">Speichern</div>
         <div class="close" onclick="closePopupEmail()">Abbrechen</div>
+    </div>
+</div>
+<div class="popup-container-profile-picture" id="profilePopup">
+    <div class="popup-profile-picture">
+        <h1>Change Profile Picture</h1>
+        <div class="gallery">
+            <img src="../public/images/ape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/cow.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/3235.avif" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/eyes.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/strauss.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/defaultProfile.png" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/cool-man.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/Hacker.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/unnamed.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/80s-moon.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/istockphoto-812960808-612x612.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/tetris.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/landscape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/orca-leaping-high-stockcake.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/images/pfärd-profile.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+        </div>
+        <div class="close" onclick="closePopupProfilePicture()">Abbrechen</div>
     </div>
 </div>
 
