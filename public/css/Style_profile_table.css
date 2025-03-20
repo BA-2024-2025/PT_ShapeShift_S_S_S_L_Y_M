@@ -127,6 +127,8 @@ i{
 .achievement-container{
     text-align: center;
     margin-bottom: 2em;
+    flex-direction: row;
+    justify-content: center;
 }
 
 

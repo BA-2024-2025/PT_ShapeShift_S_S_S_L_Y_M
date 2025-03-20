@@ -36,6 +36,7 @@ i{
     align-items: center;
     justify-content: center;
 }
+
 .game>iframe{
     width: 295px;
     height: 100%;
@@ -43,6 +44,7 @@ i{
     border: 1px solid var(--accent);
     border-radius: 10px;
 }
+
 .scoreContainer{
     display: flex;
     align-items: center;
@@ -66,6 +68,7 @@ i{
     flex-direction: column;
     background: var(--foreground);
     border-radius:20px;
+    align-items: center;
 
 }
 .username-title{
@@ -77,6 +80,7 @@ i{
     text-align: center;
     margin-left: 15px;
 }
+
 .leaderBoardEntry-alignement{
     display: flex;
     justify-content: space-evenly;
@@ -88,44 +92,23 @@ i{
 }
 
 .user-profile-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    text-align: center;
+    width: 70%;
+    display: grid;
     color: var(--text);
+    justify-content: center;
+    justify-items: start;
+    grid-template-columns: 0.5fr 0.5fr 0.1fr;
 }
 
 
-.row-profile{
-    display:grid;
-    grid-template-columns: auto auto;
-    gap: 1.5rem;
-    align-items: center;
-}
 .label{
    font-weight: bold;
-    text-align: right;
+    text-align: left;
     min-width: 100px;
 }
 
 .value{
     text-align: left;
-}
-
-
-.row-score{
-    display:grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 2rem;
-    align-items: center;
-}
-
-.row-password{
-    display:grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 2rem;
-    align-items: center;
 }
 
 .row-profile{
@@ -138,6 +121,8 @@ i{
 .achievement-container{
     text-align: center;
     margin-bottom: 2em;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .button-view-runs{
@@ -293,7 +278,7 @@ button{
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -309,7 +294,7 @@ button{
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(10px); /* Weicher Blur-Effekt */
+    backdrop-filter: blur(20px); /* Weicher Blur-Effekt */
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -383,6 +368,71 @@ button{
     color: var(--accent);
 }
 
+/*Theme buttons*/
+.theme-title{
+    color: var(--accent);
+    font-size: 2.5em;
+}
+
+.theme-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dark-theme{
+    background-color:  #1d1d1d;
+    width: 36px; /* Oder eine andere gewünschte Größe */
+    height: 36px;
+    margin: 10px;
+}
+.dark-theme:hover{
+    background-color: #3a3434;
+    transform: scale(1.1);
+}
+
+.golden-theme{
+    background-color: #cba201;
+    width: 36px; /* Oder eine andere gewünschte Größe */
+    height: 36px;
+    margin: 10px;
+}
+.golden-theme:hover{
+    background-color: #685405;
+    transform: scale(1.1);
+}
+
+.silver-theme{
+    background-color: #acacac;
+    width: 36px; /* Oder eine andere gewünschte Größe */
+    height: 36px;
+    margin: 10px;
+}
+.silver-theme:hover{
+    background-color: #757373;
+    transform: scale(1.1);
+}
+.bronze-theme{
+    background-color: #844d18;
+    width: 36px; /* Oder eine andere gewünschte Größe */
+    height: 36px;
+    margin: 10px;
+}
+.bronze-theme:hover{
+    background-color: #4c2c0e;
+    transform: scale(1.1);
+}
+.flashBang-theme{
+    background-color: #ffffff;
+    width: 36px; /* Oder eine andere gewünschte Größe */
+    height: 36px;
+    margin: 10px;
+}
+.flashBang-theme:hover{
+    background-color: #b6a1a1;
+    transform: scale(1.1);
+}
 
 
 
