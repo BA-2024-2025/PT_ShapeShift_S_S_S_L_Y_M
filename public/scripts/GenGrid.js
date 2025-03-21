@@ -356,7 +356,7 @@ async function removeLine(linesToRemove) {
     }
     score += linesRemoved * 10;
     if (linesRemoved > 3) {
-        score += (linesRemoved - 1) * 50;
+        score += (linesRemoved) * 40;
     }
     document.getElementById("score").innerText = score;
     document.getElementById("blocks").innerText = blocks;
