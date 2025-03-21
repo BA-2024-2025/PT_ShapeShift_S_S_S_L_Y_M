@@ -9,12 +9,21 @@ body{
 #app{
     border: 1px solid var(--text);
     width: calc(var(--size)*10);
+    height: 630px;
     display:grid;
     grid-template-columns:var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size);
     grid-template-rows:var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size);
+    position: relative;
 }
+
+#app canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 :root{
-    --size:25px;
+    --size:30px;
 }
 
 .score {

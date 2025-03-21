@@ -16,30 +16,97 @@ export function delay(ms) {
 }
 
 export async function gameLost() {
-    //if you loose the game everything gets pink
-    for (let y = 0; y < 21; y++) {
-        await delay(100);
-        for (let x = 0; x < 10; x++) {
-            let field = document.getElementById(x + "" + y);
-            field.style.backgroundColor = "#020202"
-            field.style.boxShadow = "none";
-        }
-    }
-    await delay(10)
-
-    for (let y = 0; y < 21; y++) {
-        for (let x = 0; x < 10; x++) {
-            let field = document.getElementById(x + "" + y);
-            field.style.transition = "background-color 2s ease";
-            field.style.backgroundColor = "#01010101";
-        }
-    }
-
-    //your score
     console.log("Blocks: " + blocks + "\nScore: " + score);
     document.getElementById("score").innerText = score;
     document.getElementById("blocks").innerText = blocks;
+    await delay(1000);
+    startPhysicsSimulation();
+}
 
+async function startPhysicsSimulation() {
+    const {Engine, Render, Runner, World, Bodies, Body} = Matter;
+ 
+    const engine = Engine.create();
+ 
+    const render = Render.create({
+        element: document.getElementById("app"),
+        engine: engine,
+        options: {
+            width: 300,
+            height: 630,
+            wireframes: false,
+            background: "#01010101"
+        }
+    });
+ 
+    const blocksToFall = [];
+    const centerX = 150;
+    const centerY = 450;
+ 
+    for (let y = 0; y < 21; y++) {
+        for (let x = 0; x < 10; x++) {
+            const field = document.getElementById(x+""+y);
+            const computedStyle = window.getComputedStyle(field);
+            const backgroundColor = computedStyle.backgroundColor;
+ 
+            if (backgroundColor !== "rgba(1, 1, 1, 0.004)") {
+                const block = Bodies.rectangle(
+                    x*30+15,
+                    y*30+15,
+                    24,
+                    24,
+                    {
+                        restitution: 0.3,
+                        friction: 0.1,
+                        render: {
+                            fillStyle: backgroundColor,
+                            strokeStyle: "rgba(255, 255, 255, 0.85)",
+                            lineWidth: 5
+                        }
+                    }
+                );
+                blocksToFall.push(block);
+ 
+                field.style.backgroundColor = "#01010101";
+                field.style.boxShadow = "none";
+                field.style.opacity = "1";
+            }
+        }
+    }
+ 
+    World.add(engine.world, blocksToFall);
+ 
+    blocksToFall.forEach(block => {
+        const dx = block.position.x - centerX;
+        const dy = block.position.y - centerY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const forceMagnitude = 0.02;
+ 
+        if (distance > 0) {
+            const forceX = (dx / distance) * forceMagnitude;
+            const forceY = (dy / distance) * forceMagnitude;
+            Body.applyForce(block, block.position, {x: forceX, y: forceY});
+            Body.setAngularVelocity(block, Math.random() * 0.1 - 0.05)
+        }
+    });
+ 
+    const runner = Runner.create();
+    Runner.run(runner, engine);
+ 
+    Render.run(render);
+ 
+    setTimeout(() => {
+        Runner.stop(runner);
+        Render.stop(render);
+        World.clear(engine.world);
+        Engine.clear(engine);
+        render.canvas.remove();
+        blocks = 0;
+        score = 0;
+        level = 1;
+    }, 5000)
+    await delay(2000)
+    gameLoop();
 }
 
 //move validation for collisions with other blocks
