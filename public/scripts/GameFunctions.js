@@ -9,7 +9,8 @@ import { PlusTetromino } from "./PlusTetromino.js";
 import { UTetromino } from "./UTetromino.js";
 import { createGrid, clearBattlefield, drawBattlefield } from "./GridFunctions.js";
 import { blockLanding, checkIfLanded } from "./LandingFunctions.js";
-import {resetScore, sendBlocks, sendScore, resetBlocks} from "./IFrameMessage.js"
+import { resetScore, sendBlocks, sendScore, resetBlocks, changeNextBlock } from "./IFrameMessage.js"
+import {changeBlockImg} from "./index.js";
 
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -250,6 +251,7 @@ export async function gameLoop() {
             activeTetromino = nextBlock;
             let levelOneArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
             let randomTetrominoOne = levelOneArray[Math.floor(Math.random() * levelOneArray.length)];
+            imgBlock = randomTetrominoOne
             nextBlock = new randomTetrominoOne
             console.log("arrayOne")
             break
@@ -258,6 +260,7 @@ export async function gameLoop() {
             let levelTwoArray = [ITetromino,OTetromino,TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino];
             let randomTetrominoTwo = levelTwoArray[Math.floor(Math.random() * levelTwoArray.length)];
             nextBlock = new randomTetrominoTwo
+            imgBlock = randomTetrominoTwo
             console.log("arrayTwo")
             break
         case 3:
@@ -265,11 +268,16 @@ export async function gameLoop() {
             let levelThreeArray = [TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,UTetromino];
             let randomTetrominoThree = levelThreeArray[Math.floor(Math.random() * levelThreeArray.length)];
             nextBlock = new randomTetrominoThree
+            imgBlock = randomTetrominoThree
             console.log("arrayThree")
             break
         default:
             break;
     }
+
+    //update img of next block
+    img.src = "../images/nextBlocks/"+changeNextBlock(imgBlock);
+
     //create worker
     const worker = new Worker("../public/scripts/moveDown_worker.js");
     worker.postMessage(level);
@@ -322,6 +330,14 @@ let activeTetromino;
 let startArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
 let startTetromino = startArray[Math.floor(Math.random() * startArray.length)];
 let nextBlock = new startTetromino
+let imgBlock = startTetromino
+
+//update img og next path
+/*let img = window.parent.document.getElementById("nextBlockImage");
+console.log(img);
+img.src*/ let path = "public/images/nextBlocks/"+changeNextBlock(imgBlock);
+changeBlockImg(path);
+console.log("hey")
 
 //starts game
 gameLoop();

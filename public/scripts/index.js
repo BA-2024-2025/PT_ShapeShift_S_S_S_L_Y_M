@@ -27,3 +27,8 @@ function openPopup() {
 const theme = localStorage.getItem('theme')
 const body = document.querySelector('body');
 body.className = theme
+
+export function changeBlockImg(path) {
+    let img = document.getElementById("nextBlockImage")
+    img.src = path
+}
