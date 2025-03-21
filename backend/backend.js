@@ -3,6 +3,9 @@ import * as service from './service.js';
 import * as http from "node:http";
 import cors from "cors";
 import swaggerUi from 'swagger-ui-express';
+import { Worker } from 'worker_threads';
+
+const worker = new Worker("./livechat-server.js");
 
 
 import swaggerSpec from "./swagger.js";
@@ -34,9 +37,6 @@ const corsOptions = {
 
 // Serve Swagger documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-
-
 app.get('/users', async (req , res) => {
 
 

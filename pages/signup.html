@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShapeShift - Sign Up</title>
+  <script src="../public/scripts/signup.js" defer></script>
+  <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
+  <link rel="stylesheet" href="../public/css/Style_Navbar.css">
+  <link rel="stylesheet" href="../public/css/login/signup.css" />
+  <script type="module" src="../public/scripts/index.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="">
+  <div class="navContainer">
+    <div class="logoContainer">
+      <a href="./index.html"><h1 class="logo" style="color:var(--primary)">ShapeShift</h1></a>
+    </div>
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li class="navItem">
+          <a href="./index.html" class="nav-link">Home</a>
+        </li>
+        <li class="navItem">
+          <a href="./leaderboard.html" class="nav-link">Leaderboard</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="loginContainer">
+      <div class="login-icon">
+        <a href="./login.html" class="login-icon">
+          <i class="fa-regular fa-user"></i>
+        </a>
+        <ul class="login-menu">
+          <li class="login-element">
+            <a href="./login.html" class="login login-text">Login</a>
+          </li>
+          <li class="login-element">
+            <a href="./settings.html" class="settings login-text">Settings</a>
+          </li>
+        </ul>
+      </div>
+      <div class="mobile-menu">
+        <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
+        <ul class="mobile-menu-menu">
+          <li class="mobile-menu-item">
+            <a href="./index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
+          </li>
+          <li class="mobile-menu-item">
+            <a href="./leaderboard.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Leaderboard</a>
+          </li>
+          <li class="mobile-menu-item">
+            <a href="./settings.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
+          </li>
+          <li class="mobile-menu-item">
+            <a href="./login.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <main>
+    <a href="index.html" class="back">
+      <h1><i class="fa-solid fa-circle-arrow-left"></i></h1>
+    </a>
+    <div class="form-container">
+      <form autocomplete="off" action="" id="signup-form">
+        <p class="title-small">create a new</p>
+        <h1 class="title-main">ShapeShift</h1>
+        <p class="title-small">account</p>
+
+        <input class="input-box" type="text" name="username" id="username" placeholder="username" required />
+        <div id="username-error" class="error-msg hidden">Username is already taken.</div>
+
+        <input class="input-box" type="email" name="email" id="email" placeholder="email" required />
+        <div id="email-error" class="error-msg hidden">Email is already used.</div>
+
+        <input class="input-box" type="password" name="password" id="password" placeholder="password" required />
+        <div class="password-checklist" id="password-checklist">
+          <p>Password must contain:</p>
+          <ul>
+            <li id="check-length">Minimum 8 characters</li>
+            <li id="check-uppercase">At least one uppercase letter</li>
+            <li id="check-lowercase">At least one lowercase letter</li>
+            <li id="check-number">At least one number</li>
+            <li id="check-special">At least one special character</li>
+          </ul>
+        </div>
+
+        <input class="input-box" type="password" id="confirm-password" placeholder="repeat password" required />
+        <div id="password-error" class="error-msg hidden">Passwords do not match or do not meet requirements.</div>
+
+
+        <button class="signup-button" type="submit">Sign Up</button>
+        <p class="login-link">Already have an account? <a href="login.html">Login</a></p>
+      </form>
+    </div>
+  </main>
+
+  <script src="signup.js"></script>
+</body>
+
+</html>
