@@ -1,0 +1,108 @@
+import { changeScore, delay } from "./GameFunctions.js";
+
+export function checkFullLines(tetromino) {
+    let linesToRemoveArray = [];
+    let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
+    let yPosition = [...new Set(positionT.map(pos => parseInt(pos.slice(1))))]
+    for (let y of yPosition) {
+        let countOfColored = 0;
+        for (let x = 0; x < 10; x++) {
+            let field = document.getElementById(x + "" + y);
+            let computedStyleOfField = window.getComputedStyle(field);
+            let fieldBackground = computedStyleOfField.backgroundColor;
+            if (fieldBackground !== "rgba(1, 1, 1, 0.004)") {
+                countOfColored++;
+            }
+        }
+        if (countOfColored === 10) {
+            linesToRemoveArray.push(y);
+        }
+    }
+    for (let y = 20; y >= 0; y--) {
+        if (yPosition.includes(y)) continue;
+        let countOfColored = 0;
+        for (let x = 0; x < 10; x++) {
+            let field = document.getElementById(x + "" + y);
+            let computedStyleOfField = window.getComputedStyle(field);
+            let fieldBackground = computedStyleOfField.backgroundColor;
+            if (fieldBackground !== "rgba(1, 1, 1, 0.004)") {
+                countOfColored++;
+            }
+        }
+        if (countOfColored === 10) {
+            linesToRemoveArray.push(y);
+        }
+    }
+    return linesToRemoveArray.sort((a, b) => b - a);
+}
+
+export async function removeLine(linesToRemove) {
+    let linesRemoved = linesToRemove.length;
+    console.log(linesToRemove)
+
+    for (let y of linesToRemove) {
+        for (let x = 0; x < 10; x++) {
+            let field = document.getElementById(x + "" + y);
+            if (field && linesRemoved < 4) {
+                // Animationseffekt: Feld unsichtbar machen
+                field.style.opacity = "0"; // Unsichtbar machen
+                await delay(30); // 50ms Verzögerung zwischen den Feldern
+            } else if (field && linesRemoved >= 4) {
+                field.style.opacity = "0"; // Unsichtbar machen
+                await delay(20); // 50ms Verzögerung zwischen den Feldern
+            }
+        }
+
+        for (let x = 0; x < 10; x++) {
+            let field = document.getElementById(x + "" + y);
+            field.style.backgroundColor = "#01010101";
+            field.style.boxShadow = "none";
+            await delay(10);
+            field.style.opacity = "1";
+            if (linesRemoved < 4) {
+                await delay(20); // Opacity zurücksetzen für spätere Nutzung
+            } else if (linesRemoved >= 4) {
+                await delay(20); // Opacity zurücksetzen für spätere Nutzung
+            }
+
+        }
+    }
+
+    //modify score
+    let score = 0;
+    score += linesRemoved * 10;
+    if (linesRemoved > 3) {
+        score += (linesRemoved) * 40;
+    }
+    changeScore(score);
+
+    document.getElementById("score").innerText = score;
+    document.getElementById("blocks").innerText = blocks;
+}
+
+export function applyGravity(linesToRemove) {
+    let minY = Math.min(...linesToRemove); // Oberste gelöschte Zeile
+    for (let y = 20; y >= 0; y--) {
+        if (linesToRemove.includes(y)) continue; // Überspringe gelöschte Zeilen
+        let shiftAmount = linesToRemove.filter(line => line > y).length; // Wie viele Zeilen darunter gelöscht wurden
+        if (shiftAmount > 0) {
+            for (let x = 0; x < 10; x++) {
+                let sourceField = document.getElementById(x + "" + y);
+                let targetField = document.getElementById(x + "" + (y + shiftAmount));
+                if (sourceField && targetField) {
+                    let sourceStyle = window.getComputedStyle(sourceField);
+                    let sourceBackground = sourceStyle.backgroundColor;
+                    let sourceShadow = sourceStyle.boxShadow;
+                    if (sourceBackground !== "rgba(1, 1, 1, 0.004)") {
+                        targetField.style.backgroundColor = sourceBackground;
+                        targetField.style.boxShadow = sourceShadow;
+                    }
+                    if (y < minY) { // Nur oberhalb der gelöschten Zeilen löschen
+                        sourceField.style.backgroundColor = "#01010101";
+                        sourceField.style.boxShadow = "none";
+                    }
+                }
+            }
+        }
+    }
+}
