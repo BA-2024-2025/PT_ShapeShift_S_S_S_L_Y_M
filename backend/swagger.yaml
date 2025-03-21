@@ -1,0 +1,379 @@
+openapi: 3.0.0
+info:
+  title: User & Run Management API
+  version: 1.0.0
+  description: API für Benutzerverwaltung und Laufdaten
+
+paths:
+  /login:
+    post:
+      summary: User login
+      description: Authenticate a user and return access and refresh tokens.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: user@example.com
+                password:
+                  type: string
+                  example: "securepassword123"
+      responses:
+        200:
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI..."
+                  refreshToken:
+                    type: string
+                    example: "d1b2c3d4e5f6g7h8i9j0..."
+        401:
+          description: Invalid credentials
+
+  /token:
+    post:
+      summary: Refresh access token
+      description: Generate a new access token using a valid refresh token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: "d1b2c3d4e5f6g7h8i9j0..."
+      responses:
+        200:
+          description: New access token generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI..."
+        401:
+          description: Invalid or missing refresh token
+        403:
+          description: Refresh token is no longer valid
+
+  /logout:
+    delete:
+      summary: User logout
+      description: Invalidate a refresh token to log out the user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: "d1b2c3d4e5f6g7h8i9j0..."
+      responses:
+        204:
+          description: Successfully logged out
+
+  /users:
+    get:
+      summary: Get all users
+      description: Retrieve a list of all users. The users are sorted by Topscore.
+      responses:
+        200:
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        409:
+          description: Error with Request
+
+  /users/{anzahl}:
+    get:
+      summary: Get number of users specified in parameter
+      description: Retrieve a specific number of users. The results are sorted from top to bottom by Topscore.
+      parameters:
+        - name: anzahl
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Number of users to retrieve
+      responses:
+        200:
+          description: User details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        409:
+          description: Something went wrong
+
+  /user/findByName/{name}:
+    get:
+      summary: Find a user by name
+      description: Retrieve a user by their name from the database.
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The name of the user to search for
+      responses:
+        200:
+          description: Successfully found the user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        400:
+          description: Bad request or invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid input or bad request
+  /user/check-username:
+    post:
+      summary: Überprüft den Benutzernamen
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        200:
+          description: Benutzername existiert oder nicht
+        403:
+          description: Nicht autorisiert
+
+  /user/change_username:
+    post:
+      summary: Ändert den Benutzernamen
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                newName:
+                  type: string
+      responses:
+        200:
+          description: Benutzername erfolgreich geändert
+        403:
+          description: Nicht erlaubt
+
+  /user/change_password:
+    post:
+      summary: Ändert das Passwort des Benutzers
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                newPassword:
+                  type: string
+      responses:
+        200:
+          description: Passwort erfolgreich geändert
+        403:
+          description: Nicht erlaubt
+
+  /user/change_email:
+    post:
+      summary: Ändert die E-Mail-Adresse des Benutzers
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                newEmail:
+                  type: string
+      responses:
+        200:
+          description: E-Mail erfolgreich geändert
+        403:
+          description: Nicht erlaubt
+
+  /user/change_topscore:
+    post:
+      summary: Aktualisiert die Höchstpunktzahl des Benutzers
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                newTopScore:
+                  type: integer
+      responses:
+        200:
+          description: Topscore aktualisiert
+        403:
+          description: Nicht erlaubt
+
+  /run/insert_score:
+    post:
+      summary: Fügt eine neue Punktzahl hinzu
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                level:
+                  type: integer
+                email:
+                  type: string
+                score:
+                  type: integer
+      responses:
+        200:
+          description: Punktzahl erfolgreich gespeichert
+        403:
+          description: Nicht erlaubt
+
+  /runs/{id}:
+    get:
+      summary: Ruft alle Läufe eines Benutzers ab
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Läufe erfolgreich abgerufen
+        409:
+          description: Fehler beim Abrufen
+
+  /user/setAchievements/{level}:
+    put:
+      summary: Setzt Erfolge für den Benutzer
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: level
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        200:
+          description: Erfolge aktualisiert
+        403:
+          description: Nicht erlaubt
+
+  /user/best_placement/{place}:
+    post:
+      summary: Aktualisiert die beste Platzierung des Benutzers
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: place
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        200:
+          description: Beste Platzierung gespeichert
+        403:
+          description: Nicht erlaubt
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: john.doe@example.com
+        topScore:
+          type: integer
+          example: 1500
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
