@@ -396,62 +396,27 @@ async function gameLoop() {
         level = 2;
     }
     //select random tetromino
-    let activeTetromino;
-    let randNum
     switch (level) {
         case 1:
-            randNum = Math.floor(Math.random() * 9) + 1;
-            if (randNum === 1) {
-                activeTetromino = new TTetromino();
-            } else if (randNum === 2) {
-                activeTetromino = new ITetromino();
-            } else if (randNum === 3) {
-                activeTetromino = new OTetromino();
-            } else if (randNum === 4) {
-                activeTetromino = new JTetromino();
-            } else if (randNum === 5) {
-                activeTetromino = new LTetromino();
-            } else if (randNum === 6) {
-                activeTetromino = new ZTetromino();
-            } else if (randNum === 7) {
-                activeTetromino = new STetromino();
-            } else if (randNum === 8) {
-                activeTetromino = new PlusTetromino();
-            } else if (randNum == 9) {
-                activeTetromino = new UTetromino();
-            }
+            activeTetromino = nextBlock;
+            let levelOneArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
+            let randomTetrominoOne = levelOneArray[Math.floor(Math.random() * levelOneArray.length)];
+            nextBlock = new randomTetrominoOne
+            console.log("arrayOne")
             break
         case 2:
-            randNum = Math.floor(Math.random() * 20) + 1;
-            if (randNum === 1 || randNum === 2 || randNum === 3 || randNum === 4 || randNum === 5) {
-                activeTetromino = new TTetromino();
-            } else if (randNum === 6 || randNum === 7) {
-                activeTetromino = new ITetromino();
-            } else if (randNum === 9 || randNum === 8) {
-                activeTetromino = new OTetromino();
-            } else if (randNum === 10 || randNum === 11) {
-                activeTetromino = new JTetromino();
-            } else if (randNum === 12 || randNum === 13 || randNum === 14) {
-                activeTetromino = new LTetromino();
-            } else if (randNum === 15 || randNum === 16 || randNum === 17) {
-                activeTetromino = new ZTetromino();
-            } else if (randNum === 18 || randNum === 19 || randNum === 20) {
-                activeTetromino = new STetromino();
-            }
+            activeTetromino = nextBlock;
+            let levelTwoArray = [ITetromino,OTetromino,TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino];
+            let randomTetrominoTwo = levelTwoArray[Math.floor(Math.random() * levelTwoArray.length)];
+            nextBlock = new randomTetrominoTwo
+            console.log("arrayTwo")
             break
         case 3:
-            randNum = Math.floor(Math.random() * 8) + 1;
-            if (randNum === 1 || randNum === 2) {
-                activeTetromino = new TTetromino();
-            } else if (randNum === 3) {
-                activeTetromino = new LTetromino();
-            } else if (randNum === 4) {
-                activeTetromino = new JTetromino();
-            } else if (randNum === 5 || randNum === 6) {
-                activeTetromino = new STetromino();
-            } else if (randNum === 7 || randNum === 8) {
-                activeTetromino = new STetromino();
-            }
+            activeTetromino = nextBlock;
+            let levelThreeArray = [TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,UTetromino];
+            let randomTetrominoThree = levelThreeArray[Math.floor(Math.random() * levelThreeArray.length)];
+            nextBlock = new randomTetrominoThree
+            console.log("arrayThree")
             break
         default:
             break;
@@ -490,13 +455,20 @@ async function gameLoop() {
     const boundWhichKey = whichKey.bind(null, activeTetromino, worker);
     document.addEventListener("keydown", boundWhichKey);
 }
-//game starts
+
+//create grid for game
 createGrid();
+
 //stats
 let blocks = 0;
 let score = 0;
 let level = 1;
+
+//Initialization and declaration of activeTetromino
+let activeTetromino;
+let startArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
+let startTetromino = startArray[Math.floor(Math.random() * startArray.length)];
+let nextBlock = new startTetromino
+
+//starts game
 gameLoop();
-/*Der Bug das ganz viele spawnen wenn ich die down taste drücken hängt damit zusammen
-das der listener nicht genügend schnell gelöscht wird und somit wird immer ein neues
-gespawnt da der untere block immernoch zählt für die Bedingung*/
