@@ -1,10 +1,12 @@
 body{
     margin: 0;
     padding: 0;
+    height: 100%;
     background: var(--background);
     font-family: var(--font);
     display: flex;
     flex-direction: column;
+    overflow-y: hidden;
 }
 .container{
     width: 100%;
@@ -35,7 +37,7 @@ body{
 .game>iframe{
     width: 295px;
     height: 100%;
-    min-height: 600px;
+    min-height: 550px;
     border: 1px solid var(--accent);
     border-radius: 10px;
 }
