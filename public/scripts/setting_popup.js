@@ -5,6 +5,21 @@ console.log(token);
 const userObject = JSON.parse(localStorage.getItem("userObject"));
 let email = userObject[1];let password = userObject[0];
 
+localStorage.setItem('accessToken', token);
+
+
+//sounds
+//sounds
+function toggleSound() {
+    const soundIcon = document.getElementById("soundIcon");
+
+    if (soundIcon.classList.contains("fa-volume-high")) {
+        soundIcon.classList.replace("fa-volume-high", "fa-volume-xmark");
+    } else {
+        soundIcon.classList.replace("fa-volume-xmark", "fa-volume-high");
+        console.log("🔊 Sound an");
+    }
+}
 
 function openPopupPw() {
     const popupContainer = document.querySelector('.popup-container');
