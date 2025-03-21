@@ -6,6 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 import { Worker } from 'worker_threads';
 
 const worker = new Worker("./livechat-server.js");
+const worker2 = new Worker("./authServer.js");
 
 
 import swaggerSpec from "./swagger.js";
@@ -132,7 +133,6 @@ app.post('/user/change_password',authenticate, async (req, res) => {
 
 app.post('/user/change_email',authenticate, async (req, res) => {
     const { email } = req.body;
-    const { newEmail } = req.body;
 
     if(req.user.email !== email){
         res.status(403).json({error: 'Not Allowed to change PW'});
