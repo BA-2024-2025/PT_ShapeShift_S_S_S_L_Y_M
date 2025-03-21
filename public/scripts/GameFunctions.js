@@ -9,16 +9,13 @@ import { PlusTetromino } from "./PlusTetromino.js";
 import { UTetromino } from "./UTetromino.js";
 import { createGrid, clearBattlefield, drawBattlefield } from "./GridFunctions.js";
 import { blockLanding, checkIfLanded } from "./LandingFunctions.js";
-import { sendBlocks, sendScore } from "./IFrameMessage.js"
+import {resetScore, sendBlocks, sendScore, resetBlocks} from "./IFrameMessage.js"
 
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export async function gameLost() {
-    console.log("Blocks: " + blocks + "\nScore: " + score);
-    document.getElementById("score").innerText = score;
-    document.getElementById("blocks").innerText = blocks;
     await delay(1000);
     startPhysicsSimulation();
 }
@@ -32,16 +29,16 @@ async function startPhysicsSimulation() {
         element: document.getElementById("app"),
         engine: engine,
         options: {
-            width: 300,
-            height: 630,
+            width: 250,
+            height: 525,
             wireframes: false,
             background: "#01010101"
         }
     });
  
     const blocksToFall = [];
-    const centerX = 150;
-    const centerY = 450;
+    const centerX = 125;
+    const centerY = 400;
  
     for (let y = 0; y < 21; y++) {
         for (let x = 0; x < 10; x++) {
@@ -51,10 +48,10 @@ async function startPhysicsSimulation() {
  
             if (backgroundColor !== "rgba(1, 1, 1, 0.004)") {
                 const block = Bodies.rectangle(
-                    x*30+15,
-                    y*30+15,
-                    24,
-                    24,
+                    x*25+12,
+                    y*25+12,
+                    20,
+                    20,
                     {
                         restitution: 0.3,
                         friction: 0.1,
@@ -101,11 +98,11 @@ async function startPhysicsSimulation() {
         World.clear(engine.world);
         Engine.clear(engine);
         render.canvas.remove();
-        blocks = 0;
-        score = 0;
         level = 1;
     }, 5000)
     await delay(2000)
+    resetBlocks();
+    resetScore();
     gameLoop();
 }
 
@@ -280,11 +277,8 @@ export async function gameLoop() {
 
     //draws the tetromino for the first time
     drawBattlefield(activeTetromino);
+    sendBlocks(1);
     blocks += 1;
-    console.log("Blocks = " + blocks + ", Score = " + score);
-    document.getElementById("score").innerText = score;
-    document.getElementById("blocks").innerText = blocks;
-    document.getElementById("level").innerText = level;
 
     //receives message from worker to shift down y
     worker.onmessage = function (shiftYDown) {
@@ -318,9 +312,10 @@ export let currentActiveTetromino = null;
 createGrid();
 
 //stats
-let blocks = 0;
-let score = 0;
 let level = 1;
+let blocks = 0;
+sendScore(0)
+sendBlocks(0)
 
 //Initialization and declaration of activeTetromino
 let activeTetromino;
@@ -332,10 +327,6 @@ let nextBlock = new startTetromino
 gameLoop();
 
 //functions for variable access over different files
-export function changeScore(value) {
-    score += value;
-}
-
 export function setBlockActive(value) {
     blockActive = value;
 }

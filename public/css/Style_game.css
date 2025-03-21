@@ -9,7 +9,6 @@ body{
 #app{
     border: 1px solid var(--text);
     width: calc(var(--size)*10);
-    height: 630px;
     display:grid;
     grid-template-columns:var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size);
     grid-template-rows:var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size) var(--size);
@@ -23,7 +22,7 @@ body{
 }
 
 :root{
-    --size:30px;
+    --size:25px;
 }
 
 .score {
