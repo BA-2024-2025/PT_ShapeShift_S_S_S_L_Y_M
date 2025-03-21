@@ -29,7 +29,10 @@ function drawBattlefield(tetromino) {
         let partOfT = document.getElementById(positionT[i]);
         if (partOfT) {
             partOfT.style.backgroundColor = tetromino.color;
-            partOfT.style.boxShadow = `inset 3px 3px 0px rgba(255, 255, 255, 0.75), 2px 2px 10px ${tetromino.color}`;
+            partOfT.style.boxShadow = `inset 3px 3px 0px rgba(255, 255, 255, 0.75), inset -2px -2px 0px rgba(255, 255, 255, 0.75), 2px 2px 10px ${tetromino.color}`;
+            // Paper mode: 
+            // partOfT.style.boxShadow = `inset 3px 3px 50px rgba(255, 255, 255, 0.75), 2px 2px 10px ${tetromino.color}`;
+
         }
     }
 }
@@ -128,14 +131,26 @@ function checkFullLines(tetromino) {
     }
     return linesToRemoveArray.sort((a, b) => b - a);
 }
-function gameLost() {
+async function gameLost() {
     //if you loose the game everything gets pink
+    for (let y = 0; y < 21; y++) {
+        await delay(100);
+        for (let x = 0; x < 10; x++) {
+            let field = document.getElementById(x + "" + y);
+            field.style.backgroundColor = "#020202"
+            field.style.boxShadow = "none";
+        }
+    }
+    await delay(10)
+
     for (let y = 0; y < 21; y++) {
         for (let x = 0; x < 10; x++) {
             let field = document.getElementById(x + "" + y);
-            field.style.backgroundColor = "#ff10f0";
+            field.style.transition = "background-color 2s ease";
+            field.style.backgroundColor = "#01010101";
         }
     }
+
     //your score
     console.log("Blocks: " + blocks + "\nScore: " + score);
     document.getElementById("score").innerText = score;
@@ -333,7 +348,7 @@ async function removeLine(linesToRemove) {
             if (field && linesRemoved < 4) {
                 // Animationseffekt: Feld unsichtbar machen
                 field.style.opacity = "0"; // Unsichtbar machen
-                await delay(50); // 50ms Verzögerung zwischen den Feldern
+                await delay(30); // 50ms Verzögerung zwischen den Feldern
             } else if (field && linesRemoved >= 4) {
                 field.style.opacity = "0"; // Unsichtbar machen
                 await delay(20); // 50ms Verzögerung zwischen den Feldern
@@ -347,7 +362,7 @@ async function removeLine(linesToRemove) {
             await delay(10);
             field.style.opacity = "1";
             if (linesRemoved < 4) {
-                await delay(50); // Opacity zurücksetzen für spätere Nutzung
+                await delay(20); // Opacity zurücksetzen für spätere Nutzung
             } else if (linesRemoved >= 4) {
                 await delay(20); // Opacity zurücksetzen für spätere Nutzung
             }
