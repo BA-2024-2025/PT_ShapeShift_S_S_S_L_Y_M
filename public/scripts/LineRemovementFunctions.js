@@ -1,4 +1,5 @@
-import { changeScore, delay } from "./GameFunctions.js";
+import {delay} from "./GameFunctions.js";
+import {sendScore} from "./IFrameMessage.js";
 
 export function checkFullLines(tetromino) {
     let linesToRemoveArray = [];
@@ -74,10 +75,7 @@ export async function removeLine(linesToRemove) {
     if (linesRemoved > 3) {
         score += (linesRemoved) * 40;
     }
-    changeScore(score);
-
-    document.getElementById("score").innerText = score;
-    document.getElementById("blocks").innerText = blocks;
+    sendScore(score);
 }
 
 export function applyGravity(linesToRemove) {

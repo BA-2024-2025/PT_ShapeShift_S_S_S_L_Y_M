@@ -9,37 +9,102 @@ import { PlusTetromino } from "./PlusTetromino.js";
 import { UTetromino } from "./UTetromino.js";
 import { createGrid, clearBattlefield, drawBattlefield } from "./GridFunctions.js";
 import { blockLanding, checkIfLanded } from "./LandingFunctions.js";
-import { sendBlocks, sendScore } from "./IFrameMessage.js"
+import { resetScore, sendBlocks, sendScore, resetBlocks, changeNextBlock } from "./IFrameMessage.js"
+import {changeBlockImg} from "./index.js";
 
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export async function gameLost() {
-    //if you loose the game everything gets pink
+    await delay(1000);
+    startPhysicsSimulation();
+}
+
+async function startPhysicsSimulation() {
+    const {Engine, Render, Runner, World, Bodies, Body} = Matter;
+ 
+    const engine = Engine.create();
+ 
+    const render = Render.create({
+        element: document.getElementById("app"),
+        engine: engine,
+        options: {
+            width: 250,
+            height: 525,
+            wireframes: false,
+            background: "#01010101"
+        }
+    });
+ 
+    const blocksToFall = [];
+    const centerX = 125;
+    const centerY = 400;
+ 
     for (let y = 0; y < 21; y++) {
-        await delay(100);
         for (let x = 0; x < 10; x++) {
-            let field = document.getElementById(x + "" + y);
-            field.style.backgroundColor = "#020202"
-            field.style.boxShadow = "none";
+            const field = document.getElementById(x+""+y);
+            const computedStyle = window.getComputedStyle(field);
+            const backgroundColor = computedStyle.backgroundColor;
+ 
+            if (backgroundColor !== "rgba(1, 1, 1, 0.004)") {
+                const block = Bodies.rectangle(
+                    x*25+12,
+                    y*25+12,
+                    20,
+                    20,
+                    {
+                        restitution: 0.3,
+                        friction: 0.1,
+                        render: {
+                            fillStyle: backgroundColor,
+                            strokeStyle: "rgba(255, 255, 255, 0.85)",
+                            lineWidth: 5
+                        }
+                    }
+                );
+                blocksToFall.push(block);
+ 
+                field.style.backgroundColor = "#01010101";
+                field.style.boxShadow = "none";
+                field.style.opacity = "1";
+            }
         }
     }
-    await delay(10)
-
-    for (let y = 0; y < 21; y++) {
-        for (let x = 0; x < 10; x++) {
-            let field = document.getElementById(x + "" + y);
-            field.style.transition = "background-color 2s ease";
-            field.style.backgroundColor = "#01010101";
+ 
+    World.add(engine.world, blocksToFall);
+ 
+    blocksToFall.forEach(block => {
+        const dx = block.position.x - centerX;
+        const dy = block.position.y - centerY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const forceMagnitude = 0.02;
+ 
+        if (distance > 0) {
+            const forceX = (dx / distance) * forceMagnitude;
+            const forceY = (dy / distance) * forceMagnitude;
+            Body.applyForce(block, block.position, {x: forceX, y: forceY});
+            Body.setAngularVelocity(block, Math.random() * 0.1 - 0.05)
         }
-    }
-
-    //your score
-    console.log("Blocks: " + blocks + "\nScore: " + score);
-    document.getElementById("score").innerText = score;
-    document.getElementById("blocks").innerText = blocks;
-
+    });
+ 
+    const runner = Runner.create();
+    Runner.run(runner, engine);
+ 
+    Render.run(render);
+ 
+    setTimeout(() => {
+        Runner.stop(runner);
+        Render.stop(render);
+        World.clear(engine.world);
+        Engine.clear(engine);
+        render.canvas.remove();
+        level = 1;
+    }, 5000)
+    await delay(2000)
+    resetBlocks();
+    resetScore();
+    gameLoop();
 }
 
 //move validation for collisions with other blocks
@@ -186,6 +251,7 @@ export async function gameLoop() {
             activeTetromino = nextBlock;
             let levelOneArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
             let randomTetrominoOne = levelOneArray[Math.floor(Math.random() * levelOneArray.length)];
+            imgBlock = randomTetrominoOne
             nextBlock = new randomTetrominoOne
             console.log("arrayOne")
             break
@@ -194,6 +260,7 @@ export async function gameLoop() {
             let levelTwoArray = [ITetromino,OTetromino,TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino];
             let randomTetrominoTwo = levelTwoArray[Math.floor(Math.random() * levelTwoArray.length)];
             nextBlock = new randomTetrominoTwo
+            imgBlock = randomTetrominoTwo
             console.log("arrayTwo")
             break
         case 3:
@@ -201,11 +268,16 @@ export async function gameLoop() {
             let levelThreeArray = [TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,UTetromino];
             let randomTetrominoThree = levelThreeArray[Math.floor(Math.random() * levelThreeArray.length)];
             nextBlock = new randomTetrominoThree
+            imgBlock = randomTetrominoThree
             console.log("arrayThree")
             break
         default:
             break;
     }
+
+    //update img of next block
+    img.src = "../images/nextBlocks/"+changeNextBlock(imgBlock);
+
     //create worker
     const worker = new Worker("../public/scripts/moveDown_worker.js");
     worker.postMessage(level);
@@ -213,11 +285,8 @@ export async function gameLoop() {
 
     //draws the tetromino for the first time
     drawBattlefield(activeTetromino);
+    sendBlocks(1);
     blocks += 1;
-    console.log("Blocks = " + blocks + ", Score = " + score);
-    document.getElementById("score").innerText = score;
-    document.getElementById("blocks").innerText = blocks;
-    document.getElementById("level").innerText = level;
 
     //receives message from worker to shift down y
     worker.onmessage = function (shiftYDown) {
@@ -251,24 +320,29 @@ export let currentActiveTetromino = null;
 createGrid();
 
 //stats
-let blocks = 0;
-let score = 0;
 let level = 1;
+let blocks = 0;
+sendScore(0)
+sendBlocks(0)
 
 //Initialization and declaration of activeTetromino
 let activeTetromino;
 let startArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
 let startTetromino = startArray[Math.floor(Math.random() * startArray.length)];
 let nextBlock = new startTetromino
+let imgBlock = startTetromino
+
+//update img og next path
+/*let img = window.parent.document.getElementById("nextBlockImage");
+console.log(img);
+img.src*/ let path = "public/images/nextBlocks/"+changeNextBlock(imgBlock);
+changeBlockImg(path);
+console.log("hey")
 
 //starts game
 gameLoop();
 
 //functions for variable access over different files
-export function changeScore(value) {
-    score += value;
-}
-
 export function setBlockActive(value) {
     blockActive = value;
 }
