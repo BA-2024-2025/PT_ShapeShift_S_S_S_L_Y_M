@@ -3,7 +3,7 @@ import mysql from "mysql2";
 let  connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1234',
+    password: 'password',
     database: 'shapeshift',
     multipleStatements: true
 })
@@ -196,7 +196,7 @@ const changeEmailQuery = `
 
 export  function changeEmail (user,res) {
     try {
-        connection.query(changeEmailQuery, [user.email, user.newEmail], function (err, results) {
+        connection.query(changeEmailQuery, [user.newEmail, user.email], function (err, results) {
             if (err) {
                 console.log(err);
 
