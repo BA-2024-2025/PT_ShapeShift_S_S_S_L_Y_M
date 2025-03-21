@@ -13,6 +13,7 @@
   <script src="../public/scripts/live-chat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js" defer></script>
   <script src="../public/scripts/login-popup-close.js" defer></script>
+  <script src="../public/scripts/ParentMessage.js"></script>
 </head>
 <body class="">
 <div class="navContainer">
@@ -68,8 +69,12 @@
   <div class="game">
     <iframe class="iframe-game" src="game.html" seamless="seamless" scrolling="no" frameborder="0"></iframe>
     <div class="scoreContainer">
-      <H1>Score:</H1>
-      <H1>Blocks:</H1>
+      <div class="score">
+        <H1>Score:</H1>
+      </div>
+      <div class="blocks">
+        <H1>Blocks:</H1>
+      </div>
     </div>
   </div>
   <div class="leaderboard-container">
