@@ -276,7 +276,7 @@ export async function gameLoop() {
     }
 
     //update img of next block
-    img.src = "../images/nextBlocks/"+changeNextBlock(imgBlock);
+    //img.src = "../images/nextBlocks/"+changeNextBlock(imgBlock);
 
     //create worker
     const worker = new Worker("../public/scripts/moveDown_worker.js");
@@ -335,10 +335,12 @@ let imgBlock = startTetromino
 //update img og next path
 /*let img = window.parent.document.getElementById("nextBlockImage");
 console.log(img);
-img.src*/ let path = "public/images/nextBlocks/"+changeNextBlock(imgBlock);
+img.src*/
+
+/*let path = "public/images/nextBlocks/"+changeNextBlock(imgBlock);
 changeBlockImg(path);
 console.log("hey")
-
+*/
 //starts game
 gameLoop();
 
