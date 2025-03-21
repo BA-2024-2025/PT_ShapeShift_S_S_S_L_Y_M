@@ -1,8 +1,31 @@
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
+        const gameSong = '../public/music/game-play.wav';
+        const audio = new Audio(gameSong); // Audio-Objekt erstellen
 
+        audio.loop = true;  // Endlos wiederholen
+        audio.volume = 0.5; // Lautstärke anpassen (optional)
+        audio.play().catch(error => console.log("Autoplay blockiert:", error));
 
+    }
+});
+
+const audio = document.getElementById("soundIcon");
+const muteButton = document.getElementById("soundIcon");
+
+muteButton.addEventListener("click", function () {
+    if (audio.muted) {
+        audio.muted = false;
+    } else {
+        audio.muted = true;
+    }
+});
+
+/*
 const lobbyQueue = [
     '../public/music/game-play.wav'
 ];
+
 const gameQueue = [
     'music/game-play.wav',
     'music/loose.wav'
@@ -10,15 +33,15 @@ const gameQueue = [
 let currentQueue = lobbyQueue; // Initially using the lobby queue
 let audio; // Declare audio element globally
 document.addEventListener("DOMContentLoaded", function () {
-    const currentTime = localStorage.getItem('audioTime');
-    console.log(currentTime);
+    //const currentTime = localStorage.getItem('audioTime');
+    //console.log(currentTime);
     audio = document.getElementById('audio');
     // Function to play the next clip in the current queue
     function playNext() {
         if (currentQueue.length === 0) {
             // Re-add the initial clip when the queue is empty (optional)
             if (currentQueue === lobbyQueue) {
-                currentQueue.push('../public/music/lobby_1.wav');
+                currentQueue.push('../public/music/game-play.wav');
             } else {
                 currentQueue.push('../public/music/game-play.wav');
             }
@@ -70,3 +93,5 @@ window.addEventListener('BeforeOnload', function () {
     console.log(audio.currentTime.toString());
     console.log("hello")
 })
+
+ */
