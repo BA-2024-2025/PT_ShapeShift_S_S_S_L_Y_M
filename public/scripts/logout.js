@@ -1,7 +1,7 @@
 function logOut(key) {
     const refreshToken = localStorage.getItem('refreshToken');
 
-    fetch("http://172.16.2.180:4000/logout", {
+    fetch("http://nluginbuehlsi:4000/logout", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

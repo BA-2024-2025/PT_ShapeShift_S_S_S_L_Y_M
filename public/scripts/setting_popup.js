@@ -82,7 +82,7 @@ function subbmitNewPw() {
 
     //const token = localStorage.getItem('accesToken');
     console.log(pwUpdate.value)
-    fetch('http://172.16.2.180:3000/user/change_password', {
+    fetch('http://nluginbuehlsi:3000/user/change_password', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -99,7 +99,7 @@ function subbmitNewEmail() {
 
     //const token = localStorage.getItem('accesToken');
     console.log(emailUpdate.value)
-    fetch('http://172.16.2.180:3000/user/change_email', {
+    fetch('http://nluginbuehlsi:3000/user/change_email', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
