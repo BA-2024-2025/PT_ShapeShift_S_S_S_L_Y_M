@@ -63,3 +63,14 @@
 .live-chat-content::-webkit-scrollbar {
     display: none;  /* Hides the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
 }
+.live-chat-input-field{
+    border-radius: 30px;
+
+}
+.live-chat-input-button{
+    background: blue;
+    border: solid 1px white;
+    border-radius: 50px;
+    width: 50px;
+    height: 25px;
+}

@@ -80,6 +80,18 @@ app.get('/user/findByName/:name', async (req , res) => {
     }
 });
 
+app.get('/user/findByEmail/:email', async (req , res) => {
+
+    let email = req.params.email;
+    try {
+        let response = service.findByEmail(email, res);
+        console.log(response);
+
+    } catch (err) {
+        res.status(409).json({error: err});
+    }
+});
+
 
 app.post('/user/check-username',authenticate, async (req,res) => {
     let user = req.body;

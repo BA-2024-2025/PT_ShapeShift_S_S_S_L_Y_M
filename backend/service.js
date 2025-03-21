@@ -291,6 +291,23 @@ export  function findByName (name,res) {
     }
 }
 
+
+export  function findByEmail (email,res) {
+    try {
+        console.log(email)
+        connection.query(('Select * from user where email = ?'), email, function (err, results) {
+            if (err) {
+                console.log(err);
+
+            } else {
+                res.status(200).send(results);
+            }
+        })
+    } catch (error) {
+        res.status(400).send("Something with your Request is Wrong or User does not exist");
+    }
+}
+
 let automatic_topscoreQuery = ' UPDATE user u JOIN () subquery(Select score from runs where user_id=(select id_user from user where username = ?) order by score DESC Limit 1 )ON u.id_user = subquery.id_user SET u.topscore = ?; '
 
 
