@@ -542,7 +542,14 @@ button {
     background-color: #ff5959;
     transform: scale(1.1);
 }
-
-
-
+.swiss-theme{
+    background-color: #ff0000;
+    width: 36px; /* Oder eine andere gewünschte Größe */
+    height: 36px;
+    margin: 10px;
+}
+.swiss-theme:hover{
+    background-color: #ff5959;
+    transform: scale(1.1);
+}
 

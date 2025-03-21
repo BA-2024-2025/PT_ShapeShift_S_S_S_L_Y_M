@@ -1,0 +1,17 @@
+{
+  "name": "shape_shift",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BA-2024-2025/PT_ShapeShift_S_S_S_L_Y_M.git"
+  },
+  "private": true,
+  "dependencies": {
+    "ws": "^8.18.1"
+  }
+}

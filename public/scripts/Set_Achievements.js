@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // API-URL mit dem Benutzernamen
-        const response = await fetch(`http://172.16.2.180:3000/users/findByName/${username}`);
+        const response = await fetch(`http://172.16.2.180:3000/user/findByName/${username}`);
 
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Benutzerdaten für ${username}`);
