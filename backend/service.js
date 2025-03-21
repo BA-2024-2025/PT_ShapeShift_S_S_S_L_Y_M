@@ -190,10 +190,7 @@ export  function changePassword (user,res) {
 }
 
 const changeEmailQuery = `
-    UPDATE user u
-    JOIN (SELECT id_user FROM user WHERE email = ?) subquery
-    ON u.id_user = subquery.id_user
-    SET u.email = ?;
+    UPDATE user SET email = ? WHERE email = ?;
 `;
 
 
@@ -209,6 +206,7 @@ export  function changeEmail (user,res) {
         })
     } catch (error) {
         res.status(400).send("Something not right with Request or User does not exist");
+        console.log(error)
     }
 }
 const changeUsernameQuery = `
@@ -301,6 +299,7 @@ export  function findByEmail (email,res) {
 
             } else {
                 res.status(200).send(results);
+                console.log("Result Querry:" + results);
             }
         })
     } catch (error) {
