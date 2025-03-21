@@ -57,3 +57,14 @@ body.flashBang{
     --input-bg: #292929 !important;
     --font: "Goldman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
+body.swiss{
+    --text: #ffffff !important;
+    --foreground: rgb(255, 64, 64) !important;
+    --secondaryforeground: #ff0000 !important;
+    --background: #8a1111 !important;
+    --primary: #ffffff !important;
+    --accent: #ffffff !important;
+    --secondary: #ffffff !important;
+    --input-bg: #292929 !important;
+    --font: "Goldman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}

@@ -1,3 +1,17 @@
+
+//sounds
+//sounds
+function toggleSound() {
+    const soundIcon = document.getElementById("soundIcon");
+
+    if (soundIcon.classList.contains("fa-volume-high")) {
+        soundIcon.classList.replace("fa-volume-high", "fa-volume-xmark");
+    } else {
+        soundIcon.classList.replace("fa-volume-xmark", "fa-volume-high");
+        console.log("🔊 Sound an");
+    }
+}
+
 const email = localStorage.getItem('email').trim();
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN2ZW5AemVtcC5lbWFpbCIsInBhc3N3b3JkIjoiMTIzNDU2IiwiaWF0IjoxNzQyMzk2MTg3LCJleHAiOjE3NDQyMTA1ODd9.rZXkL2Swn-qFsmQqkjtK8Iji8zMP1UKZT63stMRi31w";
@@ -68,7 +82,7 @@ function subbmitNewPw() {
 
     //const token = localStorage.getItem('accesToken');
     console.log(pwUpdate.value)
-    fetch('http://172.16.2.180:3000/user/change_password', {
+    fetch('http://nluginbuehlsi:3000/user/change_password', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -85,7 +99,7 @@ function subbmitNewEmail() {
 
     //const token = localStorage.getItem('accesToken');
     console.log(emailUpdate.value)
-    fetch('http://172.16.2.180:3000/user/change_email', {
+    fetch('http://nluginbuehlsi:3000/user/change_email', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
