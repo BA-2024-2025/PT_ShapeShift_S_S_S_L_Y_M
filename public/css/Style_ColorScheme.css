@@ -1,12 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css');
+
+/*default*/
 :root {
     --text: #ffffff !important;
     --foreground: #292929 !important;
+    --secondaryforeground: #222121 !important;
     --background: #1d1d1d !important;
     --primary: #01ffff !important;
     --accent: #8e27de !important;
     --secondary: #191ccc !important;
     --input-bg: #d9d9d9 !important;
+    --font: "Goldman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+body.golden{
+    --text: #ffffff !important;
+    --foreground: #292929 !important;
+    --secondaryforeground: #222121 !important;
+    --background: #1d1d1d !important;
+    --primary: #cba201 !important;
+    --accent: #cba201 !important;
+    --secondary: #cba201 !important;
+    --input-bg: #d9d9d9 !important;
+    --font: "Goldman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+body.silver{
+    --text: #ffffff !important;
+    --foreground: #292929 !important;
+    --secondaryforeground: #222121 !important;
+    --background: #1d1d1d !important;
+    --primary: #acacac !important;
+    --accent: #acacac !important;
+    --secondary: #acacac !important;
+    --input-bg: #d9d9d9 !important;
+    --font: "Goldman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+body.bronze{
+    --text: #ffffff !important;
+    --foreground: #292929 !important;
+    --secondaryforeground: #222121 !important;
+    --background: #1d1d1d !important;
+    --primary: #844d18 !important;
+    --accent: #844d18 !important;
+    --secondary: #844d18 !important;
+    --input-bg: #d9d9d9 !important;
+    --font: "Goldman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+body.flashBang{
+    --text: #1d1d1d !important;
+    --foreground: rgba(223, 223, 223, 0.8) !important;
+    --secondaryforeground: #817f7f !important;
+    --background: #ffffff !important;
+    --primary: #191ccc !important;
+    --accent: #8e27de !important;
+    --secondary: #191ccc !important;
+    --input-bg: #292929 !important;
+    --font: "Goldman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+body.swiss{
+    --text: #ffffff !important;
+    --foreground: rgb(255, 64, 64) !important;
+    --secondaryforeground: #ff0000 !important;
+    --background: #8a1111 !important;
+    --primary: #ffffff !important;
+    --accent: #ffffff !important;
+    --secondary: #ffffff !important;
+    --input-bg: #292929 !important;
     --font: "Goldman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }

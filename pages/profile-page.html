@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User-Profile</title>
+    <link rel="stylesheet" href="../public/css/Style_profile_table.css">
+    <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
+    <link rel="stylesheet" href="../public/css/Style_Navbar.css">
+    <script src="https://kit.fontawesome.com/5a4c0976d6.js" crossorigin="anonymous"></script>
+    <script type="module" src="../public/scripts/Set_Achievements.js"></script>
+    <script type="module" src="../public/scripts/index.js"></script>
+    <script src="../public/scripts/login-popup-close.js"></script>
+</head>
+<body class="">
+<div class="navContainer">
+    <div class="logoContainer">
+        <a href="./index.html"><h1 class="logo" style="color:var(--primary)">ShapeShift</h1></a>
+    </div>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="navItem">
+                <a href="./index.html" class="nav-link">Home</a>
+            </li>
+            <li class="navItem">
+                <a href="./leaderboard.html" class="nav-link">Leaderboard</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="loginContainer">
+        <div class="login-icon">
+            <a href="./login.html" class="login">
+                <i class="fa-regular fa-user"></i>
+            </a>
+            <ul class="login-menu">
+                <li class="login-element">
+                    <a href="./login.html" class="login login-text">Login</a>
+                </li>
+                <li class="login-element">
+                    <a href="./settings.html" class="settings login-text">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mobile-menu">
+            <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
+            <ul class="mobile-menu-menu">
+                <li class="mobile-menu-item">
+                    <a href="./index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
+                </li>
+                <li class="mobile-menu-item">
+                    <a href="./leaderboard.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Leaderboard</a>
+                </li>
+                <li class="mobile-menu-item">
+                    <a href="./settings.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                </li>
+                <li class="mobile-menu-item">
+                    <a href="./login.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="leaderboard-container">
+    <div class="leaderboard-size">
+        <div class="leaderboard">
+            <h1 class="username-title" id="username">Username</h1>
+            <div class="achievement-container">
+
+                <i id="Gold-Medal" class="fa-solid fa-medal fa-2xl"></i>
+                <div class="text-Gold-Medal">Finished level 3</div>
+
+                <i id="Silver-Medal" class="fa-solid fa-medal fa-2xl"></i>
+                <div class="text-Silver-Medal">Finished level 2</div>
+
+                <i id="Bronze-Medal" class="fa-solid fa-medal fa-2xl"></i>
+                <div class="text-Bronze-Medal">Finished level 1</div>
+
+                <i id="Gold-Trophy" class="fa-solid fa-trophy fa-2xl"></i>
+                <div class="text-Gold-Trophy">Was on top of the Leader Board</div>
+
+                <i id="Silver-Trophy" class="fa-solid fa-trophy fa-2xl"></i>
+                <div class="text-Silver-Trophy">Was 2nd on the Leader Board</div>
+
+                <i id="Bronze-Trophy" class="fa-solid fa-trophy fa-2xl"></i>
+                <div class="text-Bronze-Trophy">Was 3rd on the Leader Board</div>
+
+                <i id="Register-card" class="fa-regular fa-id-card fa-2xl"></i>
+                <div class="text-Register-card">Registerd himself</div>
+            </div>
+            <div class="user-profile-container">
+                <div class="row-profile">
+                    <h2 class="label">Email:</h2>
+                    <h2 class="value" id="email">Harald@1234.com</h2>
+                </div>
+                <div class="row-profile">
+                    <h2 class="label">High Score:</h2>
+                    <h2 class="value" id="high-score">12344567</h2>
+                </div>
+                <div class="title-scores">
+                    <h1 class="score-title">Last 10 Games</h1>
+                </div>
+                <div class="scores-container" id="score-container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
