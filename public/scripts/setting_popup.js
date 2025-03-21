@@ -3,7 +3,7 @@ console.log(token);
 
 //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXllcjFAZXhhbXBsZS5jb20iLCJwYXNzd29yZCI6InBhc3N3b3JkMTIzIiwiaWF0IjoxNzQyNTUxNDM3LCJleHAiOjE3NDQzNjU4Mzd9.f5W8ONn18M4QjUIS_E7YRaOR8CSnrZkDvIp115APxmA"
 const userObject = JSON.parse(localStorage.getItem("userObject"));
-let email = userObject[1];let password = userObject[0];
+let email = userObject[1];let username = userObject[0];
 
 localStorage.setItem('accessToken', token);
 
