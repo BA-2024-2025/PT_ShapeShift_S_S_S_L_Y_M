@@ -2,9 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>ShapeShift - Game</title>
+  <link rel="stylesheet" href="../public/css/Style_index.css">
+  <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
+  <link rel="stylesheet" href="../public/css/Style_Navbar.css">
+  <link rel="stylesheet" href="../public/css/Style_Login_popup.css">
+  <link rel="stylesheet" href="../public/css/Style_Live-chat.css">
+  <script type="module" src="../public/scripts/scoreLoader.js"></script>
+  <script type="module" src="../public/scripts/index.js"></script>
+  <script src="../public/scripts/live-chat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js" defer></script>
+  <script src="../public/scripts/login-popup-close.js" defer></script>
 </head>
-<body>
-  <p>hello</p>
+<body class="">
+<div class="navContainer">
+  <div class="logoContainer">
+    <a href="index.html">
+      <h1 class="logo" style="color:var(--primary)">ShapeShift</h1>
+    </a>
+  </div>
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      <li class="navItem">
+        <a href="index.html" class="nav-link">Home</a>
+      </li>
+      <li class="navItem">
+        <a href="./leaderboard.html" class="nav-link">Leaderboard</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="loginContainer">
+    <div class="login-icon">
+      <a href="index.html" class="login-icon">
+        <i class="fa-regular fa-user"></i>
+      </a>
+      <ul class="login-menu">
+        <li class="login-element">
+          <a href="./login.html" class="login login-text">Login</a>
+        </li>
+        <li class="login-element">
+          <a href="./settings.html" class="settings login-text">Settings</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mobile-menu">
+      <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
+      <ul class="mobile-menu-menu">
+        <li class="mobile-menu-item">
+          <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a href="./leaderboard.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Leaderboard</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a href="./settings.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a href="./login.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="game">
+    <iframe class="iframe-game" src="game.html" seamless="seamless" scrolling="no" frameborder="0"></iframe>
+    <div class="scoreContainer">
+      <H1>Score:</H1>
+      <H1>Blocks:</H1>
+    </div>
+  </div>
+  <div class="leaderboard-container">
+    <div class="leaderboard-size" onClick="window.location.href =`./leaderboard.html`">
+      <div class="leaderboard">
+        <h1 class="leaderboard-title">Global High-score</h1>
+        <table class="leaderboard-table" id="table">
+          <tr class="leaderboard-row">
+            <th><h2>Place</h2></th>
+            <th><h2>Username</h2></th>
+            <th><h2>Score</h2></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-container">
+  <div class="popup">
+    <div class="popup-content">
+      <h1 class="preview-text">Welcome to</h1>
+      <h1 class="preview-text title-colored">ShapeShift</h1>
+
+      <a href="login.html" class="login-button">Login</a>
+
+      <div class="close" onclick="closePopup()">
+        <p>Continue without an account</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="live-chat">
+  <div class="live-chat-floater">
+    <i class="fa-regular fa-comment-dots fa-flip-horizontal" onclick="openChat()"></i>
+    <div class="live-chat-window" id="live-chat-window">
+      <div class="live-chat-content" id="chat"></div>
+      <div class="live-chat-inputfield">
+        <form onsubmit="event.preventDefault();">
+          <input type="text" class="live-chat-input-field" id="messageInput" placeholder="Message">
+          <button class="live-chat-input-button" type="submit" onclick="sendMessage()"><i class="fa-regular fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
