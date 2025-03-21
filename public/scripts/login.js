@@ -14,7 +14,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     }
 
     try {
-        const response = await fetch("http://172.16.2.180:4000/login", {
+        const response = await fetch("http://nluginbuehlsi:4000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

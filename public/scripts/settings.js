@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // API-URL mit dem Benutzernamen
-        const response = await fetch(`http://172.16.2.180:3000/user/findByName/${username}`);
+        const response = await fetch(`http://nluginbuehlsi:3000/user/findByName/${username}`);
 
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Benutzerdaten für ${username}`);
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error(error);
         }
 
-        const userRuns = await fetch(`http://172.16.2.180:3000/runs/${username}`);
+        const userRuns = await fetch(`http://nluginbuehlsi:3000/runs/${username}`);
         const userRunData = await userRuns.json();
 
         const scoreContainer = document.getElementById('score-container');
