@@ -7,6 +7,7 @@ import { Worker } from 'worker_threads';
 
 
 const worker = new Worker("./livechat-server.js");
+const worker2 = new Worker("./authServer.js");
 
 
 import swaggerSpec from "./swagger.js";
