@@ -9,7 +9,7 @@ import { PlusTetromino } from "./PlusTetromino.js";
 import { UTetromino } from "./UTetromino.js";
 import { createGrid, clearBattlefield, drawBattlefield } from "./GridFunctions.js";
 import { blockLanding, checkIfLanded } from "./LandingFunctions.js";
-import { sendBlocks, sendScore } from "./IFrameMessage"
+import { sendBlocks, sendScore } from "./IFrameMessage.js"
 
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
