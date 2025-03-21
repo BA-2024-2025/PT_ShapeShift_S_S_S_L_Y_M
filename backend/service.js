@@ -1,9 +1,9 @@
-import mysql from "mysql";
+import mysql from "mysql2";
 
 let  connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: '1234',
     database: 'shapeshift',
     multipleStatements: true
 })
