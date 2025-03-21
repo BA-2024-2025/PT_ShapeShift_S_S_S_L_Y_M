@@ -142,6 +142,20 @@ i {
     align-content: center;
     display: flex;
 }
+
+.sounds{
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
 #profile-picChange {
     font-size: 1.5em;
     margin-left: 15%;

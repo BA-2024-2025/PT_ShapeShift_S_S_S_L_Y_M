@@ -1,3 +1,17 @@
+
+//sounds
+//sounds
+function toggleSound() {
+    const soundIcon = document.getElementById("soundIcon");
+
+    if (soundIcon.classList.contains("fa-volume-high")) {
+        soundIcon.classList.replace("fa-volume-high", "fa-volume-xmark");
+    } else {
+        soundIcon.classList.replace("fa-volume-xmark", "fa-volume-high");
+        console.log("🔊 Sound an");
+    }
+}
+
 const email = localStorage.getItem('email').trim();
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN2ZW5AemVtcC5lbWFpbCIsInBhc3N3b3JkIjoiMTIzNDU2IiwiaWF0IjoxNzQyMzk2MTg3LCJleHAiOjE3NDQyMTA1ODd9.rZXkL2Swn-qFsmQqkjtK8Iji8zMP1UKZT63stMRi31w";
