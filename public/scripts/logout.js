@@ -1,8 +1,8 @@
-function logOut(key) {
+function logOut() {
     const refreshToken = localStorage.getItem('refreshToken');
 
     fetch("http://nluginbuehlsi:4000/logout", {
-        method: "POST",
+        method: "DELETE",
         headers: {
             "Content-Type": "application/json"
         },

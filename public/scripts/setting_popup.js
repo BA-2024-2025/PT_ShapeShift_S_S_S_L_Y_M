@@ -1,8 +1,10 @@
-const email = localStorage.getItem('email').trim();
+const token = localStorage.getItem("accessToken");
+console.log(token);
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN2ZW5AemVtcC5lbWFpbCIsInBhc3N3b3JkIjoiMTIzNDU2IiwiaWF0IjoxNzQyMzk2MTg3LCJleHAiOjE3NDQyMTA1ODd9.rZXkL2Swn-qFsmQqkjtK8Iji8zMP1UKZT63stMRi31w";
+//const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXllcjFAZXhhbXBsZS5jb20iLCJwYXNzd29yZCI6InBhc3N3b3JkMTIzIiwiaWF0IjoxNzQyNTUxNDM3LCJleHAiOjE3NDQzNjU4Mzd9.f5W8ONn18M4QjUIS_E7YRaOR8CSnrZkDvIp115APxmA"
+const userObject = JSON.parse(localStorage.getItem("userObject"));
+let email = userObject[1];let password = userObject[0];
 
-localStorage.setItem('accessToken', token);
 
 function openPopupPw() {
     const popupContainer = document.querySelector('.popup-container');
@@ -83,8 +85,8 @@ function subbmitNewEmail() {
     const emailUpdate = document.getElementById("email-update")
     let newEmail = emailUpdate.value;
 
-    //const token = localStorage.getItem('accesToken');
-    console.log(emailUpdate.value)
+    console.log("Old Email "+email)
+    console.log("New Email "+emailUpdate.value)
     fetch('http://nluginbuehlsi:3000/user/change_email', {
         method: 'POST',
         headers: {
@@ -94,4 +96,21 @@ function subbmitNewEmail() {
         },
         body: JSON.stringify({email, newEmail})
     }).then(res => console.log(res))
+    logOut()
+    window.location.reload();
+}
+
+function logOut() {
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    fetch("http://nluginbuehlsi:4000/logout", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({refreshToken})
+    }).then(r => console.log(r));
+
+    localStorage.removeItem('accessToken');  // Save token to localStorage
+    localStorage.removeItem('refreshToken')
 }

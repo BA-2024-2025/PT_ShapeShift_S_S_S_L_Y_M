@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("profilePic").src = savedProfilePic;
     }
 });
+const token = localStorage.getItem('accessToken');
 
 const getEmail = () => {
-    const token = localStorage.getItem('accessToken');
     if (token) {
         try {
             const decoded = jwtDecode(token);
@@ -21,9 +21,16 @@ const getEmail = () => {
     }
     return null;
 };
-const email = getEmail();
-console.log(email);
-localStorage.setItem('email', email);
+const email = await getEmail();
+
+const userConverter = await fetch(`http://nluginbuehlsi:3000/user/findByEmail/${email}`);
+const userName = await userConverter.json();
+
+let userObject = new Array()
+userObject[0] = userName[0].username;
+userObject[1] = email;
+
+localStorage.setItem("userObject", JSON.stringify(userObject));
 
 document.addEventListener('DOMContentLoaded', async () => {
     const username = getUsernameFromURL(); // Den Benutzernamen aus der URL holen
