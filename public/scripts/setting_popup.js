@@ -70,7 +70,7 @@ function subbmitNewPw() {
 
     //const token = localStorage.getItem('accesToken');
     console.log(pwUpdate.value)
-    fetch('http://nluginbuehlsi:3000/user/change_password', {
+    fetch('http://nzempsv:3000/user/change_password', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -87,7 +87,7 @@ function subbmitNewEmail() {
 
     console.log("Old Email "+email)
     console.log("New Email "+emailUpdate.value)
-    fetch('http://nluginbuehlsi:3000/user/change_email', {
+    fetch('http://nzempsv:3000/user/change_email', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -103,7 +103,7 @@ function subbmitNewEmail() {
 function logOut() {
     const refreshToken = localStorage.getItem('refreshToken');
 
-    fetch("http://nluginbuehlsi:4000/logout", {
+    fetch("http://nzempsv:4000/logout", {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

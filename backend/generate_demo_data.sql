@@ -1,3 +1,5 @@
+USE shapeshift;
+
 INSERT INTO user (username, password, email, topscore) VALUES
                                                            ('player1', 'password123', 'player1@example.com', 1500),
                                                            ('player2', 'password123', 'player2@example.com', 2300),

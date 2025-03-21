@@ -1,7 +1,7 @@
 // Connect to WebSocket server
 var state = "close"
 
-const ws = new WebSocket('ws://nluginbuehlsi:8080');
+const ws = new WebSocket('ws://nzempsv:8080');
 
 ws.onopen = function () {
     ws.readyState = WebSocket.OPEN;
