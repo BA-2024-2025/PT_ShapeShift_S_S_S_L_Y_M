@@ -42,7 +42,6 @@ export async function blockLanding(tetromino, worker, eventFunction) {
                 for (let x = 0; x < 10; x++) {
                     let field = document.getElementById(x + "" + y);
                     if (field) field.style.opacity = "0.05";
-                    sendScore(1);
                 }
             }
         } else {
@@ -50,7 +49,6 @@ export async function blockLanding(tetromino, worker, eventFunction) {
                 for (let x = 0; x < 10; x++) {
                     let field = document.getElementById(x + "" + y);
                     if (field) field.style.opacity = "1";
-                    sendScore(1);
                 }
             }
         }
@@ -116,7 +114,9 @@ export async function blockLanding(tetromino, worker, eventFunction) {
 }
 
 
-async function explodeBomb(tetromino) {
+async function
+
+plodeBomb(tetromino) {
     const positionT = tetromino.getElementIdGrid(tetromino.getGridPosition())
     const affectedLines = new Set();
 
@@ -133,6 +133,7 @@ async function explodeBomb(tetromino) {
                     if (field) {
                         field.style.backgroundColor = "#01010101";
                         field.style.boxShadow = "none";
+                        sendScore(1);
                         affectedLines.add(newY);
                     }
                 }

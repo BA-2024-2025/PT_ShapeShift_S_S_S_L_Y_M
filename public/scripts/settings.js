@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             // Setze die Benutzerinformationen
             document.getElementById('email').innerHTML = user.email || 'Nicht verfügbar';
-            document.getElementById('password').innerHTML = user.password || 'Nicht verfügbar';
+            document.getElementById('password').innerHTML = "********";
             document.getElementById('high-score').innerHTML = user.topscore || 'Nicht verfügbar';
             document.getElementById('level1-score').innerHTML = user.level1_score || 'Nicht verfügbar';
 
