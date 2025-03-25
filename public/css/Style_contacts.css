@@ -52,6 +52,7 @@ form input,textarea{
     border-radius: 20px;
     width: 40%;
     padding: 1em;
+    border: 3px solid var(--foreground);
 }
 
 #form-submit{
