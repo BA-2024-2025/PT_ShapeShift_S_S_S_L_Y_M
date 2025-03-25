@@ -14,11 +14,7 @@ const audio = document.getElementById("soundIcon");
 const muteButton = document.getElementById("soundIcon");
 
 muteButton.addEventListener("click", function () {
-    if (audio.muted) {
-        audio.muted = false;
-    } else {
-        audio.muted = true;
-    }
+    audio.muted = !audio.muted;
 });
 
 /*
