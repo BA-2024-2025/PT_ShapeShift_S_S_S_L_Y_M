@@ -20,12 +20,12 @@ self.onmessage = function (e) {
     } else if (e.data === "reset") {
         // Zurücksetzen auf Level-basierte Geschwindigkeit
         if (speed === 40) {
-            speed = level === 1 ? 500 : level === 2 ? 250 : 167;
+            speed = level === 1 ? 500 : level === 2 ? 300 : 200;
         }
     } else if (typeof e.data === "number") {
         // Level setzen und Geschwindigkeit anpassen
         level = e.data;
-        speed = level === 1 ? 500 : level === 2 ? 250 : 167;
+        speed = level === 1 ? 500 : level === 2 ? 300 : 200;
     }
 };
 

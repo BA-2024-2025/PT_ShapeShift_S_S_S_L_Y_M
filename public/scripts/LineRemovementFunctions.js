@@ -1,5 +1,5 @@
 import {delay} from "./GameFunctions.js";
-import {sendScore} from "./IFrameMessage.js";
+import {sendScore} from "./HomeStats.js";
 
 export function checkFullLines(tetromino) {
     let linesToRemoveArray = [];

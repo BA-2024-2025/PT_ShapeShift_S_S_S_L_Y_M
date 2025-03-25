@@ -39,58 +39,14 @@ export function resetBlocks() {
     blockText.textContent = "Blocks: " + blocks;
 }
 
-export function changeNextBlock(imgBlock) {
-    //nextBlock(imgPath);
-    let imgPath;
-    switch (imgBlock) {
-        case TTetromino:
-            console.log("switch")
-            imgPath = "t.png";
-            break;
+export function changeNextBlockImage(nextBlock) {
 
-        case OTetromino:
-            console.log("switch")
-            imgPath = "o.png";
-            break;
+    //gets the specification of the next tetromino
+    let index = nextBlock.indexOf("Tetromino");
+    let letter = nextBlock[5,index-1].toLowerCase();
 
-        case PlusTetromino:
-            console.log("switch")
-            imgPath = "plus.png";
-            break;
+    //selects the image
+    const imgBlock = window.parent.document.getElementById("nextBlockImage");
 
-        case UTetromino:
-            console.log("switch")
-            imgPath = "u.png";
-            break;
-
-        case ITetromino:
-            console.log("switch")
-            imgPath = "i.png";
-            break;
-
-        case LTetromino:
-            console.log("switch")
-            imgPath = "l.png";
-            break;
-
-        case JTetromino:
-            console.log("switch")
-            imgPath = "j.png";
-            break;
-
-        case STetromino:
-            console.log("switch")
-            imgPath = "s.png";
-            break;
-
-        case ZTetromino:
-            console.log("switch")
-            imgPath = "z.png";
-            break;
-
-        default:
-            console.log("Unknown tetromino");
-            break;
-    }
-    return imgPath;
+    imgBlock.src = "/public/images/nextBlocks/"+letter+".png"
 }

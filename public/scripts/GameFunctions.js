@@ -9,7 +9,8 @@ import { PlusTetromino } from "./PlusTetromino.js";
 import { UTetromino } from "./UTetromino.js";
 import { createGrid, clearBattlefield, drawBattlefield } from "./GridFunctions.js";
 import { blockLanding, checkIfLanded } from "./LandingFunctions.js";
-import { resetScore, sendBlocks, sendScore, resetBlocks, changeNextBlock } from "./IFrameMessage.js"
+import { resetScore, sendBlocks, sendScore, resetBlocks } from "./HomeStats.js"
+import { changeNextBlockImage } from "./HomeStats.js"
 
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -103,6 +104,7 @@ async function startPhysicsSimulation() {
     await delay(2000)
     resetBlocks();
     resetScore();
+    blocks = 0;
     gameLoop();
 }
 
@@ -213,29 +215,6 @@ function whichKey(activeTetromino, worker, key) {
     
 }
 
-
-// This is an old verision, just for backup
-//case "ArrowDown":
-//    keyCooldown = true;
-//    clearBattlefield(activeTetromino);
-//    activeTetromino.shiftYDown();
-//    if (!moveValidation(oldX, oldY, activeTetromino)) {
-//        console.log("move denied");
-//        activeTetromino.shiftX = oldX; // Position zurücksetzen
-//        activeTetromino.shiftY = oldY;
-//        drawBattlefield(activeTetromino); // Sofort wieder zeichnen
-//        checkIfLanded(activeTetromino, worker, whichKey.bind(null, activeTetromino, worker));
-//    } else {
-//        console.log("move accepted");
-//        drawBattlefield(activeTetromino);
-//        checkIfLanded(activeTetromino, worker, whichKey.bind(null, activeTetromino, worker));
-//    }
-//    setTimeout(() => keyCooldown = false, 50); // Entsperre nach 50ms
-//    break;
-//default:
-//    return;
-//}
-
 export async function gameLoop() {
     if (blockActive) return;
     blockActive = true;
@@ -250,7 +229,7 @@ export async function gameLoop() {
             activeTetromino = nextBlock;
             let levelOneArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
             let randomTetrominoOne = levelOneArray[Math.floor(Math.random() * levelOneArray.length)];
-            imgBlock = randomTetrominoOne
+            nextImage = randomTetrominoOne
             nextBlock = new randomTetrominoOne
             console.log("arrayOne")
             break
@@ -258,21 +237,23 @@ export async function gameLoop() {
             activeTetromino = nextBlock;
             let levelTwoArray = [ITetromino,OTetromino,TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino];
             let randomTetrominoTwo = levelTwoArray[Math.floor(Math.random() * levelTwoArray.length)];
+            nextImage = randomTetrominoTwo
             nextBlock = new randomTetrominoTwo
-            imgBlock = randomTetrominoTwo
             console.log("arrayTwo")
             break
         case 3:
             activeTetromino = nextBlock;
             let levelThreeArray = [TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,UTetromino];
             let randomTetrominoThree = levelThreeArray[Math.floor(Math.random() * levelThreeArray.length)];
+            nextImage = randomTetrominoThree
             nextBlock = new randomTetrominoThree
-            imgBlock = randomTetrominoThree
             console.log("arrayThree")
             break
         default:
             break;
     }
+
+    changeNextBlockImage(String(nextImage))
 
     //create worker
     const worker = new Worker("../public/scripts/moveDown_worker.js");
@@ -326,7 +307,7 @@ let activeTetromino;
 let startArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
 let startTetromino = startArray[Math.floor(Math.random() * startArray.length)];
 let nextBlock = new startTetromino
-let imgBlock = startTetromino
+let nextImage = startTetromino
 
 //starts game
 gameLoop();
