@@ -1,4 +1,5 @@
-import { changeScore, delay } from "./GameFunctions.js";
+import { changeScore, delay, removeLineWaiter, setRemoveLineWaiter } from "./GameFunctions.js";
+
 
 export function checkFullLines(tetromino) {
     let linesToRemoveArray = [];
@@ -37,6 +38,7 @@ export function checkFullLines(tetromino) {
 }
 
 export async function removeLine(linesToRemove) {
+    setRemoveLineWaiter(true);
     let linesRemoved = linesToRemove.length;
     console.log(linesToRemove)
 
@@ -78,6 +80,55 @@ export async function removeLine(linesToRemove) {
 
     document.getElementById("score").innerText = score;
     document.getElementById("blocks").innerText = blocks;
+}
+
+export function ensureGrounded() {
+    let lowestY = -1; 
+
+    for (let y = 0; y <= 20; y++) {
+        for (let x = 0; x < 10; x++) {
+            const field = document.getElementById(x + "" + y);
+            const computedStyle = window.getComputedStyle(field);
+            const backgroundColor = computedStyle.backgroundColor;
+            if (backgroundColor !== "rgba(1, 1, 1, 0.004)") {
+                lowestY = y;
+            }
+        }
+    }
+    if (lowestY === -1) {
+        return;
+    }
+    
+    if (lowestY === 20) {
+        return;
+    }
+
+    const shiftAmount = 20 - lowestY;
+    for (let y = 20; y >= 0; y--) {
+        for (let x = 0; x < 10; x++) {
+            const sourceField = document.getElementById(x + "" + y);
+            const targetY = y + shiftAmount;
+            const sourceStyle = window.getComputedStyle(sourceField);
+            const sourceBackground = sourceStyle.backgroundColor;
+            const sourceShadow = sourceStyle.boxShadow;
+
+            if (targetY <= 20) {
+                const targetField = document.getElementById(x + "" + targetY);
+                if (sourceBackground !== "rgba(1, 1, 1, 0.004)") {
+                    targetField.style.backgroundColor = sourceBackground;
+                    targetField.style.boxShadow = sourceShadow;
+                } else {
+                    targetField.style.backgroundColor = "#01010101";
+                    targetField.style.boxShadow = "none";
+                }
+            }
+
+            if (y !== targetY && sourceBackground !== "rgba(1, 1, 1, 0.004)") {
+                sourceField.style.backgroundColor = "#01010101";
+                sourceField.style.boxShadow = "none";
+            }
+        }
+    }
 }
 
 export function applyGravity(linesToRemove) {
