@@ -74,4 +74,7 @@ export class ZTetromino extends Tetromino {
             this.setPosition(this.pos1);
         }
     }
+    
+    revertColor() {
+    }
 }

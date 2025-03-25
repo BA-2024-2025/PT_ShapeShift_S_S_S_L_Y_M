@@ -43,4 +43,7 @@ export class OTetromino extends Tetromino{
     rotate() {
         //be sad
     }
+    
+    revertColor() {
+    }
 }

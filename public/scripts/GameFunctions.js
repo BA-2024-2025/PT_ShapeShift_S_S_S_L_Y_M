@@ -7,11 +7,16 @@ import { ZTetromino } from "./ZTetromino.js";
 import { STetromino } from "./STetromino.js";
 import { PlusTetromino } from "./PlusTetromino.js";
 import { UTetromino } from "./UTetromino.js";
+import { SwitchTetromino} from "./SwitchTetromio.js";
 import { createGrid, clearBattlefield, drawBattlefield } from "./GridFunctions.js";
 import { blockLanding, checkIfLanded } from "./LandingFunctions.js";
+import { GhostTetromino } from "./GhostTetromino.js";
+import { BombTetromino } from "./BombTetromino.js";
 import { resetScore, sendBlocks, sendScore, resetBlocks, getScore } from "./HomeStats.js"
 import { changeNextBlockImage } from "./HomeStats.js"
 import { sendRun } from "./index.js";
+
+export let removeLineWaiter = false;
 
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -120,7 +125,7 @@ async function startPhysicsSimulation() {
 }
 
 //move validation for collisions with other blocks
-function moveValidation(oldX, oldY, tetromino) {
+export function moveValidation(oldX, oldY, tetromino) {
     let checkCount = 0;
     //loops through each field of tetromino to check background color
     let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
@@ -157,6 +162,7 @@ function moveValidation(oldX, oldY, tetromino) {
 //event listener function for key inputs
 function whichKey(activeTetromino, worker, key) {
     if (activeTetromino !== currentActiveTetromino) return;
+    if (removeLineWaiter) return;
     //variables for validation
     let oldX = activeTetromino.shiftX;
     let oldY = activeTetromino.shiftY;
@@ -169,6 +175,7 @@ function whichKey(activeTetromino, worker, key) {
             if (!moveValidation(oldX, oldY, activeTetromino)) {
                 console.log("move denied");
                 activeTetromino.position = oldPosition;
+                activeTetromino.revertColor();
             } else {
                 console.log("move accepted");
             }
@@ -229,6 +236,7 @@ function whichKey(activeTetromino, worker, key) {
 }
 
 export async function gameLoop() {
+    removeLineWaiter = false;
     if (blockActive) return;
     blockActive = true;
     if (blocks >= 80) {
@@ -248,7 +256,7 @@ export async function gameLoop() {
             break
         case 2:
             activeTetromino = nextBlock;
-            let levelTwoArray = [ITetromino,OTetromino,TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino];
+            let levelTwoArray = [ITetromino,OTetromino,TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,SwitchTetromino, GhostTetromino, BombTetromino];
             let randomTetrominoTwo = levelTwoArray[Math.floor(Math.random() * levelTwoArray.length)];
             nextImage = randomTetrominoTwo
             nextBlock = new randomTetrominoTwo
@@ -256,7 +264,7 @@ export async function gameLoop() {
             break
         case 3:
             activeTetromino = nextBlock;
-            let levelThreeArray = [TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,UTetromino];
+            let levelThreeArray = [TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,UTetromino,SwitchTetromino, SwitchTetromino, GhostTetromino, GhostTetromino, BombTetromino, BombTetromino];
             let randomTetrominoThree = levelThreeArray[Math.floor(Math.random() * levelThreeArray.length)];
             nextImage = randomTetrominoThree
             nextBlock = new randomTetrominoThree
@@ -292,6 +300,9 @@ export async function gameLoop() {
                 console.log("move accepted")
                 drawBattlefield(activeTetromino);
                 checkIfLanded(activeTetromino, worker, boundWhichKey);
+                if (activeTetromino instanceof BombTetromino) {
+                    activeTetromino.animateTick();
+                }
             }
         }
     }
@@ -329,3 +340,8 @@ gameLoop();
 export function setBlockActive(value) {
     blockActive = value;
 }
+
+export function setRemoveLineWaiter(value) {
+    removeLineWaiter = value;
+}
+
