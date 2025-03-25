@@ -4,8 +4,8 @@ import { drawBattlefield } from "./GridFunctions.js";
 import { BombTetromino } from "./BombTetromino.js";
 import { applyGravity, checkFullLines, removeLine } from "./LineRemovementFunctions.js";
 import { delay } from "./GameFunctions.js";
-import { TTetromino } from "./TTetromino.js";
 import { ensureGrounded } from "./LineRemovementFunctions.js";
+import {sendScore} from "./HomeStats.js";
 
 export let counter = 0;
 
@@ -42,6 +42,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
                 for (let x = 0; x < 10; x++) {
                     let field = document.getElementById(x + "" + y);
                     if (field) field.style.opacity = "0.05";
+                    sendScore(1);
                 }
             }
         } else {
@@ -49,6 +50,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
                 for (let x = 0; x < 10; x++) {
                     let field = document.getElementById(x + "" + y);
                     if (field) field.style.opacity = "1";
+                    sendScore(1);
                 }
             }
         }
