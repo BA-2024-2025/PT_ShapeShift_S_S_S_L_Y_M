@@ -10,7 +10,6 @@ import { UTetromino } from "./UTetromino.js";
 import { createGrid, clearBattlefield, drawBattlefield } from "./GridFunctions.js";
 import { blockLanding, checkIfLanded } from "./LandingFunctions.js";
 import { resetScore, sendBlocks, sendScore, resetBlocks, changeNextBlock } from "./IFrameMessage.js"
-import {changeBlockImg} from "./index.js";
 
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -275,9 +274,6 @@ export async function gameLoop() {
             break;
     }
 
-    //update img of next block
-    img.src = "../images/nextBlocks/"+changeNextBlock(imgBlock);
-
     //create worker
     const worker = new Worker("../public/scripts/moveDown_worker.js");
     worker.postMessage(level);
@@ -331,13 +327,6 @@ let startArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetrom
 let startTetromino = startArray[Math.floor(Math.random() * startArray.length)];
 let nextBlock = new startTetromino
 let imgBlock = startTetromino
-
-//update img og next path
-/*let img = window.parent.document.getElementById("nextBlockImage");
-console.log(img);
-img.src*/ let path = "public/images/nextBlocks/"+changeNextBlock(imgBlock);
-changeBlockImg(path);
-console.log("hey")
 
 //starts game
 gameLoop();

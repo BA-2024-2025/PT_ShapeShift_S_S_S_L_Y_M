@@ -17,18 +17,19 @@ if (!getUser()) {
     openPopup()
 }
 
+//errors occur because the const is empty
 function openPopup() {
+
     const popupContainer = document.querySelector('.popup-container');
-    popupContainer.style.transform = 'scale(1)';
-    popupContainer.style.opacity = '1';
-    document.body.style.overflow = "hidden";
+    if (popupContainer) { // Check if the element exists
+        popupContainer.style.transform = 'scale(1)';
+        popupContainer.style.opacity = '1';
+        document.body.style.overflow = "hidden";
+    } else {
+        console.log('Element with class "popup-container" not found, but ShapeShift should be working anyway.');
+    }
 }
 
 const theme = localStorage.getItem('theme')
 const body = document.querySelector('body');
 body.className = theme
-
-export function changeBlockImg(path) {
-    let img = document.getElementById("nextBlockImage")
-    img.src = path
-}
