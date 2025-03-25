@@ -39,6 +39,12 @@ export function resetBlocks() {
     blockText.textContent = "Blocks: " + blocks;
 }
 
+export function getScore() {
+    let scoreElement = window.parent.document.getElementsByClassName("score")[0].getElementsByTagName("h1")[0];
+    let scoreText = scoreElement.textContent;
+    return scoreText.slice(7);
+}
+
 export function changeNextBlockImage(nextBlock) {
 
     //gets the specification of the next tetromino

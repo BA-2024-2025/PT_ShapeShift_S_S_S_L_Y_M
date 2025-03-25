@@ -93,7 +93,7 @@ form.addEventListener('submit', async (e) => {
 
   // Daten an Backend senden
   try {
-    const response = await fetch('http://nzempsv:3000/users/submit-signup', {
+    const response = await fetch('http://nzempsv:4000/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: username, password, email })

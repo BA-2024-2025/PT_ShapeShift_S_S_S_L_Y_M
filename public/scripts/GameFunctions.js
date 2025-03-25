@@ -9,8 +9,9 @@ import { PlusTetromino } from "./PlusTetromino.js";
 import { UTetromino } from "./UTetromino.js";
 import { createGrid, clearBattlefield, drawBattlefield } from "./GridFunctions.js";
 import { blockLanding, checkIfLanded } from "./LandingFunctions.js";
-import { resetScore, sendBlocks, sendScore, resetBlocks } from "./HomeStats.js"
+import { resetScore, sendBlocks, sendScore, resetBlocks, getScore } from "./HomeStats.js"
 import { changeNextBlockImage } from "./HomeStats.js"
+import { sendRun } from "./index.js";
 
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -102,6 +103,16 @@ async function startPhysicsSimulation() {
         level = 1;
     }, 5000)
     await delay(2000)
+
+    //send run to api
+    sendRun(level);
+
+    //generate new next block so we don't get one from a higher level
+    let endLevelOneArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
+    let endRandomTetrominoOne = endLevelOneArray[Math.floor(Math.random() * endLevelOneArray.length)];
+    nextImage = endRandomTetrominoOne
+    nextBlock = new endRandomTetrominoOne
+
     resetBlocks();
     resetScore();
     blocks = 0;
