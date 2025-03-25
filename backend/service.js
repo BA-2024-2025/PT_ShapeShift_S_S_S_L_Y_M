@@ -307,14 +307,18 @@ export  function findByEmail (email,res) {
     }
 }
 
-let automatic_topscoreQuery = ' UPDATE user u JOIN () subquery(Select score from runs where user_id=(select id_user from user where username = ?) order by score DESC Limit 1 )ON u.id_user = subquery.id_user SET u.topscore = ?; '
-
+let automatic_topscoreQuery = ' UPDATE user u JOIN ( SELECT user_id AS id_user, score FROM runs WHERE user_id = (SELECT id_user FROM user WHERE email = ?) ORDER BY score DESC LIMIT 1 ) subquery ON u.id_user = subquery.id_user SET u.topscore = subquery.score WHERE u.email = ?; '
 
 export function automatic_topscore(user){
+    console.log(user)
     try {
-        connection.query(automatic_topscoreQuery, [user.name], function (err, results) {
-            console.log("Topscore got sucessfully updatet");
+        connection.query(automatic_topscoreQuery, [user.email, user.email], function (err, results) {
+            if (err) console.log(err);
+            else {
 
+
+                console.log("Topscore got sucessfully updatet");
+            }
         })
     }catch (error) {
         console.log(error);

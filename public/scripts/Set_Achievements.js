@@ -1,6 +1,9 @@
 // Funktion zum Auslesen des Benutzernamens aus der URL
-function getUsernameFromURL() {
+
+
+export function getUsernameFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams.get("username"));
     return urlParams.get('username') ; // Holt den Wert des Parameters "username"
 }
 

@@ -1,4 +1,15 @@
 import {jwtDecode} from 'https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/+esm';
+import {getUsernameFromURL} from './Set_Achievements.js'
+function getUsername(){
+
+    let data = localStorage.getItem('userObject');
+    data = JSON.parse(data)
+    console.log(data)
+    console.log(data[0])
+    return data[0]
+}
+
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -34,7 +45,7 @@ userObject[1] = email;
 localStorage.setItem("userObject", JSON.stringify(userObject));
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const username = getUsernameFromURL(); // Den Benutzernamen aus der URL holen
+    const username = getUsername() // Den Benutzernamen aus der URL holen
 
     if (!username) {
         console.error("Kein Benutzername in der URL gefunden!");
@@ -51,14 +62,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             throw new Error(`Fehler beim Abrufen der Benutzerdaten für ${username}`);
         }
 
-        console.log(`Username: ${getUser}`);
+
         const data = await response.json();
 
         if (data.length === 0) {
-            console.error(`Kein Benutzer mit dem Namen "${getUser()}" gefunden.`);
-            return;
-        }
 
+            return ("Error");
+        }
+        else{
+            console.log('Data fetched successfully.');
+        }
         // Falls die API eine Liste von Benutzern zurückgibt, nehmen wir den ersten Treffer
         const user = data[0];
 

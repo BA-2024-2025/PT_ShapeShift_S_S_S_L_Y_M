@@ -155,7 +155,7 @@ app.post('/user/change_topscore', authenticate, async (req, res) => {
     else {
         let user = req.body;
         service.changeTopScore(user, res);
-        service.automatic_topscore(user);
+
     }
 })
 
@@ -168,6 +168,7 @@ app.post('/run/insert_score',authenticate, async (req, res) => {
     else {
         let user = req.body;
         service.addRun(user, res);
+        service.automatic_topscore(user);
     }
 })
 

@@ -3,6 +3,7 @@ import cors from "cors";
 import jwt from "jsonwebtoken";
 import * as service from "./service.js";
 import dotenv from "dotenv";
+import {makeUser} from "./service.js";
 
 dotenv.config();
 
@@ -28,6 +29,19 @@ app.post('/login', async (req, res) => {
         res.status(401).json({ error: 'Invalid Credentials' });
     }
 });
+app.post('/signup', async (req, res) => {
+    let user = req.body;
+    console.log(req.body);
+    try {
+
+
+        await makeUser(user, res);
+    }
+    catch (err){
+        console.log(err);
+        console.log("Failed to make User")
+    }
+})
 
 app.post('/token', async (req, res) => {
     const refreshToken = req.body.token;
