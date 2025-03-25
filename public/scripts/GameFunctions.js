@@ -220,6 +220,8 @@ function whichKey(activeTetromino, worker, key) {
                 worker.postMessage("reset"); // Geschwindigkeit zurücksetzen nach Ablauf
             }, 40); // Cooldown-Dauer entspricht der schnellen Geschwindigkeit
             break;
+        case "p":
+            sendScore(100)
         default:
             return;
     }
