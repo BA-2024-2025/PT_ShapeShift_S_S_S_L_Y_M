@@ -48,8 +48,9 @@ export function getScore() {
 export function changeNextBlockImage(nextBlock) {
 
     //gets the specification of the next tetromino
-    let index = nextBlock.indexOf("Tetromino");
-    let letter = nextBlock[5,index-1].toLowerCase();
+    let firstIndex = nextBlock.indexOf("class ");
+    let endindex = nextBlock.indexOf("Tetromino");
+    let letter = nextBlock[firstIndex,endindex-1].toLowerCase();
 
     //selects the image
     const imgBlock = window.parent.document.getElementById("nextBlockImage");

@@ -248,7 +248,7 @@ export async function gameLoop() {
     switch (level) {
         case 1:
             activeTetromino = nextBlock;
-            let levelOneArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino]
+            let levelOneArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino,BombTetromino]
             let randomTetrominoOne = levelOneArray[Math.floor(Math.random() * levelOneArray.length)];
             nextImage = randomTetrominoOne
             nextBlock = new randomTetrominoOne
