@@ -22,7 +22,7 @@ export function sendBlocks(value) {
     //window.parent.updateBlocks(blocks);
     let blockText = window.parent.document.getElementsByClassName("blocks")[0].getElementsByTagName("h1")[0];
     blocks += value;
-    blockText.textContent = "Block: " + blocks;
+    blockText.textContent = "Blocks: " + blocks;
 }
 
 export function resetScore() {
@@ -36,7 +36,7 @@ export function resetBlocks() {
     //window.parent.nullBlocks();
     let blockText = window.parent.document.getElementsByClassName("blocks")[0].getElementsByTagName("h1")[0];
     blocks = 0;
-    blockText.textContent = "Block: " + blocks;
+    blockText.textContent = "Blocks: " + blocks;
 }
 
 export function changeNextBlock(imgBlock) {

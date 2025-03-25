@@ -2,7 +2,7 @@ body{
     background-color:var(--background);
 }
 .container{
-    border: 1px /*transparent*/solid var(--text);
+    border: 1px transparent /*solid*/ var(--text);
     width: var(--size);
     height: var(--size);
 }
