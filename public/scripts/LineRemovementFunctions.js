@@ -1,6 +1,5 @@
-import {delay} from "./GameFunctions.js";
 import {sendScore} from "./HomeStats.js";
-import { changeScore, delay, removeLineWaiter, setRemoveLineWaiter } from "./GameFunctions.js";
+import { delay, setRemoveLineWaiter } from "./GameFunctions.js";
 
 
 export function checkFullLines(tetromino) {
