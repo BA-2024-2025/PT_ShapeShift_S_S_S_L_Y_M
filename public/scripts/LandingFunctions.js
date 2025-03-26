@@ -52,8 +52,8 @@ export async function blockLanding(tetromino, worker, eventFunction) {
                 }
             }
         }
-            setTimeout(() => gameLoop(), 100);
-            return; 
+        setTimeout(() => gameLoop(), 100);
+        return;
     }
 
     if (counter > 0) {
@@ -117,6 +117,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
 async function explodeBomb(tetromino) {
     const positionT = tetromino.getElementIdGrid(tetromino.getGridPosition())
     const affectedLines = new Set();
+    const affectedFields = new Set();
 
     positionT.forEach(pos => {
         const x = parseInt(pos[0]);
@@ -127,17 +128,34 @@ async function explodeBomb(tetromino) {
                 const newX = x + dx;
                 const newY = y + dy;
                 if (newX >= 0 && newX < 10 && newY >= 0 && newY < 21) {
-                    const field = document.getElementById(newX + "" + newY);
-                    if (field) {
-                        field.style.backgroundColor = "#01010101";
-                        field.style.boxShadow = "none";
-                        sendScore(1);
-                        affectedLines.add(newY);
-                    }
+                    affectedFields.add(`${newX}${newY}`);
+                    affectedLines.add(newY);
                 }
             }
         }
     });
+
+    let scoreIncrement = 0;
+    for (const fieldId of affectedFields) {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            const computedStyle = window.getComputedStyle(field);
+            if (computedStyle.backgroundColor !== "rgba(1, 1, 1, 0.004)") {
+                field.style.backgroundColor = "#FF4500"; //color of explosion
+                await delay(30);
+                scoreIncrement += 1;
+            }
+            field.style.backgroundColor = "#01010101";
+            field.style.boxShadow = "none";
+        }
+    }
+
+    //change score
+    if (scoreIncrement-4 > 0) {
+        sendScore(scoreIncrement-4);
+    }
+
+    return Array.from(affectedLines).sort((a, b) => b - a); //return for applyGravity
 }
 
 export async function checkIfLanded(activeTetromino, worker, eventFunction) {
