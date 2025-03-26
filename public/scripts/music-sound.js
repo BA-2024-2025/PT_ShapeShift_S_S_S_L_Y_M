@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
     if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
         const gameSong = '../public/music/game-play.wav';
@@ -9,6 +11,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 });
+
+export function explosionSound(){
+    const explosion = '../public/music/explosion-91872.wav';
+    const exAudio = new Audio(explosion);
+
+    audio.volume = 0.5;
+    audio.play().catch(error => console.log("Autoplay blockiert:", error));
+
+}
 
 const audio = document.getElementById("soundIcon");
 const muteButton = document.getElementById("soundIcon");
