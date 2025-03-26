@@ -2,20 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ShapeShift - Game</title>
-  <link rel="stylesheet" href="../public/css/Style_index.css">
+  <title>Title</title>
   <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
   <link rel="stylesheet" href="../public/css/Style_Navbar.css">
+  <link rel="stylesheet" href="../public/css/Style_contacts.css">
   <link rel="stylesheet" href="../public/css/Style_Login_popup.css">
-  <link rel="stylesheet" href="../public/css/Style_Live-chat.css">
-  <script type="module" src="../public/scripts/scoreLoader.js"></script>
   <script type="module" src="../public/scripts/index.js"></script>
-  <script src="../public/scripts/live-chat.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js" defer></script>
-  <script src="../public/scripts/login-popup-close.js" defer></script>
-
+  <script src="../public/scripts/login-popup-close.js"></script>
 </head>
-<body class="">
+<body>
 <div class="navContainer">
   <div class="logoContainer">
     <a href="index.html">
@@ -71,35 +66,31 @@
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="game">
-    <iframe class="iframe-game" id="iframe" src="game.html" seamless="seamless" scrolling="no" frameborder="0"></iframe>
-    <div class="scoreContainer">
-      <div class="nextBlock">
-        <H1>Next Block: </H1>
-        <img src="/public/images/nextBlocks/i.png" id="nextBlockImage" alt="nextBlockImg">
-      </div>
-      <div class="score">
-        <H1>Score: </H1>
-      </div>
-      <div class="blocks">
-        <H1>Blocks: </H1>
-      </div>
-    </div>
+<div class="contactContainer">
+  <div class="contact-title">
+    <h1 id="contact-title">Contact</h1>
   </div>
-  <div class="leaderboard-container">
-    <div class="leaderboard-size" onClick="window.location.href =`./leaderboard.html`">
-      <div class="leaderboard">
-        <h1 class="leaderboard-title">Global High-score</h1>
-        <table class="leaderboard-table" id="table">
-          <tr class="leaderboard-row">
-            <th><h2>Place</h2></th>
-            <th><h2>Username</h2></th>
-            <th><h2>Score</h2></th>
-          </tr>
-        </table>
-      </div>
-    </div>
+  <div class="contact-form">
+    <p>ICT-Campus</p>
+    <p>Engehaldenstrasse 26</p>
+    <p>3030 Bern</p>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7008.978316832575!2d7.435724254466575!3d46.95186060304541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e391309a50b11%3A0xa737841ff19a9ded!2sICT%20Campus%20Post!5e1!3m2!1sen!2sch!4v1742897427715!5m2!1sen!2sch" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <h1 id="contact-sheet">contact sheet</h1>
+    <form action="mailto:matthias.bussmann@ict-campus.net" method="post" enctype="text/plain">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="firstname" placeholder="Your name..">
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your email..">
+      <label for="subject">Subject</label>
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      <input id="form-submit" type="submit" value="Send">
+    </form>
+
+
   </div>
 </div>
 <div class="popup-container">
@@ -112,20 +103,6 @@
 
       <div class="close" onclick="closePopup()">
         <p>Continue without an account</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="live-chat">
-  <div class="live-chat-floater">
-    <i class="fa-regular fa-comment-dots fa-flip-horizontal" onclick="openChat()"></i>
-    <div class="live-chat-window" id="live-chat-window">
-      <div class="live-chat-content" id="chat"></div>
-      <div class="live-chat-inputfield">
-        <form onsubmit="event.preventDefault();">
-          <input type="text" class="live-chat-input-field" id="messageInput" placeholder="Message...">
-          <button class="live-chat-input-button" type="submit" onclick="sendMessage()"><i class="fa-regular fa-paper-plane"></i></button>
-        </form>
       </div>
     </div>
   </div>

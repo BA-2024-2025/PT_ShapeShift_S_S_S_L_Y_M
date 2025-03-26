@@ -1,8 +1,11 @@
+const ip = localStorage.getItem('ip')
+
+
 document.addEventListener('DOMContentLoaded', async () => {
     const table = document.getElementById('table');
 
     try {
-        const response = await fetch('http://nzempsv:3000/users');
+        const response = await fetch(`http://${ip}:3000/users`);
         const data = await response.json();
 
         // Add each user as a row in the table

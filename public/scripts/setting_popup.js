@@ -1,7 +1,8 @@
 const token = localStorage.getItem("accessToken");
 console.log(token);
 
-//const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXllcjFAZXhhbXBsZS5jb20iLCJwYXNzd29yZCI6InBhc3N3b3JkMTIzIiwiaWF0IjoxNzQyNTUxNDM3LCJleHAiOjE3NDQzNjU4Mzd9.f5W8ONn18M4QjUIS_E7YRaOR8CSnrZkDvIp115APxmA"
+const ip = localStorage.getItem('ip');
+
 const userObject = JSON.parse(localStorage.getItem("userObject"));
 let email = userObject[1];let password = userObject[0];
 
@@ -85,7 +86,7 @@ function subbmitNewPw() {
 
     //const token = localStorage.getItem('accesToken');
     console.log(pwUpdate.value)
-    fetch('http://nzempsv:3000/user/change_password', {
+    fetch('http://${ip}:3000/user/change_password', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -102,7 +103,7 @@ function subbmitNewEmail() {
 
     console.log("Old Email "+email)
     console.log("New Email "+emailUpdate.value)
-    fetch('http://nzempsv:3000/user/change_email', {
+    fetch('http://${ip}:3000/user/change_email', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -118,7 +119,7 @@ function subbmitNewEmail() {
 function logOut() {
     const refreshToken = localStorage.getItem('refreshToken');
 
-    fetch("http://nzempsv:4000/logout", {
+    fetch("http://${ip}:4000/logout", {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

@@ -3,6 +3,7 @@
 
 /*default*/
 :root {
+    overflow-x:hidden;
     --text: #ffffff !important;
     --foreground: #292929 !important;
     --secondaryforeground: #222121 !important;
@@ -67,4 +68,7 @@ body.swiss{
     --secondary: #ffffff !important;
     --input-bg: #292929 !important;
     --font: "Goldman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+.pwm-field-icon{
+    display: none;
 }

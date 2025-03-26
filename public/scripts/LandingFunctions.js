@@ -4,8 +4,8 @@ import { drawBattlefield } from "./GridFunctions.js";
 import { BombTetromino } from "./BombTetromino.js";
 import { applyGravity, checkFullLines, removeLine } from "./LineRemovementFunctions.js";
 import { delay } from "./GameFunctions.js";
-import { TTetromino } from "./TTetromino.js";
 import { ensureGrounded } from "./LineRemovementFunctions.js";
+import {sendScore} from "./HomeStats.js";
 
 export let counter = 0;
 
@@ -131,6 +131,7 @@ async function explodeBomb(tetromino) {
                     if (field) {
                         field.style.backgroundColor = "#01010101";
                         field.style.boxShadow = "none";
+                        sendScore(1);
                         affectedLines.add(newY);
                     }
                 }

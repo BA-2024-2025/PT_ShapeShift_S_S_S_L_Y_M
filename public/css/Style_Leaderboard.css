@@ -77,6 +77,10 @@ tr:hover{
     display: grid;
     grid-template-columns:0.15fr 0.56fr 1.1fr 1fr;
 }
+tr{
+    display: grid;
+    grid-template-columns: 0.15fr 0.56fr 1.1fr 1fr;
+}
 @media screen and (max-width: 956px){
     .title{
         font-size: 12vw;

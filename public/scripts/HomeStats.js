@@ -49,11 +49,15 @@ export function changeNextBlockImage(nextBlock) {
 
     //gets the specification of the next tetromino
     let firstIndex = nextBlock.indexOf("class ");
-    let endindex = nextBlock.indexOf("Tetromino");
-    let letter = nextBlock[firstIndex,endindex-1].toLowerCase();
+    console.log(firstIndex+6);
+    let endIndex = nextBlock.indexOf("Tetromino");
+    console.log(endIndex);
+    let letter = nextBlock.substring(firstIndex+6,endIndex).trim().toLowerCase();
 
     //selects the image
     const imgBlock = window.parent.document.getElementById("nextBlockImage");
+
+    console.log("letter: " + letter);
 
     imgBlock.src = "/public/images/nextBlocks/"+letter+".png"
 }
