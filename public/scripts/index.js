@@ -18,6 +18,13 @@ if (!getUser()) {
     openPopup()
 }
 
+
+if (!getUser()) {
+    if (window.location.href.includes('settings')) {
+        window.location.href = ('login.html');
+    }
+}
+
 const token = localStorage.getItem("accessToken");
 
 //errors occur because the const is empty

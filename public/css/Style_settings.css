@@ -332,13 +332,13 @@ button {
 }
 
 .popup-container-email {
-    display: none; /* Standardmäßig versteckt */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(20px); /* Weicher Blur-Effekt */
+    backdrop-filter: blur(20px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -348,13 +348,13 @@ button {
 }
 
 .popup-container-profile-picture {
-    display: none; /* Standardmäßig versteckt */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(20px); /* Weicher Blur-Effekt */
+    backdrop-filter: blur(20px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -366,7 +366,7 @@ button {
 /* Galerie-Grid */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 Spalten */
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     margin-top: 20px;
 }
@@ -390,8 +390,6 @@ button {
     overflow-y: auto;
 }
 
-
-/* Popup-Box */
 .popup {
     background: var(--background);
     padding: 20px;
@@ -403,14 +401,12 @@ button {
     color: var(--text);
 }
 
-/* Wenn Popup aktiv ist */
 .popup-container.active {
     display: flex;
     opacity: 1;
     transform: scale(1);
 }
 
-/* Close-Button */
 .close {
     margin-top: 10px;
     cursor: pointer;
@@ -435,7 +431,6 @@ button {
     padding: 7px;
 }
 
-/* Styling für den Stift-Button */
 #passwordChange {
     cursor: pointer;
     padding: 5px;
@@ -475,7 +470,7 @@ button {
 
 .dark-theme {
     background-color: #1d1d1d;
-    width: 36px; /* Oder eine andere gewünschte Größe */
+    width: 36px;
     height: 36px;
     margin: 10px;
 }
@@ -487,7 +482,7 @@ button {
 
 .golden-theme {
     background-color: #cba201;
-    width: 36px; /* Oder eine andere gewünschte Größe */
+    width: 36px;
     height: 36px;
     margin: 10px;
 }
@@ -499,7 +494,7 @@ button {
 
 .silver-theme {
     background-color: #acacac;
-    width: 36px; /* Oder eine andere gewünschte Größe */
+    width: 36px;
     height: 36px;
     margin: 10px;
 }
@@ -511,7 +506,7 @@ button {
 
 .bronze-theme {
     background-color: #844d18;
-    width: 36px; /* Oder eine andere gewünschte Größe */
+    width: 36px;
     height: 36px;
     margin: 10px;
 }
@@ -523,7 +518,7 @@ button {
 
 .flashBang-theme {
     background-color: #ffffff;
-    width: 36px; /* Oder eine andere gewünschte Größe */
+    width: 36px;
     height: 36px;
     margin: 10px;
 }
@@ -544,7 +539,7 @@ button {
 }
 .swiss-theme{
     background-color: #ff0000;
-    width: 36px; /* Oder eine andere gewünschte Größe */
+    width: 36px;
     height: 36px;
     margin: 10px;
 }
