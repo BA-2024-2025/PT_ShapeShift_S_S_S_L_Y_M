@@ -357,6 +357,7 @@ const getAllRunsOfUserQuery = `
     FROM runs r
     JOIN user u ON r.user_id = u.id_user
     WHERE u.username = ?
+    Limit 10;
 `;
 
 export function getAllRunsOfUser(res,name){
