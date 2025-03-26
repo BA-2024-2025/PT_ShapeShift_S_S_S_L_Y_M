@@ -39,7 +39,6 @@ export async function blockLanding(tetromino, worker, eventFunction) {
         tetromino.isExploded = true; 
         await applyGravity(checkFullLines(tetromino));
         ensureGrounded();
-        explosionSound();
 
         if (counter > 0) {
             for (let y = 0; y < 21; y++) {
