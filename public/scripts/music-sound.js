@@ -8,7 +8,17 @@ document.addEventListener("DOMContentLoaded", function () {
         audio.loop = true;  // Endlos wiederholen
         audio.volume = 0.5; // Lautstärke anpassen (optional)
         audio.play().catch(error => console.log("Autoplay blockiert:", error));
+    }
+});
 
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/" || theme = swiss) {
+        const gameSong = '../public/music/örgelihuus.wav';
+        const audio = new Audio(gameSong); // Audio-Objekt erstellen
+
+        audio.loop = true;  // Endlos wiederholen
+        audio.volume = 0.5; // Lautstärke anpassen (optional)
+        audio.play().catch(error => console.log("Autoplay blockiert:", error));
     }
 });
 
@@ -18,7 +28,14 @@ export function explosionSound(){
 
     audio.volume = 0.5;
     audio.play().catch(error => console.log("Autoplay blockiert:", error));
+}
 
+export function messageSound(){
+    const message = '../public/music/ring.wav';
+    const messageAudio = new Audio(message);
+
+    audio.volume = 1;
+    audio.play().catch(error => console.log("Autoplay blockiert:", error));
 }
 
 const audio = document.getElementById("soundIcon");
