@@ -79,8 +79,6 @@
             <div class="profile-picChange" onclick="openPopupProfilePicture()" id="profile-picChange">
                 <i class="fa-solid fa-pen"></i>
             </div>
-
-
             <div class="theme-container">
                 <h1 class="theme-title">Badges</h1>
             </div>
@@ -110,12 +108,12 @@
                 <h1 class="theme-title">Themes</h1>
             </div>
             <div class="theme-buttons">
-                <button class="dark-theme" onclick="window.location.reload();localStorage.setItem('theme','default')"></button>
-                <button class="golden-theme" onclick="window.location.reload();localStorage.setItem('theme','golden')"></button>
-                <button class="silver-theme" onclick="window.location.reload();localStorage.setItem('theme','silver')"></button>
-                <button class="bronze-theme" onclick="window.location.reload();localStorage.setItem('theme','bronze')"></button>
-                <button class="flashBang-theme" onclick="window.location.reload();localStorage.setItem('theme','flashBang')"></button>
-                <button class="swiss-theme" onclick="window.location.reload();localStorage.setItem('theme','swiss')"></button>
+                <button id="default" style="display: block" class="dark-theme" onclick="window.location.reload();localStorage.setItem('theme','default')"></button>
+                <button id="golden-theme" class="golden-theme" onclick="window.location.reload();localStorage.setItem('theme','golden')"></button>
+                <button id="silver-theme" class="silver-theme" onclick="window.location.reload();localStorage.setItem('theme','silver')"></button>
+                <button id="bronze-theme" class="bronze-theme" onclick="window.location.reload();localStorage.setItem('theme','bronze')"></button>
+                <button id="flashBang-theme" style="display: block" class="flashBang-theme" onclick="window.location.reload();localStorage.setItem('theme','flashBang')"></button>
+                <button id="swiss-theme" class="swiss-theme" onclick="window.location.reload();localStorage.setItem('theme','swiss')"></button>
             </div>
             <div class="user-profile-container">
 
@@ -144,8 +142,6 @@
             </div>
         </div>
     </div>
-</div>
-</div>
 <div class="popup-container password-popup">
     <div class="popup">
         <h1>Password ändern</h1>
@@ -189,7 +185,9 @@
         <div class="close" onclick="closePopupProfilePicture()">Abbrechen</div>
     </div>
 </div>
-
+<div class="imprint_floater">
+    <i class="fa-solid fa-circle-info fa-2xl" id="imprint_icon" onclick="window.location.href='./imprint.html'"></i>
+</div>
 
 </body>
 </html>

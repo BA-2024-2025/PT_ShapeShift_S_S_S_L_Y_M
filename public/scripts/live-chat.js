@@ -28,6 +28,19 @@ ws.onopen = function () {
 function sendMessage() {
     const input = document.getElementById('messageInput');
     const message = input.value;
+    if (message.toLocaleLowerCase().includes("äuä")) {
+        // Retrieve the 'unlockedTheme' from localStorage
+        let theme = localStorage.getItem('unlockedTheme');
+        if (theme) {
+            theme = JSON.parse(theme);
+        } else {
+            theme = [];
+        }
+        if (!theme.includes("Schweiz")) {
+            theme.push("Schweiz");
+        }
+        localStorage.setItem('unlockedTheme', JSON.stringify(theme));
+    }
     if (message) {
         ws.send(username+": "+ message);  // Send message to the WebSocket server
         input.value = '';  // Clear input field
