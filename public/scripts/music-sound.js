@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 export function explosionSound(){
+    console.log("BOOOOM")
     const explosion = '../public/music/explosion-91872.wav';
     const exAudio = new Audio(explosion);
 

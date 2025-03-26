@@ -8,6 +8,7 @@ import { TTetromino } from "./TTetromino.js";
 import { ensureGrounded } from "./LineRemovementFunctions.js";
 import {sendScore} from "./HomeStats.js";
 import { LineClearTetromino } from "./LineClearTetromino.js";
+import {explosionSound} from "./music-sound.js";
 
 export let counter = 0;
 
@@ -38,6 +39,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
         tetromino.isExploded = true; 
         await applyGravity(checkFullLines(tetromino));
         ensureGrounded();
+        explosionSound();
 
         if (counter > 0) {
             for (let y = 0; y < 21; y++) {
