@@ -13,6 +13,7 @@ import { blockLanding, checkIfLanded } from "./LandingFunctions.js";
 import { GhostTetromino } from "./GhostTetromino.js";
 import { BombTetromino } from "./BombTetromino.js";
 import { dropFloatingBlocks } from "./LineRemovementFunctions.js";
+import { LineClearTetromino } from "./LineClearTetromino.js";
 
 export let removeLineWaiter = false;
 
@@ -218,10 +219,16 @@ function whichKey(activeTetromino, worker, key) {
             }, 40); // Cooldown-Dauer entspricht der schnellen Geschwindigkeit
             break;
         case "1":
-            nextBlock = new GhostTetromino;
+            nextBlock = new LineClearTetromino;
             break;
         case "2":
             nextBlock = new BombTetromino;
+            break;
+        case "3":
+            nextBlock = new SwitchTetromino;
+            break;
+        case "4":
+            nextBlock = new GhostTetromino;
             break;
         default:
             return;
@@ -266,7 +273,7 @@ export async function gameLoop() {
     switch (level) {
         case 1:
             activeTetromino = nextBlock;
-            let levelOneArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino,SwitchTetromino]
+            let levelOneArray = [TTetromino,ITetromino,OTetromino,JTetromino,LTetromino,ZTetromino,STetromino,SwitchTetromino, GhostTetromino, BombTetromino, BombTetromino]
             let randomTetrominoOne = levelOneArray[Math.floor(Math.random() * levelOneArray.length)];
             nextBlock = new randomTetrominoOne
             console.log("arrayOne")
