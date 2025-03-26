@@ -3,6 +3,12 @@ import {getScore} from "./HomeStats.js";
 
 localStorage.setItem('ip', '172.16.2.144');
 
+window.onload = function() {
+    const iframe = document.getElementById("iframe");
+    iframe.focus();
+};
+
+
 const ip = localStorage.getItem('ip')
 
 const getUser = () => {

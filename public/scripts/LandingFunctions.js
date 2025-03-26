@@ -182,13 +182,13 @@ async function explodeBomb(tetromino) {
                 field.style.backgroundColor = "#FF4500"; // Explosionsfarbe
                 await delay(30);
                 scoreIncrement += 1;
+
             }
             field.style.backgroundColor = "#01010101";
             field.style.boxShadow = "none";
         }
     }
-
-
+    sendScore(scoreIncrement-4)
     return Array.from(affectedLines).sort((a, b) => b - a); // Rückgabe für applyGravity
 }
 
