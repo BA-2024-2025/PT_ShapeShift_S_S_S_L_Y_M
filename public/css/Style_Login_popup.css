@@ -49,14 +49,14 @@
 }
 
 .title-colored {
-    color: #01FFFF;
+    color: var(--primary);
     font-weight: 700;
     font-size: 1.8rem;
 }
 
 .login-button {
-    background-color: #ccc;
-    color: #111;
+    background-color: var(--secondaryforeground);
+    color: var(--primary);
     border: none;
     border-radius: 12px;
     padding: 0.6rem 2rem;

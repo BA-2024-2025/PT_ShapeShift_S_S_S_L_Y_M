@@ -1,5 +1,4 @@
 import {jwtDecode} from 'https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/+esm';
-import {getUsernameFromURL} from './Set_Achievements.js'
 function getUsername(){
 
     let data = localStorage.getItem('userObject');

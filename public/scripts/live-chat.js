@@ -1,7 +1,19 @@
 // Connect to WebSocket server
 var state = "close"
 
-const ws = new WebSocket('ws://nzempsv:8080');
+const ws = new WebSocket('ws://nluginbuehlsi:8080');
+
+function getUsername() {
+    try{
+        let data = localStorage.getItem('userObject');
+        return JSON.parse(data[0])
+    }catch(e){
+        console.log(e)
+        return "Anonymus";
+    }
+}
+
+const username = getUsername();
 
 ws.onopen = function () {
     ws.readyState = WebSocket.OPEN;
@@ -12,7 +24,7 @@ function sendMessage() {
     const input = document.getElementById('messageInput');
     const message = input.value;
     if (message) {
-        ws.send(message);  // Send message to the WebSocket server
+        ws.send(username+": "+ message);  // Send message to the WebSocket server
         input.value = '';  // Clear input field
     }
 }
@@ -38,7 +50,12 @@ ws.onmessage = async (event) => {
     const chat = document.getElementById('chat');
     const message = document.createElement("p");
     message.innerText = messages;
-    message.classList.add('message');
+    if (messages.includes(username)) {
+        message.classList.add('message');
+        message.classList.add('self');
+    }else {
+        message.classList.add('message');
+    }
     chat.appendChild(message);
     chat.scrollTop = chat.scrollHeight;
 };
