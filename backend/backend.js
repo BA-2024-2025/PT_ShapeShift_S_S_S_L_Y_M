@@ -169,6 +169,7 @@ app.post('/run/insert_score',authenticate, async (req, res) => {
         let user = req.body;
         service.addRun(user, res);
         service.automatic_topscore(user);
+        service.changeUserAchievements(user);
     }
 })
 
@@ -216,6 +217,8 @@ app.post('/user/best_placement/:place', authenticate, async (req,res) => {
 
 
 let server = http.createServer(app);
+
+export default app;
 
 server.listen(3000, () => {
     console.log("Server is running on port 3000");
