@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
+  <link rel="stylesheet" href="../public/css/Style_Navbar.css">
+  <link rel="stylesheet" href="../public/css/Style_contacts.css">
+  <link rel="stylesheet" href="../public/css/Style_Login_popup.css">
+  <script type="module" src="../public/scripts/index.js"></script>
+  <script src="../public/scripts/login-popup-close.js"></script>
+</head>
+<body>
+<div class="navContainer">
+  <div class="logoContainer">
+    <a href="index.html">
+      <h1 class="logo" style="color:var(--primary)">ShapeShift</h1>
+    </a>
+  </div>
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      <li class="navItem">
+        <a href="index.html" class="nav-link">Home</a>
+      </li>
+      <li class="navItem">
+        <a href="./leaderboard.html" class="nav-link">Leaderboard</a>
+      </li>
+      <li class="navItem">
+        <a href="./contacts.html" class="nav-link">Contact</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="loginContainer">
+    <div class="login-icon">
+      <a href="index.html" class="login-icon">
+        <i class="fa-regular fa-user"></i>
+      </a>
+      <ul class="login-menu">
+        <li class="login-element">
+          <a href="./login.html" class="login login-text">Login</a>
+        </li>
+        <li class="login-element">
+          <a href="./settings.html" class="settings login-text">Settings</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mobile-menu">
+      <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
+      <ul class="mobile-menu-menu">
+        <li class="mobile-menu-item">
+          <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a href="./leaderboard.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Ranking</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a href="./settings.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a href="./contacts.html" class="mobile-menu-link"><i class="fa-solid fa-address-book"></i> Contact</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a href="./login.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="contactContainer">
+  <div class="contact-title">
+    <h1 id="contact-title">Contact</h1>
+  </div>
+  <div class="contact-form">
+    <p>ICT-Campus</p>
+    <p>Engehaldenstrasse 26</p>
+    <p>3030 Bern</p>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7008.978316832575!2d7.435724254466575!3d46.95186060304541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e391309a50b11%3A0xa737841ff19a9ded!2sICT%20Campus%20Post!5e1!3m2!1sen!2sch!4v1742897427715!5m2!1sen!2sch" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <h1 id="contact-sheet">contact sheet</h1>
+    <form action="mailto:matthias.bussmann@ict-campus.net" method="post" enctype="text/plain">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="firstname" placeholder="Your name..">
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your email..">
+      <label for="subject">Subject</label>
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      <input id="form-submit" type="submit" value="Send">
+    </form>
+
+
+  </div>
+</div>
+<div class="popup-container">
+  <div class="popup">
+    <div class="popup-content">
+      <h1 class="preview-text">Welcome to</h1>
+      <h1 class="preview-text title-colored">ShapeShift</h1>
+
+      <a href="login.html" class="login-button">Login</a>
+
+      <div class="close" onclick="closePopup()">
+        <p>Continue without an account</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="imprint_floater">
+  <i class="fa-solid fa-circle-info fa-2xl" id="imprint_icon" onclick="window.location.href='./imprint.html'"></i>
+</div>
+</body>
+</html>

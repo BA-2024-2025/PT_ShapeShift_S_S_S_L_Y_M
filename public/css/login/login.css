@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+* {
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
+  text-decoration: none;
+}
+body{
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  font-family: var(--font);
+  display: flex;
+  flex-direction: column;
+}
+
+.back{
+  position: absolute;
+  color: white;
+  left: 5%;
+  top: 10%;
+}
+.back>h1{
+  font-size: 3rem;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.logo-text {
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+.user {
+  height: 60%;
+  cursor: pointer;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 400px;
+  overflow-y: overlay;
+}
+
+.title-small {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.title-main {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.input-box {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--input-bg);
+  font-size: 1rem;
+  color: #333;
+}
+
+.login-button {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: var(--accent);
+  color: var(--text);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.signup-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.signup-link a {
+  color: var(--primary);
+  text-decoration: none;
+}
