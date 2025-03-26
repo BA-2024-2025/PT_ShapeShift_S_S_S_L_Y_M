@@ -26,14 +26,6 @@ export function explosionSound(){
     audio.volume = 0.5;
     audio.play().catch(error => console.log("Autoplay blockiert:", error));
 }
-
-export function messageSound(){
-    const message = '../public/music/ring.wav';
-    const messageAudio = new Audio(message);
-
-    audio.volume = 1;
-    audio.play().catch(error => console.log("Autoplay blockiert:", error));
-}
 /*
 const audio = document.getElementById("soundIcon");
 const muteButton = document.getElementById("soundIcon");
