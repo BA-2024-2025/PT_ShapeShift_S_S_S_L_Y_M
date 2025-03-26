@@ -1,5 +1,6 @@
 // Funktion zum Auslesen des Benutzernamens aus der URL
 
+const ip = localStorage.getItem('ip')
 
 export function getUsernameFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // API-URL mit dem Benutzernamen
-        const response = await fetch(`http://nzempsv:3000/user/findByName/${username}`);
+        const response = await fetch(`http://${ip}:3000/user/findByName/${username}`);
 
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Benutzerdaten für ${username}`);
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error(error);
         }
 
-        const userRuns = await fetch(`http://nzempsv:3000/runs/${username}`);
+        const userRuns = await fetch(`http://${ip}:3000/runs/${username}`);
         const userRunData = await userRuns.json();
 
         const scoreContainer = document.getElementById('score-container');

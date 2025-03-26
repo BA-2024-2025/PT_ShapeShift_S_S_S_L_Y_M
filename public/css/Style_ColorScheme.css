@@ -3,6 +3,7 @@
 
 /*default*/
 :root {
+    overflow-x:hidden;
     --text: #ffffff !important;
     --foreground: #292929 !important;
     --secondaryforeground: #222121 !important;

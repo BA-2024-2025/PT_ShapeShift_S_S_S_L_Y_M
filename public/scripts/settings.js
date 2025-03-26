@@ -1,6 +1,8 @@
 import {jwtDecode} from 'https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/+esm';
-function getUsername(){
 
+const ip = localStorage.getItem('ip')
+
+function getUsername(){
     let data = localStorage.getItem('userObject');
     data = JSON.parse(data)
     console.log(data)
@@ -34,7 +36,7 @@ const getEmail = () => {
 };
 const email = await getEmail();
 
-const userConverter = await fetch(`http://nzempsv:3000/user/findByEmail/${email}`);
+const userConverter = await fetch(`http://${ip}:3000/user/findByEmail/${email}`);
 const userName = await userConverter.json();
 
 let userObject = new Array()
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // API-URL mit dem Benutzernamen
-        const response = await fetch(`http://nzempsv:3000/user/findByName/${username}`);
+        const response = await fetch(`http://${ip}:3000/user/findByName/${username}`);
 
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Benutzerdaten für ${username}`);
@@ -125,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error(error);
         }
 
-        const userRuns = await fetch(`http://nzempsv:3000/runs/${username}`);
+        const userRuns = await fetch(`http://${ip}:3000/runs/${username}`);
         const userRunData = await userRuns.json();
 
         const scoreContainer = document.getElementById('score-container');

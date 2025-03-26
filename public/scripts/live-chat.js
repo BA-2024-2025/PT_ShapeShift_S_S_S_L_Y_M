@@ -1,12 +1,17 @@
 // Connect to WebSocket server
 var state = "close"
 
-const ws = new WebSocket('ws://nluginbuehlsi:8080');
+const ip = localStorage.getItem('ip')
+
+const ws = new WebSocket(`ws://${ip}:8080`);
 
 function getUsername() {
     try{
         let data = localStorage.getItem('userObject');
-        return JSON.parse(data[0])
+        data = JSON.parse(data)
+        console.log(data)
+        console.log(data[0])
+        return data[0]
     }catch(e){
         console.log(e)
         return "Anonymus";

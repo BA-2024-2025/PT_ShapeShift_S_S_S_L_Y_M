@@ -1,3 +1,4 @@
+const ip = localStorage.getItem('ip');
 
 const form = document.getElementById('signup-form');
 const usernameInput = document.getElementById('username');
@@ -93,7 +94,7 @@ form.addEventListener('submit', async (e) => {
 
   // Daten an Backend senden
   try {
-    const response = await fetch('http://nzempsv:4000/signup', {
+    const response = await fetch(`http://${ip}:4000/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: username, password, email })

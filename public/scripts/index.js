@@ -1,6 +1,10 @@
 import {jwtDecode} from 'https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/+esm';
 import {getScore} from "./HomeStats.js";
 
+localStorage.setItem('ip', '172.16.2.144');
+
+const ip = localStorage.getItem('ip')
+
 const getUser = () => {
     const token = localStorage.getItem('accessToken');
     if (token) {
@@ -34,7 +38,6 @@ function openPopup() {
     if (popupContainer) { // Check if the element exists
         popupContainer.style.transform = 'scale(1)';
         popupContainer.style.opacity = '1';
-        document.body.style.overflow = "hidden";
     } else {
         console.log('Element with class "popup-container" not found, but ShapeShift should be working anyway.');
     }
@@ -47,7 +50,7 @@ export function sendRun(level) {
     userData = JSON.parse(userData);
 
     //sends data to server
-    fetch("http://nzempsv:3000/run/insert_score", {
+    fetch(`http://${ip}:3000/run/insert_score`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',

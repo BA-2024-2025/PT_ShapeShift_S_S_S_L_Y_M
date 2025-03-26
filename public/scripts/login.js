@@ -1,3 +1,5 @@
+const ip = localStorage.getItem('ip')
+
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
   
@@ -14,7 +16,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     }
 
     try {
-        const response = await fetch("http://nzempsv:4000/login", {
+        const response = await fetch(`http://${ip}:4000/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
