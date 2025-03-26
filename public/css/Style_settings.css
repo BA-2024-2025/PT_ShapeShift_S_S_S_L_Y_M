@@ -164,6 +164,7 @@ i {
 }
 
 .achievement-container {
+    display: flex;
     text-align: center;
     margin-bottom: 2em;
     margin-top: 2em;
@@ -547,4 +548,6 @@ button {
     background-color: #ff5959;
     transform: scale(1.1);
 }
-
+[class$='-theme']{
+    display: none;
+}
