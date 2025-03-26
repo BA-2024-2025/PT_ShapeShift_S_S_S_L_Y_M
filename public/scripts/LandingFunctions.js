@@ -2,7 +2,7 @@ import { setBlockActive, gameLost, currentActiveTetromino, blockActive, gameLoop
 import { GhostTetromino } from "./GhostTetromino.js";
 import { drawBattlefield } from "./GridFunctions.js";
 import { BombTetromino } from "./BombTetromino.js";
-import { applyGravity, checkFullLines, removeLine } from "./LineRemovementFunctions.js";
+import { applyGravity, checkFullLines, dropFloatingBlocks, removeLine } from "./LineRemovementFunctions.js";
 import { delay } from "./GameFunctions.js";
 import { TTetromino } from "./TTetromino.js";
 import { ensureGrounded } from "./LineRemovementFunctions.js";
@@ -28,13 +28,14 @@ export async function blockLanding(tetromino, worker, eventFunction) {
         worker.terminate();
 
         console.log("Bomb landed");
-        await delay(2000);
+        await delay(1000);
         
         // 💣
         await explodeBomb(tetromino);
         await delay(30);
         tetromino.isExploded = true; 
         await applyGravity(checkFullLines(tetromino));
+        await dropFloatingBlocks();
         ensureGrounded();
 
         if (counter > 0) {
@@ -52,8 +53,8 @@ export async function blockLanding(tetromino, worker, eventFunction) {
                 }
             }
         }
-            setTimeout(() => gameLoop(), 100);
-            return; 
+        setTimeout(() => gameLoop(), 100);
+        return; 
     }
 
     if (counter > 0) {
@@ -80,6 +81,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
         await removeLine(linesToRemove);
         console.log("\n\n\n\n\n\n\n\n\n\n\n" + "Removed lines to remove" + linesToRemove);
         await applyGravity(linesToRemove);
+        await dropFloatingBlocks();
         ensureGrounded();
     }
 
@@ -117,6 +119,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
 async function explodeBomb(tetromino) {
     const positionT = tetromino.getElementIdGrid(tetromino.getGridPosition())
     const affectedLines = new Set();
+    const affectedFields = new Set();
 
     positionT.forEach(pos => {
         const x = parseInt(pos[0]);
@@ -127,16 +130,30 @@ async function explodeBomb(tetromino) {
                 const newX = x + dx;
                 const newY = y + dy;
                 if (newX >= 0 && newX < 10 && newY >= 0 && newY < 21) {
-                    const field = document.getElementById(newX + "" + newY);
-                    if (field) {
-                        field.style.backgroundColor = "#01010101";
-                        field.style.boxShadow = "none";
+                    affectedFields.add(`${newX}${newY}`);
                         affectedLines.add(newY);
                     }
                 }
             }
-        }
     });
+ 
+    let scoreIncrement = 0;
+    for (const fieldId of affectedFields) {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            const computedStyle = window.getComputedStyle(field);
+            if (computedStyle.backgroundColor !== "rgba(1, 1, 1, 0.004)") {
+                field.style.backgroundColor = "#FF4500"; // Explosionsfarbe
+                await delay(30);
+                scoreIncrement += 1;
+            }
+            field.style.backgroundColor = "#01010101";
+            field.style.boxShadow = "none";
+        }
+    }
+ 
+ 
+    return Array.from(affectedLines).sort((a, b) => b - a); // Rückgabe für applyGravity
 }
 
 export async function checkIfLanded(activeTetromino, worker, eventFunction) {
