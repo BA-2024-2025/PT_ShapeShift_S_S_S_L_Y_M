@@ -15,6 +15,8 @@ import { BombTetromino } from "./BombTetromino.js";
 import { resetScore, sendBlocks, sendScore, resetBlocks, getScore } from "./HomeStats.js"
 import { changeNextBlockImage } from "./HomeStats.js"
 import { sendRun } from "./index.js";
+import { dropFloatingBlocks } from "./LineRemovementFunctions.js";
+import { LineClearTetromino } from "./LineClearTetromino.js";
 
 export let removeLineWaiter = false;
 
@@ -236,6 +238,7 @@ function whichKey(activeTetromino, worker, key) {
 }
 
 export async function gameLoop() {
+    await dropFloatingBlocks();
     removeLineWaiter = false;
     if (blockActive) return;
     blockActive = true;
