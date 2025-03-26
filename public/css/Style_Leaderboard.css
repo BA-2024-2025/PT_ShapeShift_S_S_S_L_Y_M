@@ -77,7 +77,7 @@ tr:hover{
     display: grid;
     grid-template-columns:0.15fr 0.56fr 1.1fr 1fr;
 }
-.leaderboard-row{
+tr{
     display: grid;
     grid-template-columns: 0.15fr 0.56fr 1.1fr 1fr;
 }

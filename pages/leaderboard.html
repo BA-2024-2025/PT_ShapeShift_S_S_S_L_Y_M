@@ -17,23 +17,26 @@
 <body class="">
 <div class="navContainer">
     <div class="logoContainer">
-        <a href="./index.html">
+        <a href="index.html">
             <h1 class="logo" style="color:var(--primary)">ShapeShift</h1>
         </a>
     </div>
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="navItem">
-                <a href="./index.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link">Home</a>
             </li>
             <li class="navItem">
                 <a href="./leaderboard.html" class="nav-link">Leaderboard</a>
+            </li>
+            <li class="navItem">
+                <a href="./contacts.html" class="nav-link">Contact</a>
             </li>
         </ul>
     </nav>
     <div class="loginContainer">
         <div class="login-icon">
-            <a href="./login.html" class="login">
+            <a href="index.html" class="login-icon">
                 <i class="fa-regular fa-user"></i>
             </a>
             <ul class="login-menu">
@@ -49,13 +52,16 @@
             <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
             <ul class="mobile-menu-menu">
                 <li class="mobile-menu-item">
-                    <a href="./index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="./leaderboard.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Leaderboard</a>
+                    <a href="./leaderboard.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Ranking</a>
                 </li>
                 <li class="mobile-menu-item">
                     <a href="./settings.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                </li>
+                <li class="mobile-menu-item">
+                    <a href="./contacts.html" class="mobile-menu-link"><i class="fa-solid fa-address-book"></i> Contact</a>
                 </li>
                 <li class="mobile-menu-item">
                     <a href="./login.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
@@ -112,7 +118,7 @@
             <div class="live-chat-content" id="chat"></div>
             <div class="live-chat-inputfield">
                 <form onsubmit="event.preventDefault();">
-                    <input type="text" class="live-chat-input-field" id="messageInput" placeholder="Message">
+                    <input type="text" class="live-chat-input-field" id="messageInput" placeholder="Message...">
                     <button class="live-chat-input-button" type="submit" onclick="sendMessage()"><i class="fa-regular fa-paper-plane"></i></button>
                 </form>
             </div>

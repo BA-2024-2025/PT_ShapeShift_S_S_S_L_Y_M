@@ -1,7 +1,9 @@
+const ip = localStorage.getItem('ip')
+
 function logOut() {
     const refreshToken = localStorage.getItem('refreshToken');
 
-    fetch("http://nzempsv:4000/logout", {
+    fetch("http://${ip}:4000/logout", {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

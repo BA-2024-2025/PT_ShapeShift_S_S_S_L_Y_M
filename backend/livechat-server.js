@@ -24,7 +24,7 @@ wss.on('connection', (ws) => {
     });
 
     // Send a welcome message to the new client
-    ws.send('Welcome to the live chat!');
+    ws.send('System: Welcome to the live chat!');
 });
 
 console.log('Live chat server is running on ws://localhost:8080');
