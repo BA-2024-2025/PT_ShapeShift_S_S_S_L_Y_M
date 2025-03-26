@@ -259,7 +259,7 @@ export async function gameLoop() {
             break
         case 2:
             activeTetromino = nextBlock;
-            let levelTwoArray = [ITetromino,OTetromino,TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,SwitchTetromino, GhostTetromino, BombTetromino];
+            let levelTwoArray = [ITetromino,OTetromino,TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,SwitchTetromino, GhostTetromino, BombTetromino, LineClearTetromino, LineClearTetromino];
             let randomTetrominoTwo = levelTwoArray[Math.floor(Math.random() * levelTwoArray.length)];
             nextImage = randomTetrominoTwo
             nextBlock = new randomTetrominoTwo
@@ -267,7 +267,7 @@ export async function gameLoop() {
             break
         case 3:
             activeTetromino = nextBlock;
-            let levelThreeArray = [TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,UTetromino,SwitchTetromino, SwitchTetromino, GhostTetromino, GhostTetromino, BombTetromino, BombTetromino];
+            let levelThreeArray = [TTetromino,TTetromino,LTetromino,LTetromino,JTetromino,JTetromino,STetromino,STetromino,ZTetromino,ZTetromino,PlusTetromino,PlusTetromino,PlusTetromino,UTetromino,UTetromino,UTetromino,SwitchTetromino, SwitchTetromino, GhostTetromino, GhostTetromino, BombTetromino, BombTetromino, LineClearTetromino];
             let randomTetrominoThree = levelThreeArray[Math.floor(Math.random() * levelThreeArray.length)];
             nextImage = randomTetrominoThree
             nextBlock = new randomTetrominoThree
