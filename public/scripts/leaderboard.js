@@ -1,8 +1,7 @@
-const ip = localStorage.getItem('ip')
-
-
 document.addEventListener('DOMContentLoaded', async () => {
     const table = document.getElementById('table');
+
+    const ip = localStorage.getItem('ip')
 
     try {
         const response = await fetch(`http://${ip}:3000/users`);

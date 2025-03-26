@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css');
-
+@import url('./Style_Icon_Imprint.css');
 /*default*/
 :root {
     overflow-x:hidden;
@@ -60,9 +60,9 @@ body.flashBang{
 }
 body.swiss{
     --text: #ffffff !important;
-    --foreground: rgb(255, 64, 64) !important;
-    --secondaryforeground: #ff0000 !important;
-    --background: #8a1111 !important;
+    --foreground: rgb(197, 11, 19) !important;
+    --secondaryforeground: #e33227 !important;
+    --background: #D9291DFF !important;
     --primary: #ffffff !important;
     --accent: #ffffff !important;
     --secondary: #ffffff !important;

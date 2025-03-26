@@ -10,9 +10,6 @@ function getUsername(){
     return data[0]
 }
 
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     // Prüfen, ob ein gespeichertes Profilbild existiert
     const savedProfilePic = localStorage.getItem("profilePic");
@@ -26,7 +23,7 @@ const getEmail = () => {
     if (token) {
         try {
             const decoded = jwtDecode(token);
-            console.log("Current User:", decoded.email);
+            console.log("Current User Email:", decoded.email);
             return decoded.email;
         } catch (error) {
             console.error('Invalid token or decoding failed:', error);
@@ -37,13 +34,62 @@ const getEmail = () => {
 const email = await getEmail();
 
 const userConverter = await fetch(`http://${ip}:3000/user/findByEmail/${email}`);
-const userName = await userConverter.json();
+const userFromEmail = await userConverter.json();
 
 let userObject = new Array()
-userObject[0] = userName[0].username;
+
+let userName = userFromEmail[0].username
+
+userObject[0] = userName;
 userObject[1] = email;
 
 localStorage.setItem("userObject", JSON.stringify(userObject));
+// Retrieve the 'unlockedTheme' from localStorage
+let theme = localStorage.getItem('unlockedTheme');
+if (theme) {
+    theme = JSON.parse(theme);
+} else {
+    theme = [];
+}
+
+const response = await fetch(`http://${ip}:3000/user/findByName/${userName}`);
+const data = await response.json();
+const user = data[0];
+
+if (user.beat_level3) {
+    console.log("GOLDEN");
+    theme.push("Golden");
+    localStorage.setItem('unlockedTheme', JSON.stringify(theme));
+}
+if (user.beat_level2) {
+    console.log("SILVER");
+    theme.push("Silver");
+    localStorage.setItem('unlockedTheme', JSON.stringify(theme));
+}
+if (user.beat_level1) {
+    console.log("BRONZE");
+    theme.push("Bronze");
+    localStorage.setItem('unlockedTheme', JSON.stringify(theme));
+}
+if (userName[0].username != null && !theme.includes("FlashBang")){
+    theme.push("FlashBang");
+    localStorage.setItem('unlockedTheme', JSON.stringify(theme));
+}
+if (theme.includes("Schweiz") === true) {
+    document.getElementById("swiss-theme").style.display = "block";
+}
+if (theme.includes("Golden") === true) {
+    document.getElementById("golden-theme").style.display="block";
+}
+if (theme.includes("Silver")) {
+    document.getElementById("silver-theme").style.display = "block";
+}
+if ( theme.includes("Bronze")) {
+    document.getElementById("bronze-theme").style.display = "block";
+}
+if ( theme.includes("FlashBang")) {
+    document.getElementById("flashbang-theme").style.display = "block";
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
     const username = getUsername() // Den Benutzernamen aus der URL holen

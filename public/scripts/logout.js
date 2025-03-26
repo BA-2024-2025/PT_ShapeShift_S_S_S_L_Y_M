@@ -11,6 +11,5 @@ function logOut() {
         body: JSON.stringify({refreshToken})
     }).then(r => console.log(r));
 
-    localStorage.removeItem('accessToken', data.accessToken);  // Save token to localStorage
-    localStorage.removeItem('refreshToken', data.refreshToken)
+    localStorage.clear();
 }

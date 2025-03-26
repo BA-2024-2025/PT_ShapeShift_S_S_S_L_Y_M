@@ -4,8 +4,11 @@ import { drawBattlefield } from "./GridFunctions.js";
 import { BombTetromino } from "./BombTetromino.js";
 import { applyGravity, checkFullLines, removeLine } from "./LineRemovementFunctions.js";
 import { delay } from "./GameFunctions.js";
+import { TTetromino } from "./TTetromino.js";
 import { ensureGrounded } from "./LineRemovementFunctions.js";
 import {sendScore} from "./HomeStats.js";
+import { LineClearTetromino } from "./LineClearTetromino.js";
+import {explosionSound} from "./music-sound.js";
 
 export let counter = 0;
 
@@ -28,7 +31,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
         worker.terminate();
 
         console.log("Bomb landed");
-        await delay(2000);
+        await delay(1000);
         
         // 💣
         await explodeBomb(tetromino);
@@ -36,6 +39,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
         tetromino.isExploded = true; 
         await applyGravity(checkFullLines(tetromino));
         ensureGrounded();
+        explosionSound();
 
         if (counter > 0) {
             for (let y = 0; y < 21; y++) {
@@ -54,6 +58,41 @@ export async function blockLanding(tetromino, worker, eventFunction) {
         }
             setTimeout(() => gameLoop(), 100);
             return; 
+    } else if (tetromino instanceof LineClearTetromino) {
+        if (counter > 0) {
+            counter--;
+        }
+        setBlockActive(false);
+        drawBattlefield(tetromino);
+        document.removeEventListener("keydown", eventFunction);
+        worker.postMessage("reset");
+        worker.postMessage("stop");
+        worker.terminate();
+
+
+        let positionT = tetromino.getElementIdGrid(tetromino.getGridPosition());
+        let yPosition = [...new Set(positionT.map(pos => parseInt(pos.slice(1))))]
+        await removeLine(yPosition);
+        await applyGravity(yPosition);
+        ensureGrounded();
+
+        if (counter > 0) {
+            for (let y = 0; y < 21; y++) {
+                for (let x = 0; x < 10; x++) {
+                    let field = document.getElementById(x + "" + y);
+                    if (field) field.style.opacity = "0.05";
+                }
+            }
+        } else {
+            for (let y = 0; y < 21; y++) {
+                for (let x = 0; x < 10; x++) {
+                    let field = document.getElementById(x + "" + y);
+                    if (field) field.style.opacity = "1";
+                }
+            }
+        }
+        setTimeout(() => gameLoop(), 100);
+        return;
     }
 
     if (counter > 0) {
@@ -117,27 +156,41 @@ export async function blockLanding(tetromino, worker, eventFunction) {
 async function explodeBomb(tetromino) {
     const positionT = tetromino.getElementIdGrid(tetromino.getGridPosition())
     const affectedLines = new Set();
+    const affectedFields = new Set();
 
     positionT.forEach(pos => {
         const x = parseInt(pos[0]);
         const y = parseInt(pos.slice(1));
 
-        for (let dy = -1; dy <= 3; dy++) {
-            for (let dx = -1; dx <= 3; dx++) {
+        for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
                 const newX = x + dx;
                 const newY = y + dy;
                 if (newX >= 0 && newX < 10 && newY >= 0 && newY < 21) {
-                    const field = document.getElementById(newX + "" + newY);
-                    if (field) {
-                        field.style.backgroundColor = "#01010101";
-                        field.style.boxShadow = "none";
-                        sendScore(1);
-                        affectedLines.add(newY);
+                    affectedFields.add(`${newX}${newY}`); // Eindeutige ID als String
+                    affectedLines.add(newY); // Für Gravitation
                     }
                 }
             }
+        });
+
+    let scoreIncrement = 0;
+    for (const fieldId of affectedFields) {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            const computedStyle = window.getComputedStyle(field);
+            if (computedStyle.backgroundColor !== "rgba(1, 1, 1, 0.004)") {
+                field.style.backgroundColor = "#FF4500"; // Explosionsfarbe
+                await delay(30);
+                scoreIncrement += 1;
+            }
+            field.style.backgroundColor = "#01010101";
+            field.style.boxShadow = "none";
         }
-    });
+    }
+
+
+    return Array.from(affectedLines).sort((a, b) => b - a); // Rückgabe für applyGravity
 }
 
 export async function checkIfLanded(activeTetromino, worker, eventFunction) {
@@ -194,6 +247,11 @@ export async function checkIfLanded(activeTetromino, worker, eventFunction) {
             break;
         case "#FF0000" || "FEFEFE": // BombTetromino
             if (activeTetromino.shiftY === 19) {
+                blockLanding(activeTetromino, worker, eventFunction);
+            }
+            break;
+        case "#cba201": // linecleartetromino
+            if (activeTetromino.shiftY === 20) {
                 blockLanding(activeTetromino, worker, eventFunction);
             }
             break;

@@ -1,9 +1,16 @@
-// Connect to WebSocket server
 var state = "close"
 
 const ip = localStorage.getItem('ip')
 
 const ws = new WebSocket(`ws://${ip}:8080`);
+
+function messageSound() {
+    const message = '../public/music/ring.wav';
+    const messageAudio = new Audio(message);
+
+    messageAudio.volume = 1;
+    messageAudio.play().catch(error => console.log("Autoplay blockiert:", error));
+}
 
 function getUsername() {
     try{
@@ -28,6 +35,19 @@ ws.onopen = function () {
 function sendMessage() {
     const input = document.getElementById('messageInput');
     const message = input.value;
+    if (message.toLocaleLowerCase().includes("äuä")) {
+        // Retrieve the 'unlockedTheme' from localStorage
+        let theme = localStorage.getItem('unlockedTheme');
+        if (theme) {
+            theme = JSON.parse(theme);
+        } else {
+            theme = [];
+        }
+        if (!theme.includes("Schweiz")) {
+            theme.push("Schweiz");
+        }
+        localStorage.setItem('unlockedTheme', JSON.stringify(theme));
+    }
     if (message) {
         ws.send(username+": "+ message);  // Send message to the WebSocket server
         input.value = '';  // Clear input field
@@ -60,6 +80,7 @@ ws.onmessage = async (event) => {
         message.classList.add('self');
     }else {
         message.classList.add('message');
+        messageSound()
     }
     chat.appendChild(message);
     chat.scrollTop = chat.scrollHeight;
