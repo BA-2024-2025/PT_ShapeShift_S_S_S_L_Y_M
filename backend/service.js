@@ -1,4 +1,6 @@
 import mysql from "mysql2";
+import {query} from "express";
+
 
 let  connection = mysql.createConnection({
     host: 'localhost',
@@ -84,6 +86,7 @@ export async function getAllUsers(req, res) {
                 } else {
                     resolve(results); // Resolve the promise with the results
                 }
+                
             });
         });
         await res.json(results);
@@ -104,9 +107,11 @@ export async function getUsersByID(req, res, id) {
                 } else {
                     resolve(results); // Resolve the promise with the results
                 }
+                
             });
         });
         await res.json(results);
+        
     } catch (error) {
 
         console.error(error);
@@ -136,8 +141,12 @@ export function checkUser(user) {
                     console.log("User found:", results);
                     return resolve(true); // User exists
                 }
+
+
             }
+
         );
+        
     });
 }
 
@@ -155,7 +164,9 @@ export function checkUserName (user, res) {
             else {
                 res.status(200).json({"exist": true});
             }
+            
         })
+        
     } catch(err) {
         res.status(400);
     }
@@ -183,7 +194,9 @@ export  function changePassword (user,res) {
             } else {
                 res.status(200).send("Password updated successfull");
             }
+            
         })
+        
     } catch (error) {
         res.status(400).send("Something wrong with Request or User does not exist");
     }
@@ -203,7 +216,9 @@ export  function changeEmail (user,res) {
             } else {
                 res.status(200).send("email updated successfull");
             }
+            
         })
+        
     } catch (error) {
         res.status(400).send("Something not right with Request or User does not exist");
         console.log(error)
@@ -226,7 +241,9 @@ export  function changeUsername (user,res) {
             } else {
                 res.status(200).send("Username updated successfull");
             }
+            
         })
+        
     } catch (error) {
         res.status(400).send("Something is not right with your Request or User does not exist");
     }
@@ -241,7 +258,9 @@ export  function changeTopScore (user,res) {
             } else {
                 res.status(200).send("Score updated successfull");
             }
+            
         })
+        
     } catch (error) {
         res.status(400).send("Number to Large or User does not exist");
     }
@@ -265,7 +284,9 @@ export  function addRun (user,res) {
                 res.status(200).send("Score updated successfull");
 
             }
+            
         })
+        
     } catch (error) {
         res.status(400).send("Number to Large or User does not exist");
     }
@@ -283,7 +304,9 @@ export  function findByName (name,res) {
             } else {
                 res.status(200).send(results);
             }
+            
         })
+        
     } catch (error) {
         res.status(400).send("Something with your Request is Wrong or User does not exist");
     }
@@ -301,7 +324,9 @@ export  function findByEmail (email,res) {
                 res.status(200).send(results);
                 console.log("Result Querry:" + results);
             }
+            
         })
+        
     } catch (error) {
         res.status(400).send("Something with your Request is Wrong or User does not exist");
     }
@@ -319,7 +344,9 @@ export function automatic_topscore(user){
 
                 console.log("Topscore got sucessfully updatet");
             }
+            
         })
+        
     }catch (error) {
         console.log(error);
     }
@@ -341,9 +368,11 @@ export function getAllRunsOfUser(res,name){
             else {
                 res.send(results);
             }
+            
 
 
         })
+        
     }catch (error) {
         res.status(400).send("Something went wrong");
     }
@@ -387,6 +416,7 @@ export function setAchievments(res,user,level){
             }
             res.status(200).send("OK");
         })
+        
 
     }catch (error) {
         console.log(error)
@@ -400,9 +430,105 @@ export function setBestPlace(user, res, place){
         connection.query('UPDATE user u    JOIN (SELECT id_user FROM user WHERE email = ?) subquery    ON u.id_user = subquery.id_user    SET u.best_placement = ?',[user.email, place], function (err, results) {
             res.status(200).send("Update Worked")
         })
+
+        
     }
     catch (error) {
         res.status(400).send("Something went wrong");
     }
 }
+
+
+export function changeUserAchievements(user) {
+    let Updatequery;
+
+    try {
+        connection.query('SELECT beat_level1, beat_level2, beat_level3 FROM user WHERE email = ?', [user.email], function (err, results) {
+
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            if (!results || results.length === 0) {
+                console.log("User does not exist. Can't update level");
+                return;
+            }
+
+            let uLevel = 0;
+            const userObject = results[0];
+            console.log(userObject);
+            console.log(userObject.beat_level1);
+            const level = user.level;
+
+            // Determine current user level
+            if (userObject.beat_level1 === true || !userObject.beat_level1 === null) {
+                uLevel = 1;
+            }
+            if (userObject.beat_level2 === true || !userObject.beat_level2 === null) {
+                uLevel = 2;
+            }
+            if (userObject.beat_level3 === true || !userObject.beat_level3 === null) {
+                uLevel = 3;
+            }
+            console.log("User Level"+user.level)
+
+            // Determine the update query based on user level
+            switch (user.level) {
+                case 1:
+                    console.log("Level 1");
+                    console.log("ULevel: " + uLevel);
+                    if (user.level > uLevel) {
+
+                        Updatequery = 'UPDATE user u JOIN (SELECT id_user FROM user WHERE email = ?) subquery ON u.id_user = subquery.id_user SET u.beat_level1 = true';
+                    }
+                    break;
+
+                case 2:
+                    if (user.level > uLevel) {
+                        Updatequery = 'UPDATE user u JOIN (SELECT id_user FROM user WHERE email = ?) subquery ON u.id_user = subquery.id_user SET u.beat_level2 = true, u.beat_level1 = true';
+                    }
+                    break;
+
+                case 3:
+                    if (user.level > uLevel) {
+                        Updatequery = 'UPDATE user u JOIN (SELECT id_user FROM user WHERE email = ?) subquery ON u.id_user = subquery.id_user SET u.beat_level3 = true, u.beat_level2 = true, u.beat_level1 = true';
+                    }
+                    break;
+
+                default:
+                    console.log("User does not exist. Can't update level or user already at level 3");
+                    return;
+            }
+
+            // Execute the update query if it was set
+            if (Updatequery) {
+                console.log("Executing Update query");
+
+                // Pass user.email as an array to the query parameters
+                connection.query(Updatequery, [user.email], function (err, results) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log("Level got updated successfully");
+                    }
+                });
+            } else {
+                console.log(Updatequery);
+                console.log("No update needed.");
+            }
+
+        });
+    } catch (error) {
+        console.log(error);
+        console.log("Something went wrong with the changeUserAchievements function.");
+    }
+}
+
+
+
+
+
+
+
 

@@ -75,6 +75,7 @@ function generateAccessToken(user) {
         { expiresIn: '21d' }
     );
 }
+export default app;
 
 app.listen(4000, () => {
     console.log("Auth Server is Running on Port 4000");
