@@ -78,7 +78,9 @@ ws.onmessage = async (event) => {
     if (messages.includes(username)) {
         message.classList.add('message');
         message.classList.add('self');
-    }else {
+    }else if (messages.includes("System")) {
+        message.classList.add('message');
+    } else {
         message.classList.add('message');
         messageSound()
     }
