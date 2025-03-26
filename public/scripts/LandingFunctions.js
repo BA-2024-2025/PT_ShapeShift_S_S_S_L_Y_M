@@ -114,9 +114,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
 }
 
 
-async function
-
-plodeBomb(tetromino) {
+async function explodeBomb(tetromino) {
     const positionT = tetromino.getElementIdGrid(tetromino.getGridPosition())
     const affectedLines = new Set();
 
