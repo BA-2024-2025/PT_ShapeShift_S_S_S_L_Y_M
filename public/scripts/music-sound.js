@@ -1,19 +1,15 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
-        const gameSong = '../public/music/game-play.wav';
+    if ((window.location.pathname.endsWith("index.html") || window.location.pathname === "/") && localStorage.getItem('theme') === "swiss") {
+        const gameSong = '../public/music/örgelihuus.wav';
         const audio = new Audio(gameSong); // Audio-Objekt erstellen
 
         audio.loop = true;  // Endlos wiederholen
         audio.volume = 0.5; // Lautstärke anpassen (optional)
         audio.play().catch(error => console.log("Autoplay blockiert:", error));
-    }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/" || theme = swiss) {
-        const gameSong = '../public/music/örgelihuus.wav';
+    }else if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
+        const gameSong = '../public/music/game-play.wav';
         const audio = new Audio(gameSong); // Audio-Objekt erstellen
 
         audio.loop = true;  // Endlos wiederholen
@@ -37,15 +33,16 @@ export function messageSound(){
     audio.volume = 1;
     audio.play().catch(error => console.log("Autoplay blockiert:", error));
 }
-
+/*
 const audio = document.getElementById("soundIcon");
 const muteButton = document.getElementById("soundIcon");
+
 
 muteButton.addEventListener("click", function () {
     audio.muted = !audio.muted;
 });
 
-/*
+
 const lobbyQueue = [
     '../public/music/game-play.wav'
 ];

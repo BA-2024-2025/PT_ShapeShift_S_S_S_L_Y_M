@@ -1,9 +1,16 @@
-// Connect to WebSocket server
 var state = "close"
 
 const ip = localStorage.getItem('ip')
 
 const ws = new WebSocket(`ws://${ip}:8080`);
+
+function messageSound() {
+    const message = '../public/music/ring.wav';
+    const messageAudio = new Audio(message);
+
+    messageAudio.volume = 1;
+    messageAudio.play().catch(error => console.log("Autoplay blockiert:", error));
+}
 
 function getUsername() {
     try{
@@ -73,6 +80,7 @@ ws.onmessage = async (event) => {
         message.classList.add('self');
     }else {
         message.classList.add('message');
+        messageSound()
     }
     chat.appendChild(message);
     chat.scrollTop = chat.scrollHeight;

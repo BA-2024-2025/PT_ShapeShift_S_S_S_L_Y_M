@@ -60,9 +60,9 @@ body.flashBang{
 }
 body.swiss{
     --text: #ffffff !important;
-    --foreground: rgb(255, 64, 64) !important;
-    --secondaryforeground: #ff0000 !important;
-    --background: #8a1111 !important;
+    --foreground: rgb(197, 11, 19) !important;
+    --secondaryforeground: #e33227 !important;
+    --background: #D9291DFF !important;
     --primary: #ffffff !important;
     --accent: #ffffff !important;
     --secondary: #ffffff !important;
