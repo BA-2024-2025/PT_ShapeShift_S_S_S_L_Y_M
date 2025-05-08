@@ -1,7 +1,7 @@
 import {jwtDecode} from 'https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/+esm';
 import {getScore} from "./HomeStats.js";
 
-localStorage.setItem('ip', 'nzemptsv');
+localStorage.setItem('ip', 'shapeshift-crdgcqfke2czddft.northeurope-01.azurewebsites.net');
 
 window.onload = function() {
     const iframe = document.getElementById("iframe");
