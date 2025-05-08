@@ -2,7 +2,7 @@ var state = "close"
 
 const ip = localStorage.getItem('ip')
 
-const ws = new WebSocket(`ws://${ip}:8080`);
+const ws = new WebSocket(`ws://${ip}/chat`);
 
 function messageSound() {
     const message = '../public/music/ring.wav';

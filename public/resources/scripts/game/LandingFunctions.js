@@ -8,7 +8,7 @@ import { TTetromino } from "./TTetromino.js";
 import { ensureGrounded } from "./LineRemovementFunctions.js";
 import {sendScore} from "./HomeStats.js";
 import { LineClearTetromino } from "./LineClearTetromino.js";
-import {explosionSound} from "./music-sound.js";
+import {explosionSound} from "../music-sound.js";
 
 export let counter = 0;
 

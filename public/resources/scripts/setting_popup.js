@@ -86,7 +86,7 @@ function subbmitNewPw() {
 
     //const token = localStorage.getItem('accesToken');
     console.log(pwUpdate.value)
-    fetch('http://${ip}:3000/user/change_password', {
+    fetch('http://${ip}/user/change_password', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -103,7 +103,7 @@ function subbmitNewEmail() {
 
     console.log("Old Email "+email)
     console.log("New Email "+emailUpdate.value)
-    fetch('http://${ip}:3000/user/change_email', {
+    fetch('http://${ip}/user/change_email', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -119,7 +119,7 @@ function subbmitNewEmail() {
 function logOut() {
     const refreshToken = localStorage.getItem('refreshToken');
 
-    fetch("http://${ip}:4000/logout", {
+    fetch("http://${ip}/auth/logout", {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

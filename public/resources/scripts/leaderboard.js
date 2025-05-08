@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const ip = localStorage.getItem('ip')
 
     try {
-        const response = await fetch(`http://${ip}:3000/users`);
+        const response = await fetch(`http://${ip}/users`);
         const data = await response.json();
 
         // Add each user as a row in the table

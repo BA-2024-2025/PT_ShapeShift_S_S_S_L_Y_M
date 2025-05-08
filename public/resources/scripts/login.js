@@ -16,7 +16,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     }
 
     try {
-        const response = await fetch(`http://${ip}:4000/login`, {
+        const response = await fetch(`http://${ip}/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

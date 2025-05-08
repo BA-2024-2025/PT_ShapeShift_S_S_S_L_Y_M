@@ -1,7 +1,7 @@
 import {jwtDecode} from 'https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/+esm';
-import {getScore} from "./HomeStats.js";
+import {getScore} from "./game/HomeStats.js";
 
-localStorage.setItem('ip', 'nzemptsv');
+localStorage.setItem('ip', 'ssapi.themodcraft.net');
 
 window.onload = function() {
     const iframe = document.getElementById("iframe");
@@ -56,19 +56,24 @@ export function sendRun(level) {
     userData = JSON.parse(userData);
 
     //sends data to server
-    fetch(`http://${ip}:3000/run/insert_score`, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token,
-            'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-            "level": level,
-            "email": userData[1],
-            "score": getScore()
+    try {
+        fetch(`http://${ip}/run/insert_score`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                "level": level,
+                "email": userData[1],
+                "score": getScore()
+            })
         })
-    })
+    }catch (e){
+        console.log(e)
+    }
+
 }
 
 const theme = localStorage.getItem('theme')

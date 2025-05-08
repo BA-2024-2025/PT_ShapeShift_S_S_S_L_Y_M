@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>User-Profile</title>
-    <link rel="stylesheet" href="../public/css/Style_settings.css">
-    <link rel="stylesheet" href="../public/css/Style_ColorScheme.css">
-    <link rel="stylesheet" href="../public/css/Style_Navbar.css">
+    <link rel="stylesheet" href="../public/resources/css/Style_settings.css">
+    <link rel="stylesheet" href="../public/resources/css/Style_ColorScheme.css">
+    <link rel="stylesheet" href="../public/resources/css/Style_Navbar.css">
     <script src="https://kit.fontawesome.com/5a4c0976d6.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
-    <script type="module" src="../public/scripts/settings.js"></script>
-    <script src="../public/scripts/setting_popup.js"></script>
+    <script type="module" src="../public/resources/scripts/settings.js"></script>
+    <script src="../public/resources/scripts/setting_popup.js"></script>
     <script src="../public/sounds/music.js"></script>
-    <script type="module" src="../public/scripts/index.js"></script>
+    <script type="module" src="../public/resources/scripts/index.js"></script>
 </head>
 <body>
 <div class="navContainer">
@@ -74,7 +74,7 @@
         <div class="leaderboard">
             <h1 class="username-title" id="username">Username</h1>
             <div class="profile-pic">
-                <img id="profilePic" src="../public/images/profilPicture/defaultProfile.png" alt="Profile Picture">
+                <img id="profilePic" src="../public/resources/assets/images/profilPicture/defaultProfile.png" alt="Profile Picture">
             </div>
             <div class="profile-picChange" onclick="openPopupProfilePicture()" id="profile-picChange">
                 <i class="fa-solid fa-pen"></i>
@@ -166,21 +166,21 @@
     <div class="popup-profile-picture">
         <h1>Change Profile Picture</h1>
         <div class="gallery">
-            <img src="../public/images/profilPicture/ape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/cow.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/3235.avif" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/eyes.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/strauss.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/defaultProfile.png" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/cool-man.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/Hacker.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/unnamed.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/80s-moon.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/istockphoto-812960808-612x612.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/tetris.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/landscape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/orca-leaping-high-stockcake.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/images/profilPicture/pfärd-profile.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/ape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/cow.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/3235.avif" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/eyes.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/strauss.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/defaultProfile.png" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/cool-man.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/Hacker.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/unnamed.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/80s-moon.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/istockphoto-812960808-612x612.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/tetris.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/landscape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/orca-leaping-high-stockcake.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../public/resources/assets/images/profilPicture/pfärd-profile.jpg" class="gallery-image" onclick="changeProfilePic(this)">
         </div>
         <div class="close" onclick="closePopupProfilePicture()">Abbrechen</div>
     </div>

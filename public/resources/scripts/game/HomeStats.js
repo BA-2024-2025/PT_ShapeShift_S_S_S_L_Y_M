@@ -1,13 +1,3 @@
-import {TTetromino} from "./TTetromino.js";
-import {OTetromino} from "./OTetromino.js";
-import {PlusTetromino} from "./PlusTetromino.js";
-import {UTetromino} from "./UTetromino.js";
-import {ITetromino} from "./ITetromino.js";
-import {LTetromino} from "./LTetromino.js";
-import {JTetromino} from "./JTetromino.js";
-import {STetromino} from "./STetromino.js";
-import {ZTetromino} from "./ZTetromino.js";
-
 let blocks = 0;
 let score = 0;
 
@@ -59,5 +49,5 @@ export function changeNextBlockImage(nextBlock) {
 
     console.log("letter: " + letter);
 
-    imgBlock.src = "/public/images/nextBlocks/"+letter+".png"
+    imgBlock.src = "/public/resources/assets/images/nextBlocks/"+letter+".png"
 }

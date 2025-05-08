@@ -1,12 +1,20 @@
 import mysql from "mysql2";
-import {query} from "express";
+
+const {
+    DB_HOST = 'localhost',
+    DB_PORT = 3306,
+    DB_USER = 'root',
+    DB_PASSWORD = '',
+    DB_NAME = ''
+} = process.env;
 
 
 let  connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'shapeshift',
+    host: DB_HOST,
+    port: Number(DB_PORT),
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
     multipleStatements: true
 })
 

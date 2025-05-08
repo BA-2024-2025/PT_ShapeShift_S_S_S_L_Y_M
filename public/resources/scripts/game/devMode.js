@@ -86,7 +86,7 @@ function spawnTetromino(tetromino) {
     console.log("Spawned Tetromino:", tetromino.color);
 
     // Worker für automatische Bewegung starten
-    devModeWorker = new Worker("../public/scripts/moveDown_worker.js");
+    devModeWorker = new Worker("./moveDown_worker.js");
     devModeWorker.onmessage = function (shiftYDown) {
         if (shiftYDown.data === "shiftYDown" && blockActive && devModeActive) {
             clearBattlefield(currentActiveTetromino);

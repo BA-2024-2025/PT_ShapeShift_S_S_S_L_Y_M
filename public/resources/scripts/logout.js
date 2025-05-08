@@ -3,7 +3,7 @@ const ip = localStorage.getItem('ip')
 function logOut() {
     const refreshToken = localStorage.getItem('refreshToken');
 
-    fetch("http://${ip}:4000/logout", {
+    fetch("http://${ip}/auth/logout", {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

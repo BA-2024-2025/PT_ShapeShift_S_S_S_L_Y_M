@@ -14,7 +14,7 @@ import { GhostTetromino } from "./GhostTetromino.js";
 import { BombTetromino } from "./BombTetromino.js";
 import { resetScore, sendBlocks, sendScore, resetBlocks, getScore } from "./HomeStats.js"
 import { changeNextBlockImage } from "./HomeStats.js"
-import { sendRun } from "./index.js";
+import { sendRun } from "../index.js";
 import { dropFloatingBlocks } from "./LineRemovementFunctions.js";
 import { LineClearTetromino } from "./LineClearTetromino.js";
 
@@ -278,7 +278,7 @@ export async function gameLoop() {
     changeNextBlockImage(String(nextImage))
 
     //create worker
-    const worker = new Worker("../public/scripts/moveDown_worker.js");
+    const worker = new Worker(new URL('./moveDown_worker.js', import.meta.url), { type: 'module' });
     worker.postMessage(level);
     currentActiveTetromino = activeTetromino;
 
