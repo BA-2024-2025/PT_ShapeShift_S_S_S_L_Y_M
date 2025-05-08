@@ -2,13 +2,7 @@ import mysql from "mysql2";
 import {query} from "express";
 
 
-let  connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'shapeshift',
-    multipleStatements: true
-})
+var connection =mysql.createConnection({host:"shapeshift-server.mysql.database.azure.com", user:"yijbjrgkkb", password:"Welcome$99", database:"{your_database}", port:3306, ssl:{ca:fs.readFileSync("{ca-cert filename}")}});
 
 try{
     connection.connect(function (err, db) {
