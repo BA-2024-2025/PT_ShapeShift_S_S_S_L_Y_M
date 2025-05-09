@@ -3,47 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>User-Profile</title>
-    <link rel="stylesheet" href="../public/resources/css/Style_settings.css">
-    <link rel="stylesheet" href="../public/resources/css/Style_ColorScheme.css">
-    <link rel="stylesheet" href="../public/resources/css/Style_Navbar.css">
+    <link rel="stylesheet" href="../../resources/css/Style_settings.css">
+    <link rel="stylesheet" href="../../resources/css/Style_ColorScheme.css">
+    <link rel="stylesheet" href="../../resources/css/Style_Navbar.css">
     <script src="https://kit.fontawesome.com/5a4c0976d6.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
-    <script type="module" src="../public/resources/scripts/settings.js"></script>
-    <script src="../public/resources/scripts/setting_popup.js"></script>
+    <script type="module" src="../../resources/scripts/settings.js"></script>
+    <script src="../../resources/scripts/setting_popup.js"></script>
     <script src="../public/sounds/music.js"></script>
-    <script type="module" src="../public/resources/scripts/index.js"></script>
+    <script type="module" src="../../resources/scripts/index.js"></script>
 </head>
 <body>
 <div class="navContainer">
     <div class="logoContainer">
-        <a href="index.html">
+        <a href="/home">
             <h1 class="logo" style="color:var(--primary)">ShapeShift</h1>
         </a>
     </div>
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="navItem">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="/home" class="nav-link">Home</a>
             </li>
             <li class="navItem">
-                <a href="./leaderboard.html" class="nav-link">Leaderboard</a>
+                <a href="/leaderboard" class="nav-link">Leaderboard</a>
             </li>
             <li class="navItem">
-                <a href="./contacts.html" class="nav-link">Contact</a>
+                <a href="/contacts" class="nav-link">Contact</a>
             </li>
         </ul>
     </nav>
     <div class="loginContainer">
         <div class="login-icon">
-            <a href="index.html" class="login-icon">
+            <a href="/home" class="login-icon">
                 <i class="fa-regular fa-user"></i>
             </a>
             <ul class="login-menu">
                 <li class="login-element">
-                    <a href="./login.html" class="login login-text">Login</a>
+                    <a href="/login" class="login login-text">Login</a>
                 </li>
                 <li class="login-element">
-                    <a href="./settings.html" class="settings login-text">Settings</a>
+                    <a href="/settings" class="settings login-text">Settings</a>
                 </li>
             </ul>
         </div>
@@ -51,19 +51,19 @@
             <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
             <ul class="mobile-menu-menu">
                 <li class="mobile-menu-item">
-                    <a href="index.html" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="/home" class="mobile-menu-link"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="./leaderboard.html" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Ranking</a>
+                    <a href="/leaderboard" class="mobile-menu-link"><i class="fa-solid fa-medal"></i> Ranking</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="./settings.html" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                    <a href="/settings" class="mobile-menu-link"><i class="fa-solid fa-gear"></i> Settings</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="./contacts.html" class="mobile-menu-link"><i class="fa-solid fa-address-book"></i> Contact</a>
+                    <a href="/contacts" class="mobile-menu-link"><i class="fa-solid fa-address-book"></i> Contact</a>
                 </li>
                 <li class="mobile-menu-item">
-                    <a href="./login.html" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
+                    <a href="/login" class="mobile-menu-link"><i class="fa-regular fa-user"></i> Login</a>
                 </li>
             </ul>
         </div>
@@ -74,7 +74,7 @@
         <div class="leaderboard">
             <h1 class="username-title" id="username">Username</h1>
             <div class="profile-pic">
-                <img id="profilePic" src="../public/resources/assets/images/profilPicture/defaultProfile.png" alt="Profile Picture">
+                <img id="profilePic" src="../../resources/assets/images/profilPicture/defaultProfile.png" alt="Profile Picture">
             </div>
             <div class="profile-picChange" onclick="openPopupProfilePicture()" id="profile-picChange">
                 <i class="fa-solid fa-pen"></i>
@@ -166,27 +166,27 @@
     <div class="popup-profile-picture">
         <h1>Change Profile Picture</h1>
         <div class="gallery">
-            <img src="../public/resources/assets/images/profilPicture/ape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/cow.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/3235.avif" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/eyes.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/strauss.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/defaultProfile.png" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/cool-man.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/Hacker.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/unnamed.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/80s-moon.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/istockphoto-812960808-612x612.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/tetris.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/landscape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/orca-leaping-high-stockcake.jpg" class="gallery-image" onclick="changeProfilePic(this)">
-            <img src="../public/resources/assets/images/profilPicture/pfärd-profile.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/ape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/cow.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/3235.avif" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/eyes.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/strauss.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/defaultProfile.png" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/cool-man.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/Hacker.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/unnamed.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/80s-moon.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/istockphoto-812960808-612x612.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/tetris.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/landscape.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/orca-leaping-high-stockcake.jpg" class="gallery-image" onclick="changeProfilePic(this)">
+            <img src="../../resources/assets/images/profilPicture/pfärd-profile.jpg" class="gallery-image" onclick="changeProfilePic(this)">
         </div>
         <div class="close" onclick="closePopupProfilePicture()">Abbrechen</div>
     </div>
 </div>
 <div class="imprint_floater">
-    <i class="fa-solid fa-circle-info fa-2xl" id="imprint_icon" onclick="window.location.href='./imprint.html'"></i>
+    <i class="fa-solid fa-circle-info fa-2xl" id="imprint_icon" onclick="window.location.href='/imprint'"></i>
 </div>
 
 </body>
