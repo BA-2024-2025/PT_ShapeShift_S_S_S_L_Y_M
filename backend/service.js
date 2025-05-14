@@ -1,5 +1,7 @@
 import mysql from "mysql2";
 
+const publicData = 'id_user,username,email,topscore'
+
 const {
     DB_HOST = 'localhost',
     DB_PORT = 3306,
@@ -79,7 +81,8 @@ export async function makeUser(user, res) {
 
 }
 
-let getAllUsersQuery = 'SELECT * FROM user ORDER BY topscore DESC;';
+
+let getAllUsersQuery = 'SELECT ${publicData} FROM user ORDER BY topscore DESC;';
 
 
 export async function getAllUsers(req, res) {
@@ -109,7 +112,7 @@ export async function getUsersByID(req, res, id) {
     try {
         // Return a Promise that resolves with the results
         const results = await new Promise((resolve, reject) => {
-            connection.query(('Select * From user order by topscore DESC Limit ?'),id , function (err, results) {
+            connection.query(('Select ${publicData} From user order by topscore DESC Limit ?'),id , function (err, results) {
                 if (err) {
                     reject(err); // Reject the promise if there's an error
                 } else {
@@ -163,7 +166,7 @@ export function checkUserName (user, res) {
 
     try{
         console.log(user.name);
-        connection.query('SELECT * FROM user where username = ? ', [user.name], function (err, results) {
+        connection.query('SELECT ${publicData} FROM user where username = ? ', [user.name], function (err, results) {
             console.log(results);
 
             if (results.length === 0){
@@ -305,7 +308,7 @@ let addRunQuery =
 export  function findByName (name,res) {
     try {
         console.log(name)
-        connection.query(('Select * from user where username = ?'), name, function (err, results) {
+        connection.query(('Select ${publicData} from user where username = ?'), name, function (err, results) {
             if (err) {
                 console.log(err);
 
@@ -324,7 +327,7 @@ export  function findByName (name,res) {
 export  function findByEmail (email,res) {
     try {
         console.log(email)
-        connection.query(('Select * from user where email = ?'), email, function (err, results) {
+        connection.query(('Select ${publicData} from user where email = ?'), email, function (err, results) {
             if (err) {
                 console.log(err);
 
