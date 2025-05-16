@@ -123,6 +123,7 @@ async function startPhysicsSimulation() {
     resetBlocks();
     resetScore();
     blocks = 0;
+    level = 1;
     gameLoop();
 }
 

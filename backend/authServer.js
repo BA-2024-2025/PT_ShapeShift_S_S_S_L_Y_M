@@ -16,7 +16,7 @@ let REFRESH_TOKEN='cb96a9370d53168b540e9a51d3bdc34560761c97a56885e8fbc35da19c495
 
 let refreshTokens = [];
 
-app.post('/login', async (req, res) => {
+app.post('/auth/login', async (req, res) => {
     let user = req.body;
     console.log(req.body);
 
@@ -29,7 +29,7 @@ app.post('/login', async (req, res) => {
         res.status(401).json({ error: 'Invalid Credentials' });
     }
 });
-app.post('/signup', async (req, res) => {
+app.post('/auth/signup', async (req, res) => {
     let user = req.body;
     console.log(req.body);
     try {
@@ -43,7 +43,7 @@ app.post('/signup', async (req, res) => {
     }
 })
 
-app.post('/token', async (req, res) => {
+app.post('/auth/token', async (req, res) => {
     const refreshToken = req.body.token;
 
     if (!refreshToken) {
@@ -62,7 +62,7 @@ app.post('/token', async (req, res) => {
     });
 });
 
-app.delete('/logout', async (req, res) => {
+app.delete('/auth/logout', async (req, res) => {
     const { token } = req.body;
     refreshTokens = refreshTokens.filter(t => t !== token);
     res.status(204).send();
@@ -72,7 +72,7 @@ function generateAccessToken(user) {
     return jwt.sign(
         { email: user.email, password: user.password },
         ACCESS_TOKEN,
-        { expiresIn: '21d' }
+        { expiresIn: '8h' }
     );
 }
 export default app;

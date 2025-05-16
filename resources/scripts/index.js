@@ -3,7 +3,7 @@ import {getScore} from "./game/HomeStats.js";
 
 localStorage.setItem('ip', 'ssapi.themodcraft.net');
 
-window.onload = function() {
+document.onload = function() {
     const iframe = document.getElementById("iframe");
     iframe.focus();
 };

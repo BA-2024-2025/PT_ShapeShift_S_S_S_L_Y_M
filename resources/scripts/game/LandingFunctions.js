@@ -73,6 +73,7 @@ export async function blockLanding(tetromino, worker, eventFunction) {
         let yPosition = [...new Set(positionT.map(pos => parseInt(pos.slice(1))))]
         await removeLine(yPosition);
         await applyGravity(yPosition);
+        await removeLine(yPosition);
         ensureGrounded();
 
         if (counter > 0) {

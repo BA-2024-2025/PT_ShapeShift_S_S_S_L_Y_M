@@ -75,7 +75,7 @@ export async function removeLine(linesToRemove) {
     let score = 0;
     score += linesRemoved * 10;
     if (linesRemoved > 3) {
-        score += (linesRemoved) * 40;
+        score += (linesRemoved) * 5;
     }
     sendScore(score);
 }
